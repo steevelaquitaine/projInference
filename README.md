@@ -1,6 +1,2 @@
 # projInference
 # projInference
-
-
-
-Just testing
