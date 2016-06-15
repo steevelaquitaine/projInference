@@ -269,13 +269,13 @@ Full-Width Styles
 /******
 Margins
 ******/
-/*.inner {
+.inner {
   position: relative;
   max-width: 820px;
   padding: 20px 10px;
   margin: 0 auto;
 }
-
+/*
 #forkme_banner {
   display: block;
   position: absolute;
