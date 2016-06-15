@@ -291,7 +291,7 @@ Margins
 }
 
 #header_wrap {
-  background: white;/*#212121*/
+  background: #212121;
   background: -moz-linear-gradient(top, #373737, #212121);
   background: -webkit-linear-gradient(top, #373737, #212121);
   background: -ms-linear-gradient(top, #373737, #212121);
@@ -359,7 +359,7 @@ Margins
 }
 
 #main_content_wrap {
-  background: #f2f2f2;
+  background: white;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
