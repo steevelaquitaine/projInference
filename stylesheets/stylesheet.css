@@ -300,10 +300,10 @@ Margins
   background: linear-gradient(top, #373737, #212121);
 }
 
-/*
 #header_wrap .inner {
   padding: 50px 10px 30px 10px;
 }
+
 
 #project_title {
   margin: 0;
@@ -313,6 +313,7 @@ Margins
   text-shadow: #111 0px 0px 10px;
 }
 
+/*
 #project_tagline {
   color: #fff;
   font-size: 24px;
