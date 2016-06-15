@@ -290,7 +290,7 @@ Margins
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
-/*
+
 #header_wrap {
   background: #212121;
   background: -moz-linear-gradient(top, #373737, #212121);
@@ -300,6 +300,7 @@ Margins
   background: linear-gradient(top, #373737, #212121);
 }
 
+/*
 #header_wrap .inner {
   padding: 50px 10px 30px 10px;
 }
