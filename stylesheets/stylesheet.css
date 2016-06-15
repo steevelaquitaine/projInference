@@ -321,6 +321,7 @@ Margins
   background: none;
   text-shadow: #111 0px 0px 10px;
 }
+*/
 
 #downloads {
   position: absolute;
@@ -361,6 +362,7 @@ Margins
   background: url(../images/sprite_download.png) no-repeat top right;
 }
 
+/*
 #main_content_wrap {
   background: #f2f2f2;
   border-top: 1px solid #111;
