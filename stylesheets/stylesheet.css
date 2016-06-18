@@ -367,6 +367,8 @@ table_of_content_wrap {
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
   line-height: 0.5;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 #table_of_content {
