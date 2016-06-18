@@ -362,11 +362,22 @@ Margins
   background: url(../images/sprite_download.png) no-repeat top right;
 }
 
-main_content_wrap {
+table_of_content_wrap {
   background: white;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
   line-height: 0.5;
+}
+
+#table_of_content {
+  padding-top: 40px;
+}
+
+main_content_wrap {
+  background: white;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  line-height: 1.5;
 }
 
 #main_content {
