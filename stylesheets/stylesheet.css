@@ -39,9 +39,18 @@ ol, ul {
   list-style: none;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+table, th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size:8pt;
+    background-color: white;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+    background-color: white;
 }
 
 
@@ -235,7 +244,8 @@ hr {
 }
 
 table {
-  border: 1px solid #373737;
+  /*border: 1px solid #373737;*/
+  border: 1px solid white;
   margin-bottom: 20px;
   text-align: left;
  }
@@ -243,8 +253,10 @@ table {
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
-  background: #373737;
-  color: #fff;
+  /*background: #373737;*/
+  background: white;
+  /*color: #fff;*/
+  color: black;
  }
 
 td {
