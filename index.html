@@ -37,6 +37,7 @@
         <a href="#Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics"> Estimation error depends on evidence strength...and on motion direction statistics <br>
         <a href="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?"> Why is estimates relationship to physical directions nonlinear? <br>
         <a href="#Humans-use-environment-statistics"> Humans use environment statistics <br>
+        <a href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer"> Switching between prior and evidence outperforms the Bayesian observer <br>
         <a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br>
     </div>
     
@@ -107,9 +108,6 @@
         <p> >> [e,ci,m,s] = slMakeCI([100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101 101627.7 71161.2 76223.3],0.95) </p>
       </div>
 
-
-
-
       <!--table-->
       <table style="width:30%">
       <caption> Bayesian observer better fit data than a maximum likelihood observer (lower Akaike Information criterion (AIC)) </caption>
@@ -127,8 +125,20 @@
       </tr>
       </table>
      <!--Head-->
+
+      <h6><a id="Switching-between-prior-and-evidence-outperform-the-Bayesian-observer" class="anchor" href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Switching between prior and evidence outperforms the Bayesian observer</h3> 
+
+      <!--code  -->
+      <div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   
+        <br> >> model_ref = 'model_CompDiv'; </br>
+        <br> >> models = {'model_Bayes_MAP'}; </br>
+        <br> >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; </br>
+        <br> >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); </br>
+        <br> >> figure('color','w') </br>
+        <br> >> SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]) </br>
+      </div>
     
-    <h6><a id="Why-other-plausible-Bayesian-observers-fail-to-switching" class="anchor" href="#Why-other-plausible-Bayesian-observers-fail-to-switching" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why other plausible Bayesian observers fail to switching</h3> 
+      <h6><a id="Why-other-plausible-Bayesian-observers-fail-to-switching" class="anchor" href="#Why-other-plausible-Bayesian-observers-fail-to-switching" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why other plausible Bayesian observers fail to switching</h3> 
     
       - a basic Bayesian model [Stocker 2006; Girshick 2011] <br>
       - a sampling Bayesian model [Pouget 2011] <br>
@@ -136,12 +146,12 @@
       - a basic Bayesian model with likelihood computed from stimulus components [Stocker 2006; Girshick 2011]<br>
       - Hierarchical Bayesian inference [Mumford 2003]<br>
     
-      <!--code      -->
+      <!--code-->
       <div style="background-color:#e5e6e6; color:black; padding:10px;">  
-      <p> model_ref = 'model_CompDiv';</p> 
-      <p> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard','model_Bayes_WJMtailedPrior','model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'};</p> 
-      <p> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; </p> 
-      <p> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path) </p> 
+        <br> >> model_ref = 'model_CompDiv';</br> 
+        <br> >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard','model_Bayes_WJMtailedPrior','model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'};</br> 
+        <br> >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; </br> 
+        <br> >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path) </br> 
       </div>
       
       <!--Figure-->
