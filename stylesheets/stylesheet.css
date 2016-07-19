@@ -292,7 +292,7 @@ Margins
   /*display: block;*/
   display: inline;
   position: absolute;
-  top:0;
+  top:10;
   right: 10px;
   z-index: 10;
   padding: 10px 50px 10px 10px;
