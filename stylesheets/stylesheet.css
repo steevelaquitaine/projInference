@@ -292,7 +292,7 @@ Margins
   /*display: block;*/
   display: inline;
   position: absolute;
-  top: 3;
+  top: 1;
   right: 10px;
   z-index: 10;
   padding: 10px 50px 10px 10px;
@@ -323,7 +323,7 @@ Margins
   color: #fff;
   font-size: 20px;
   /*font-family: 'Helvetica',sans-serif;*/
-  font-weight: 500;
+  font-weight: 600;
   text-shadow: #111 0px 0px 10px;
 }
 
