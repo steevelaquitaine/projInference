@@ -304,7 +304,8 @@ Margins
 }
 
 #header_wrap {
-  background: #212121;
+  /*background: #212121;*/
+  background: #373737;
   background: -moz-linear-gradient(top, #373737, #212121);
   background: -webkit-linear-gradient(top, #373737, #212121);
   background: -ms-linear-gradient(top, #373737, #212121);
