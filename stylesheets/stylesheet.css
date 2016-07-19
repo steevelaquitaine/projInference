@@ -349,9 +349,9 @@ Margins
 .zip_download_link {
   display: block;
   float: right;
-  width: 80px;
-  height:60px;
-  text-indent: -5000px;
+  width: 90px;
+  height:70px;
+  text-indent: -6000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom left;
 }
@@ -359,9 +359,9 @@ Margins
 .tar_download_link {
   display: block;
   float: right;
-  width: 80px;
-  height:60px;
-  text-indent: -5000px;
+  width: 90px;
+  height: 70px;
+  text-indent: -6000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom right;
   margin-left: 10px;
