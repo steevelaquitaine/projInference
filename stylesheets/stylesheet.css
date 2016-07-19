@@ -300,8 +300,8 @@ Margins
   background: url('../images/blacktocat.png') no-repeat 95% 50%;
   font-weight: 600;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
 }
 
 #header_wrap {
@@ -324,7 +324,7 @@ Margins
   font-size: 20px;
   /*font-family: 'Helvetica',sans-serif;*/
   font-weight: 600;
-  text-shadow: #111 0px 0px 10px;
+  /*text-shadow: #111 0px 0px 10px;*/
 }
 
 /*
