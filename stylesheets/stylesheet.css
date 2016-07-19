@@ -63,7 +63,7 @@ body {
   color:#373737;
   background-color: white;
   font-size: 16px;
-  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: 700;
   color:#222222;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica',sans-serif;
   letter-spacing: -1px;
 }
 
@@ -172,7 +172,7 @@ pre, code {
   color: #222;
   background-color: white;
 
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: 'Helvetica',sans-serif;
   font-size: 14px;
 
   border-radius: 2px;
@@ -251,7 +251,7 @@ table {
  }
 
 th {
-  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica', sans-serif;
   padding: 10px;
   /*background: #373737;*/
   background: white;
