@@ -289,7 +289,8 @@ Margins
 }
 
 #forkme_banner {
-  display: block;
+  /*display: block;*/
+  display: none;
   position: absolute;
   top:0;
   right: 10px;
@@ -313,7 +314,6 @@ Margins
 }
 
 #header_wrap .inner {
-  /*padding: 50px 10px 30px 10px;*/
   padding: 10px 10px 10px 10px;
 }
 
@@ -322,7 +322,7 @@ Margins
   margin: 0;
   color: #fff;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 500;
   text-shadow: #111 0px 0px 10px;
 }
 
