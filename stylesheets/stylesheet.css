@@ -340,11 +340,9 @@ Margins
   position: absolute;
   width: 210px;
   z-index: 10;
-  /*bottom: -40px;*/
-  bottom: -70px;
+  bottom: -40px;
   right: 0;
-  /*height: 70px;*/
-  height: 35px;
+  height: 70px;
   background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
@@ -352,9 +350,9 @@ Margins
   display: block;
   float: right;
   /*width: 90px;*/
-  width: 45px;
+  width: 75px;
   /*height:70px;*/
-  height: 35px;
+  height: 50px;
   text-indent: -5000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom left;
@@ -364,9 +362,9 @@ Margins
   display: block;
   float: right;
   /*width: 90px;*/
-  width: 45px;
+  width: 75px;
   /*height:70px;*/
-  height:35px;
+  height: 55px;
   text-indent: -5000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom right;
