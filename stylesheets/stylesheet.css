@@ -290,7 +290,7 @@ Margins
 
 #forkme_banner {
   /*display: block;*/
-  display: none;
+  display: inline;
   position: absolute;
   top:0;
   right: 10px;
