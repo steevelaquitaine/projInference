@@ -340,7 +340,6 @@ Margins
   position: absolute;
   width: 210px;
   z-index: 10;
-  /*bottom: -40px;*/
   bottom: -90px;
   right: 0;
   height: 70px;
@@ -350,10 +349,8 @@ Margins
 .zip_download_link {
   display: block;
   float: right;
-  /*width: 90px;*/
-  width: 75px;
-  /*height:70px;*/
-  height: 50px;
+  width: 80px;
+  height:60px;
   text-indent: -5000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom left;
@@ -362,10 +359,8 @@ Margins
 .tar_download_link {
   display: block;
   float: right;
-  /*width: 90px;*/
-  width: 75px;
-  /*height:70px;*/
-  height: 55px;
+  width: 80px;
+  height:60px;
   text-indent: -5000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom right;
