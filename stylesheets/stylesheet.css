@@ -338,11 +338,13 @@ Margins
 
 #downloads {
   position: absolute;
-  width: 150px;
+  width: 200px;
   z-index: 10;
-  bottom: -40px;
+  /*bottom: -40px;*/
+  bottom: -70px;
   right: 0;
-  height: 70px;
+  /*height: 70px;*/
+  height: 35px;
   background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
