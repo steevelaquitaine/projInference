@@ -104,19 +104,14 @@
       knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
       <!--code  -->
       <div style="background-color:#e5e6e6; color:black; padding:10px;">  
-        <p><br> >> bo = [77182.68 74175.23 84145.32 ... </br>
-        <br>    46451.09 61913.16 75357.9 ... </br>
-        <br>    54584.24 62731.75 84927.68 ... </br>
-        <br>    62633.63 63233.81 66099.47]; </br></p>
+        <p> >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 ...
+                     54584.24 62731.75 84927.68 62633.63 63233.81 66099.47];</p>
         
-        <p><br> >> mlo = [100803.6 92739.7 110810.02 ...</br>
-        <br>    56504.8 68159.3 88925.5 ... </br>
-        <br>    68253.5 68253.5 101627.7 ... </br>
-        <br>    71161.2 76223.3 76223.3]; </br></p>
+        <p> >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 ...
+                      68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; </p>
             
-        <p> >> [e,ci,m,s]= slMakeCI(bo,0.95)</p>
-        
-        <p> >> [e,ci,m,s] = slMakeCI(mlo,0.95) </p>
+        <br> >> [e,ci,m,s]= slMakeCI(bo,0.95)</br>
+        <br> >> [e,ci,m,s] = slMakeCI(mlo,0.95) </br>
       </div>
 
       <p> This is even clearer when loooking at the AIC difference between the two models, averaged over subjects </p>
