@@ -29,7 +29,7 @@ time, mark, audio, video {
   vertical-align: baseline;
   
   text-align: justify;
-  font-family: 'CMS', 'Droid Sans', Helvetica, Arial;
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;
   font-size: 16px;
   line-height: 25px;
 }
@@ -68,7 +68,7 @@ body {
   color:#373737;
   background-color: white;
   font-size: 14px;
-  font-family: 'CMS', 'Droid Sans', Helvetica, Arial;
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: 700;
   color:#222222;
-  font-family: 'CMS', 'Droid Sans', Helvetica, Arial
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;
   letter-spacing: -1px;
 }
 
@@ -179,7 +179,7 @@ pre, code {
   color: #222;
   background-color: white;
 
-  font-family: 'CMS', 'Droid Sans', Helvetica, Arial
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;
   font-size: 14px;
 
   border-radius: 2px;
@@ -258,7 +258,7 @@ table {
  }
 
 th {
-  font-family: 'CMS', 'Droid Sans', Helvetica, Arial
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif
   padding: 10px;
   /*background: #373737;*/
   background: white;
@@ -337,7 +337,7 @@ proj_title_wrap {
 #proj_title {
   padding-top: 20px;
   font-size : 54px;
-  font-family : 'CMS', 'Droid Sans', Helvetica, Arial;
+  font-family : 'CMS', 'Droid Sans', Helvetica, Arial, serif;
   font-style: Normal;
   font-weight: 200;
 }
