@@ -331,8 +331,11 @@ proj_title_wrap {
   background: white;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
-  line-height: 1.5;
-  /*font-size : 100%;*/
+  /*line-height: 1.5;*/
+  font-size : 54px;
+  font-family : 'CMS', 'Droid Sans', Helvetica, Arial;
+  font-style: Normal;
+  font-weight: 200;
 }
 
 #proj_title {
