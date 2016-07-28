@@ -305,10 +305,10 @@ Margins
   padding: 10px 50px 10px 10px;
   color: #fff;
   background: url('../images/blacktocat.png') no-repeat 95% 50%;
-  font-weight: 600;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border-bottom-left-radius: 1px;
-  border-bottom-right-radius: 1px;
+  /*font-weight: 600;*/
+  /*box-shadow: 0 0 10px rgba(0,0,0,.5);*/
+  /*border-bottom-left-radius: 1px;*/
+  /*border-bottom-right-radius: 1px;*/
 }
 
 #header_wrap {
