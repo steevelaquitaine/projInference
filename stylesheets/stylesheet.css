@@ -327,8 +327,8 @@ Margins
 #project_title {
   margin: 0;
   color: #fff;
-  font-size: 20px;
-  font-family: 'Helvetica',sans-serif;
+  font-size: 40px;
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial, sans-serif;
   font-weight: 200;
   text-shadow: #111 0px 0px 10px;
 }
