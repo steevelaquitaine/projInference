@@ -325,9 +325,9 @@ Margins
 }
 
 proj_title_wrap {
-  background: white;
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
+  /*background: white;*/
+  /*border-top: 1px solid #111;*/
+  /*border-bottom: 1px solid #111;*/
   /*line-height: 1.5;*/
   font-size : 100%;
 }
