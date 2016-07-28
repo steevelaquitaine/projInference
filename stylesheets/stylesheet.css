@@ -332,14 +332,14 @@ proj_title_wrap {
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
   /*line-height: 1.5;*/
-  font-size : 54px;
-  font-family : 'CMS', 'Droid Sans', Helvetica, Arial;
-  font-style: Normal;
-  font-weight: 200;
 }
 
 #proj_title {
   padding-top: 20px;
+  font-size : 54px;
+  font-family : 'CMS', 'Droid Sans', Helvetica, Arial;
+  font-style: Normal;
+  font-weight: 200;
 }
 
 /*#project_title {*/
