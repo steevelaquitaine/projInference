@@ -321,14 +321,19 @@ Margins
 }
 
 #header_wrap .inner {
-  padding: 15px 10px 10px 10px;
+  padding: 15px 10px 10px 15px;
 }
 
-project_title {
+proj_title_wrap {
   background: white;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
-  line-height: 1.5;
+  /*line-height: 1.5;*/
+  font-size : 100%;
+}
+
+#proj_title {
+  padding-top: 20px;
 }
 
 /*#project_title {*/
@@ -350,44 +355,44 @@ project_title {
 }
 */
 
-#downloads {
-  position: absolute;
-  width: 210px;
-  z-index: 10;
-  bottom: -90px;
-  right: 0;
-  height: 70px;
-  background: url('../images/icon_download.png') no-repeat 0% 90%;
-}
+/*#downloads {*/
+/*  position: absolute;*/
+/*  width: 210px;*/
+/*  z-index: 10;*/
+/*  bottom: -90px;*/
+/*  right: 0;*/
+/*  height: 70px;*/
+/*  background: url('../images/icon_download.png') no-repeat 0% 90%;*/
+/*}*/
 
-.zip_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -6000px;
-  overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom left;
-}
+/*.zip_download_link {*/
+/*  display: block;*/
+/*  float: right;*/
+/*  width: 90px;*/
+/*  height:70px;*/
+/*  text-indent: -6000px;*/
+/*  overflow: hidden;*/
+/*  background: url(../images/sprite_download.png) no-repeat bottom left;*/
+/*}*/
 
-.tar_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height: 70px;
-  text-indent: -6000px;
-  overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom right;
-  margin-left: 10px;
-}
+/*.tar_download_link {*/
+/*  display: block;*/
+/*  float: right;*/
+/*  width: 90px;*/
+/*  height: 70px;*/
+/*  text-indent: -6000px;*/
+/*  overflow: hidden;*/
+/*  background: url(../images/sprite_download.png) no-repeat bottom right;*/
+/*  margin-left: 10px;*/
+/*}*/
 
-.zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
-}
+/*.zip_download_link:hover {*/
+/*  background: url(../images/sprite_download.png) no-repeat top left;*/
+/*}*/
 
-.tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top right;
-}
+/*.tar_download_link:hover {*/
+/*  background: url(../images/sprite_download.png) no-repeat top right;*/
+/*}*/
 
 table_of_content_wrap {
   background: white;
