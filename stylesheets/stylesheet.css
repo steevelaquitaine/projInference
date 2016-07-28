@@ -323,7 +323,8 @@ Margins
 }
 
 #header_wrap .inner {
-  padding: 15px 10px 10px 15px;
+  /*padding: 15px 10px 10px 15px;*/
+  padding: 15px 10px 10px 150px;
 }
 
 proj_title_wrap {
