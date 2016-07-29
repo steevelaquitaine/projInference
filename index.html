@@ -92,7 +92,7 @@
         from the prior: evidence were more often pulled from both sides of the prior which increased estimate dispersion.<p>
         
         <div style="background-color:#e5e6e6; color:black; padding:10px;">  
-        >> slsimulateBayesianModelEstimateSpace(5:20:360) 
+        >> slsimulateBayesianModelEstimateSpace(5:20:360); 
         </div>
         
         <!--figure-->
@@ -102,6 +102,7 @@
         <h6><a id="Humans use environment's statistics" class="anchor" href="#Humans-use-environment-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Humans-use-environment-statistics</h3>
         <p>A Bayesian observer that uses the statistical distribution of motion directions fit the data beter than a maximum likelihood observer that only uses sensory likelihood. This indicates that subjects incoporated and ued prior 
         knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
+        
         <!--code  -->
         <div style="background-color:#e5e6e6; color:black; padding:10px;">  
           <p> >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 ...
@@ -168,15 +169,14 @@
         - Hierarchical Bayesian inference [Mumford 2003]<br>
       
         <!--code-->
-        <div id="main_content_wrap" class="outer">
-        <section id="code" class="inner">
+        <code id="code" class="inner">
           <!--<div style="background-color:#e5e6e6; color:black; padding:10px;">  -->
             <br> >> model_ref = 'model_CompDiv';</br> 
-            <br> >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard','model_Bayes_WJMtailedPrior','model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'};</br> 
-            <br> >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; </br> 
-            <br> >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path) </br> 
-          <!--</div>-->
-        </div>
+            <br> >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', 'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'};</br> 
+            <br> >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; </br> 
+            <br> >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path) </br> 
+        </code>
+        
         
         <!--Figure-->
         <center><img src="images/WhyBayesianObserversFail.png" style="width: 100%; height: 100%"/></center>
