@@ -332,8 +332,9 @@ Margins
   /*background: linear-gradient(top, #373737, #212121);*/
 }
 
+/*Top dark gray band for name and github*/
 #header_wrap .inner {
-  /*padding: 30px 10px 30px 10px;*/
+  padding: 30px 10px 30px 10px;
 }
 
 proj_title_wrap {
@@ -356,17 +357,7 @@ proj_title_wrap {
   font-weight: 200;
 }
 
-/*#project_author {*/
-/*  display: block;*/
-/*  position: absolute;*/
-/*  top: 10px;*/
-/*  left: 10px;*/
-/*  z-index: 10;*/
-/*  padding: 10px 50px 10px 10px;*/
-/*  color: #fff;*/
-/*  font-weight: 100;*/
-/*}*/
-
+/*name of the writer*/
 #project_author {
   display: block;
   position: absolute;
@@ -378,13 +369,14 @@ proj_title_wrap {
   font-weight: 100;
 }
 
+/*table of contents*/
 table_of_content_wrap {
   background: white;
   border-top: 1px solid #111;
 }
 
 #table_of_content {
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
 main_content_wrap {
