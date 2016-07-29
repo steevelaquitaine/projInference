@@ -89,9 +89,9 @@ h1 {
   color:#222222;
   /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
   font-family: serif;
-  letter-spacing: -1px;
+  letter-spacing: 1px;
   line-height: 1.5;
-  font-size: 300%;*/
+  font-size: 54px;
 }
 
 h2 {
@@ -153,9 +153,9 @@ em {
   font-style: italic;
 }
 
-strong {
-  font-weight: bold;
-}
+/*strong {*/
+/*  font-weight: bold;*/
+/*}*/
 
 img {
   position: relative;
