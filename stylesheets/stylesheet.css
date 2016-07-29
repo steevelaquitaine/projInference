@@ -317,30 +317,14 @@ Margins
   z-index: 10;
   padding: 10px 50px 10px 10px;
   color: #fff;
-  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
+  background: url('../images/blacktocat.png')
+  /*#0090ff no-repeat 95% 50%;*/
   /*font-weight: 700;*/
   font-weight: 100;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
-
-/*#forkme_banner {*/
-  /*display: block;*/
-/*  display: inline;*/
-/*  position: absolute;*/
-  /*top: 1;*/
-/*  top: 40;*/
-/*  right: 10px;*/
-/*  z-index: 10;*/
-/*  padding: 10px 50px 10px 10px;*/
-/*  color: #fff;*/
-/*  background: url('../images/blacktocat.png') no-repeat 95% 50%;*/
-  /*font-weight: 600;*/
-  /*box-shadow: 0 0 10px rgba(0,0,0,.5);*/
-  /*border-bottom-left-radius: 1px;*/
-  /*border-bottom-right-radius: 1px;*/
-/*}*/
 
 #header_wrap {
   background: #373737;
