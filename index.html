@@ -105,7 +105,6 @@
         
         <!--code  -->
         <section class="code">
-          <!--<div style="background-color:#e5e6e6; color:black; padding:10px;">  -->
           <p> >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47]; <br>
               >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; <br>
               >> [e, ci, m, s]= slMakeCI(bo, 0.95) <br>
@@ -167,7 +166,8 @@
         <section class="code">
           <!--<div style="background-color:#e5e6e6; color:black; padding:10px;">  -->
              <p> >> model_ref = 'model_CompDiv'; <br> 
-             >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', 'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'};<br> 
+             >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
+             'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br> 
              >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; <br> 
              >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); </p>
         </section>
@@ -182,7 +182,8 @@
         <section class="code">
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
            <p> >> model_ref = 'model_CompDiv'; <br>
-           >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', 'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior' }; <br>
+           >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
+           'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior' }; <br>
            >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; <br>
            >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); </p>
         </section>
@@ -190,7 +191,8 @@
         <!--code  -->
         <section class="code">
               <p> >> model_ref = 'model_CompDiv'; <br>
-              >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', 'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br>
+              >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br>
+              'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br>
               >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/'; <br>
               >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); </p>
         </section>
@@ -201,7 +203,8 @@
         <section class="code">
            <p> >> cd('~/proj/ steeve/ projInference/ data/) <br>
            >> [rowheader, colheader, data] = slcsvRead('modelfitData.csv'); <br>
-           >> [nRefWins, nNoWin, nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader, colheader, data, 'Switching observer') </p>
+           >> [nRefWins, nNoWin, nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader, colheader, data, ... <br>
+           'Switching observer') </p>
         </section>
   
   
