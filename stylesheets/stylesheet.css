@@ -84,7 +84,7 @@ h2, h3, h4, h5, h6 {
 h1 {
   font-family:'CMS', 'Droid Serif', Georgia, Times, serif;
   font-size:300%;
-  line-height:65px;
+  /*line-height:65px;*/
   text-align:left
 }
 
