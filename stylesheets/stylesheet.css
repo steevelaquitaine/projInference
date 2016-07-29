@@ -81,6 +81,14 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -1px;
 }
 
+h1 {
+  font-weight: 200;
+  color:#222222;
+  font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;
+  /*letter-spacing: -1px;*/
+  line-height: 3;
+}
+
 h2 {
   padding-bottom: 10px;
   font-size: 32px;
