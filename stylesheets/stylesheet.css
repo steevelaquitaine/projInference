@@ -354,8 +354,10 @@ proj_title_wrap {
 #project_author {
   margin: 0;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 100;
+  font-family: serif;
+  font-style: Normal;
 }
 
 /*#project_title {*/
