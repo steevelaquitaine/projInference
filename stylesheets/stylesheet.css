@@ -344,22 +344,34 @@ proj_title_wrap {
 }
 
 #proj_title {
-  padding-top: 20px;
-  font-size : 54px;
+  /*padding-top: 20px;*/
+  /*font-size : 54px;*/
   /*font-family : 'CMS', 'Droid Sans', Helvetica, Arial, serif;*/
-  font-family: serif,'CMS', 'Droid Sans', Helvetica, Arial;
+  /*font-family: serif,'CMS', 'Droid Sans', Helvetica, Arial;*/
   /*font-style: Normal;*/
-  font-weight: 50;
+  
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    padding: 10px 50px 10px 10px;
+    color: #fff;
+    font-weight: 100;
+  
 }
 
 /*#project_author {*/
-/*  margin: 0;*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  top: 10px;*/
+/*  left: 10px;*/
+/*  z-index: 10;*/
+/*  padding: 10px 50px 10px 10px;*/
 /*  color: #fff;*/
-/*  font-size: 14px;*/
 /*  font-weight: 100;*/
-/*  font-family: serif;*/
-/*  font-style: Normal;*/
 /*}*/
+
 #project_author {
   display: block;
   position: absolute;
