@@ -351,6 +351,15 @@ proj_title_wrap {
   font-weight: 100;
 }
 
+#project_author {
+  margin: 0;
+  color: #fff;
+  /*color: #797979*/
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: #111 0px 0px 10px;
+}
+
 /*#project_title {*/
 /*  margin: 0;*/
 /*  color: #fff;*/
