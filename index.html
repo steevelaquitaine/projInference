@@ -99,17 +99,17 @@
         <center><img src="images/BiasAndVarInCircularVsLinearSpace.png"></center>
   
         <!--Head-->
-        <h6><a id="Humans use environment's statistics" class="anchor" href="#Humans-use-environment-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Humans-use-environment-statistics</h3>
+        <h6><a id="Humans use environment's statistics" class="anchor" href="#Humans-use-environment-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Humans use environment statistics</h3>
         <p>A Bayesian observer that uses the statistical distribution of motion directions fit the data beter than a maximum likelihood observer that only uses sensory likelihood. This indicates that subjects incoporated and ued prior 
         knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
         
         <!--code  -->
         <code id="code" class="inner">
-        <!--<div style="background-color:#e5e6e6; color:black; padding:10px;">  -->
-          <br> >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47];</br>
+          <!--<div style="background-color:#e5e6e6; color:black; padding:10px;">  -->
+          <p><br> >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47];</br>
           <br> >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; </br>
           <br> >> [e, ci, m, s]= slMakeCI(bo, 0.95)</br>
-          <br> >> [e, ci, m, s] = slMakeCI(mlo, 0.95) </br>
+          <br> >> [e, ci, m, s] = slMakeCI(mlo, 0.95) </br></p>
         </code>
   
         <p> This is even clearer when loooking at the AIC difference between the two models, averaged over subjects </p>
