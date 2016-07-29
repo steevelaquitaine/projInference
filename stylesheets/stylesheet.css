@@ -26,7 +26,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   font-size: 16px;
@@ -67,7 +67,7 @@ body {
   color:#373737;
   background-color: white;
   font-size: 14px;
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   line-height: 1.5;
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   /*font-weight: 700;*/
   color:#222222;
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   letter-spacing: 1px;
@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   color:#222222;
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   letter-spacing: 1px;
@@ -186,7 +186,7 @@ pre, code {
   width: 100%;
   color: #222;
   background-color: white;
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   font-size: 14px;
@@ -271,7 +271,7 @@ table {
  }
 
 th {
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   padding: 10px;
@@ -347,7 +347,7 @@ proj_title_wrap {
 #proj_title {
   padding-top: 20px;
   font-size : 54px;
-  font-family: 'CMSS',serif;
+  font-family: 'CMSS';
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   display: block;
