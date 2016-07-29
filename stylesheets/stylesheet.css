@@ -25,12 +25,10 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  /*font: inherit;*/
   vertical-align: baseline;
-  
-  /*text-align: justify;*/
-  /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
-  font-family: Helvetica,'CMS',serif;
+  font-family: 'CMSS',serif;
+  src: url('cmunsl.eot');
+  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   font-size: 16px;
   line-height: 25px;
 }
@@ -69,8 +67,9 @@ body {
   color:#373737;
   background-color: white;
   font-size: 14px;
-  /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
-  font-family: Helvetica,'CMS',serif;
+  font-family: 'CMSS',serif;
+  src: url('cmunsl.eot');
+  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -79,15 +78,17 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   /*font-weight: 700;*/
   color:#222222;
-  /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
-  font-family: Helvetica,'CMS',serif;
+  font-family: 'CMSS',serif;
+  src: url('cmunsl.eot');
+  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   letter-spacing: 1px;
 }
 
 h1 {
   color:#222222;
-  /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
-  font-family: Helvetica,'CMS',serif;
+  font-family: 'CMSS',serif;
+  src: url('cmunsl.eot');
+  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   letter-spacing: 1px;
   line-height: 1.5;
   font-size: 54px;
@@ -185,11 +186,10 @@ pre, code {
   width: 100%;
   color: #222;
   background-color: white;
-
-  /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
-  font-family: Helvetica,'CMS',serif;
+  font-family: 'CMSS',serif;
+  src: url('cmunsl.eot');
+  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   font-size: 14px;
-
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -271,8 +271,9 @@ table {
  }
 
 th {
-  /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif*/
-  font-family: Helvetica,'CMS',serif;
+  font-family: 'CMSS',serif;
+  src: url('cmunsl.eot');
+  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   padding: 10px;
   /*background: #373737;*/
   background: white;
@@ -346,9 +347,7 @@ proj_title_wrap {
 #proj_title {
   padding-top: 20px;
   font-size : 54px;
-  /*font-family : 'CMS', 'Droid Sans', Helvetica, Arial, serif;*/
-  /*font-family: Helvetica,'CMS', serif;*/
-  font-family: 'CMSS';
+  font-family: 'CMSS',serif;
   src: url('cmunsl.eot');
   src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
   display: block;
@@ -381,64 +380,6 @@ proj_title_wrap {
   color: #fff;
   font-weight: 100;
 }
-
-/*#project_title {*/
-/*  margin: 0;*/
-/*  color: #fff;*/
-/*  font-size: 40px;*/
-/*  font-family: 'CMS', 'Droid Sans', Helvetica, Arial, sans-serif;*/
-/*  font-weight: 200;*/
-/*  text-shadow: #111 0px 0px 10px;*/
-/*}*/
-
-/*
-#project_tagline {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 300;
-  background: none;
-  text-shadow: #111 0px 0px 10px;
-}
-*/
-
-/*#downloads {*/
-/*  position: absolute;*/
-/*  width: 210px;*/
-/*  z-index: 10;*/
-/*  bottom: -90px;*/
-/*  right: 0;*/
-/*  height: 70px;*/
-/*  background: url('../images/icon_download.png') no-repeat 0% 90%;*/
-/*}*/
-
-/*.zip_download_link {*/
-/*  display: block;*/
-/*  float: right;*/
-/*  width: 90px;*/
-/*  height:70px;*/
-/*  text-indent: -6000px;*/
-/*  overflow: hidden;*/
-/*  background: url(../images/sprite_download.png) no-repeat bottom left;*/
-/*}*/
-
-/*.tar_download_link {*/
-/*  display: block;*/
-/*  float: right;*/
-/*  width: 90px;*/
-/*  height: 70px;*/
-/*  text-indent: -6000px;*/
-/*  overflow: hidden;*/
-/*  background: url(../images/sprite_download.png) no-repeat bottom right;*/
-/*  margin-left: 10px;*/
-/*}*/
-
-/*.zip_download_link:hover {*/
-/*  background: url(../images/sprite_download.png) no-repeat top left;*/
-/*}*/
-
-/*.tar_download_link:hover {*/
-/*  background: url(../images/sprite_download.png) no-repeat top right;*/
-/*}*/
 
 table_of_content_wrap {
   background: white;
