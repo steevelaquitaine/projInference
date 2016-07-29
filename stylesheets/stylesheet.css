@@ -10,7 +10,7 @@ MeyerWeb Reset
 *******************************************************************************/
 
 html, body, div, span, applet, object, iframe,
-h2, h3, h4, h5, h6, p, blockquote, pre,
+h1,h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -80,14 +80,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;
   letter-spacing: -1px;
 }
-
-/*h1 {*/
- /*margin: 10px 0;*/
-/*  font-family:'CMS', 'Droid Serif', Georgia, Times, serif;*/
-/*  font-size:300%;*/
-  /*line-height:65px;*/
-/*  text-align:left*/
-/*}*/
 
 h2 {
   padding-bottom: 10px;
