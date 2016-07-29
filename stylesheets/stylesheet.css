@@ -28,7 +28,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
   
-  text-align: justify;
+  /*text-align: justify;*/
   /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
   font-family: serif;
   font-size: 16px;
@@ -356,7 +356,7 @@ proj_title_wrap {
   z-index: 10;
   padding: 10px 50px 10px 10px;
   color: black;
-  font-weight: 50;
+  /*font-weight: 100;*/
 }
 
 /*#project_author {*/
