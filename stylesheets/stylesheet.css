@@ -86,15 +86,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  /*font-weight: 200;*/
-  font-weight: 10;
   color:#222222;
   /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
   font-family: serif;
   /*letter-spacing: -1px;*/
-  line-height: 1.7;
+  line-height: 1.5;
   font-size: 300%;*/
-  font-weight: 1;
 }
 
 h2 {
@@ -338,17 +335,16 @@ proj_title_wrap {
   background: white;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
-  /*line-height: 1.5;*/
+  line-height: 1.5;
 }
 
 #proj_title {
   padding-top: 20px;
   font-size : 54px;
   /*font-family : 'CMS', 'Droid Sans', Helvetica, Arial, serif;*/
-  font-family: serif;
-  font-style: Normal;
-  /*font-weight: 200;*/
-  font-weight: 100;
+  font-family: serif,'CMS', 'Droid Sans', Helvetica, Arial;
+  /*font-style: Normal;*/
+  font-weight: 50;
 }
 
 /*#project_author {*/
