@@ -312,7 +312,7 @@ Margins
 #forkme_banner {
   display: block;
   position: absolute;
-  top:10px;
+  top: 10px;
   right: 10px;
   z-index: 10;
   padding: 10px 50px 10px 10px;
@@ -354,10 +354,8 @@ proj_title_wrap {
 #project_author {
   margin: 0;
   color: #fff;
-  /*color: #797979*/
-  font-size: 14px;
-  font-weight: 600;
-  text-shadow: #111 0px 0px 10px;
+  font-size: 16px;
+  font-weight: 100;
 }
 
 /*#project_title {*/
