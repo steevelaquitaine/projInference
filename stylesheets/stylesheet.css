@@ -351,7 +351,7 @@ proj_title_wrap {
   /*font-style: Normal;*/
   
     display: block;
-    position: absolute;
+    /*position: absolute;*/
     top: 10px;
     left: 10px;
     z-index: 10;
