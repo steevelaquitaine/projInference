@@ -26,14 +26,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  font-family: 'CMSS';
-	src: url('cmunsl.eot');
-	src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
-		 url('cmunsl.woff') format('woff'),
-		 url('cmunsl.ttf') format('truetype'),
-		 url('cmunsl.svg#cmunsl') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family : Helvetica, serif;
   font-size: 16px;
   line-height: 25px;
 }
@@ -72,9 +65,9 @@ body {
   color:#373737;
   background-color: white;
   font-size: 14px;
-  font-family: 'CMSS';
-  src: url('cmunsl.eot');
-  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+  /*font-family: 'CMSS';*/
+  /*src: url('cmunsl.eot');*/
+  /*src: url('cmunsl.eot?#iefix') format('embedded-opentype'),*/
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -83,17 +76,17 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   /*font-weight: 700;*/
   color:#222222;
-  font-family: 'CMSS';
-  src: url('cmunsl.eot');
-  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+  /*font-family: 'CMSS';*/
+  /*src: url('cmunsl.eot');*/
+  /*src: url('cmunsl.eot?#iefix') format('embedded-opentype'),*/
   letter-spacing: 1px;
 }
 
 h1 {
   color:#222222;
-  font-family: 'CMSS';
-  src: url('cmunsl.eot');
-  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+  /*font-family: 'CMSS';*/
+  /*src: url('cmunsl.eot');*/
+  /*src: url('cmunsl.eot?#iefix') format('embedded-opentype'),*/
   letter-spacing: 1px;
   line-height: 1.5;
   font-size: 54px;
@@ -191,9 +184,9 @@ pre, code {
   width: 100%;
   color: #222;
   background-color: white;
-  font-family: 'CMSS';
-  src: url('cmunsl.eot');
-  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+  /*font-family: 'CMSS';*/
+  /*src: url('cmunsl.eot');*/
+  /*src: url('cmunsl.eot?#iefix') format('embedded-opentype'),*/
   font-size: 14px;
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -276,9 +269,9 @@ table {
  }
 
 th {
-  font-family: 'CMSS';
-  src: url('cmunsl.eot');
-  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+  /*font-family: 'CMSS';*/
+  /*src: url('cmunsl.eot');*/
+  /*src: url('cmunsl.eot?#iefix') format('embedded-opentype'),*/
   padding: 10px;
   /*background: #373737;*/
   background: white;
@@ -353,8 +346,13 @@ proj_title_wrap {
   padding-top: 20px;
   font-size : 54px;
   font-family: 'CMSS';
-  src: url('cmunsl.eot');
-  src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+	src: url('cmunsl.eot');
+	src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
+		 url('cmunsl.woff') format('woff'),
+		 url('cmunsl.ttf') format('truetype'),
+		 url('cmunsl.svg#cmunsl') format('svg');
+	font-weight: normal;
+	font-style: normal;
   display: block;
   top: 10px;
   left: 10px;
