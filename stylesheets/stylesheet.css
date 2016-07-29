@@ -26,13 +26,13 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  font-family : 'CMSS';
+  font-family : 'CMS';
   font-size: 16px;
   line-height: 25px;
 }
 
 @font-face {
-	font-family: 'CMSS';
+	font-family: 'CMS';
 	src: url('cmunsl.eot');
 	src: url('cmunsl.eot?#iefix') format('embedded-opentype'),
 		 url('cmunsl.woff') format('woff'),
@@ -76,7 +76,7 @@ body {
   color:#373737;
   background-color: white;
   font-size: 14px;
-  font-family: 'CMSS';
+  font-family: 'CMS';
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -85,13 +85,13 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   /*font-weight: 700;*/
   color:#222222;
-  font-family: 'CMSS';
+  font-family: 'CMS';
   letter-spacing: 1px;
 }
 
 h1 {
   color:#222222;
-  font-family: 'CMSS';
+  font-family: 'CMS';
   letter-spacing: 1px;
   line-height: 1.5;
   font-size: 54px;
@@ -189,7 +189,7 @@ pre, code {
   width: 100%;
   color: #222;
   background-color: white;
-  font-family: 'CMSS';
+  font-family: 'CMS';
   font-size: 14px;
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -272,7 +272,7 @@ table {
  }
 
 th {
-  font-family: 'CMSS';
+  font-family: 'CMS';
   padding: 10px;
   /*background: #373737;*/
   background: white;
@@ -346,7 +346,7 @@ proj_title_wrap {
 #proj_title {
   padding-top: 20px;
   font-size : 54px;
-  font-family: 'CMSS';
+  font-family: 'CMS';
   display: block;
   top: 10px;
   left: 10px;
