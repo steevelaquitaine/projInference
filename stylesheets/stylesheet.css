@@ -77,7 +77,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
-  font-weight: 700;
+  /*font-weight: 700;*/
+  font-weight: 100;
   color:#222222;
   /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
   font-family: serif;
@@ -85,7 +86,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-weight: 200;
+  /*font-weight: 200;*/
+  font-weight: 100;
   color:#222222;
   /*font-family: 'CMS', 'Droid Sans', Helvetica, Arial,serif;*/
   font-family: serif;
@@ -315,7 +317,8 @@ Margins
   padding: 10px 50px 10px 10px;
   color: #fff;
   background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
-  font-weight: 700;
+  /*font-weight: 700;*/
+  font-weight: 100;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -364,7 +367,8 @@ proj_title_wrap {
   /*font-family : 'CMS', 'Droid Sans', Helvetica, Arial, serif;*/
   font-family: serif;
   font-style: Normal;
-  font-weight: 200;
+  /*font-weight: 200;*/
+  font-weight: 100;
 }
 
 /*#project_title {*/
