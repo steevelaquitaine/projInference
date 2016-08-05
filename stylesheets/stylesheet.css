@@ -172,7 +172,7 @@ pre, code {
   width: 100%;
   color: #222;
   background-color: white;
-  font-family: 'CMS';
+  font-family: monospace;
   font-size: 14px;
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -191,11 +191,11 @@ pre {
   background-color:#EEEEEE;
   color:black; 
   line-height:1.5; 
-  padding:10px;  
-  padding: 3px;
+  /*padding: 10px;  */
+  padding: 1px;
   margin: 0 3px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
-  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+  font-family: monospace;
 }
 
 pre code {
