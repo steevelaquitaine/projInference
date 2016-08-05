@@ -168,9 +168,17 @@
         <!--figure here median prior strengths-->
         
         We tested whether the switching observers predicted strength were statistically more accurate than the strengths predicted by the Bayesian observer.
-        The lillieFors test
+        Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) :
+        <!--Code-->
+        <section class="code">
+          <p> >> cd('~/proj/steeve/projInference/data/') <br>
+          >> [~,~, data] = slcsvRead('data_PriorStrngths.csv'); <br>
+          >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data); </p>
+        </section>
         
-        The t-test
+        So we used a non parametric one-sample test, the one-sample Wilcoxon test to compare subject median prior strengths with the true experimental 
+        prior strength:
+        
         
         
         
@@ -186,7 +194,6 @@
       
         <!--code-->
         <section class="code">
-          <!--<div style="background-color:#e5e6e6; color:black; padding:10px;">  -->
              <p> >> model_ref = 'model_CompDiv'; <br> 
              >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
              'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br> 
