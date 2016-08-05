@@ -160,15 +160,15 @@
         <!--section-->
         <h6><a id="Subjects-represented-prior-strengths-accurately" class="anchor" href="#Subjects-represented-prior-strengths-accurately" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subjects represented prior strengths accurately</h3> 
         
-        We examined the fit parameters used to model subject prior strengths with the switching observer to determine whether subjects had accurate representations 
+        <p> We examined the fit parameters used to model subject prior strengths with the switching observer to determine whether subjects had accurate representations 
         of the spread of the motion direction statistical distribution over trials (experimental prior). We compared the subjective prior strengths prescribed by 
-        the switching observer with those predicted by the Basic Bayesian observer.
-        
+        the switching observer with those predicted by the Basic Bayesian observer. </p>
         
         <!--figure here median prior strengths-->
         
-        We tested whether the switching observers predicted strength were statistically more accurate than the strengths predicted by the Bayesian observer.
-        Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) :
+        <p> We tested whether the switching observers predicted strength were statistically more accurate than the strengths predicted by the Bayesian observer.
+        Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) : </p>
+        
         <!--Code-->
         <section class="code">
           <p> >> cd('~/proj/steeve/projInference/data/') <br>
@@ -176,8 +176,22 @@
           >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data); </p>
         </section>
         
-        So we used a non parametric one-sample test, the one-sample Wilcoxon test to compare subject median prior strengths with the true experimental 
-        prior strength:
+        <p> So we compared the median over subjects of the four subjective prior strength parameters fitted by the switching observer to 
+        each subject’s data (Fig. 6b) to veridical strength  and found that although the switching observer’s median fitted prior 
+        over subjects were significantly weaker than the 80º and 40º veridical priors (W = 7, p < 0.01 and W = 0, p < 0.01 
+        respectively, one-sample Wilcoxon test), the switching observer’s fitted prior standard deviations for the 20º and 10º 
+        priors did not significantly differ from the veridical prior standard deviations (W=17, p=0.09 and W=27, p=0.38 for the 
+        20 and 10 deg priors, one-sample Wilcoxon test). In contrast, the Basic Bayesian observer’s median fitted priors over 
+        subjects were all significantly weaker than the veridical priors (W=1, W=1, W=3, W=2, all p<0.01, for the 80, 40, 20 
+        and 10 deg priors respectively, one-sample Wilcoxon test) which would suggest that the observers were unable to make accurate 
+        estimates of the prior distribution. </p>
+        
+        <!--Code-->
+        <section class="code">  
+        <p> >> [pbo,psw] = slcompBoandSwPriorStrgToExp(subBOstd,subswstd,subExpstd); </p>
+        </section>   
+        
+        
         
         
         
