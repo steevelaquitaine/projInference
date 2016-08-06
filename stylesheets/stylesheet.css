@@ -201,7 +201,7 @@ code {
 .code {
   color: black; 
   font-size: 12px;    
-  font-family: monospace;
+  font-family: consolas;
 }
 
 pre {
