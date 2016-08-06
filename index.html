@@ -141,15 +141,15 @@
         <h6><a id="Switching-between-prior-and-evidence-outperform-the-Bayesian-observer" class="anchor" href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Switching between prior and evidence outperforms the Bayesian observer</h3> 
   
         <!--code  -->
-        <section class="code">
+        <code class="code">
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
              >> model_ref = 'model_CompDiv'; <br>
              >> models = {'model_Bayes_MAP'}; <br>
              >> path = '/ Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/'; <br>
              >> [~, ~, aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); <br>
              >> figure('color','w') <br>
-             >> SLdrawBar(aicDiff01, 1:12, 1:12, 'facecolor', [.5 .5 .5])
-        </section>
+             >> SLdrawBar(aicDiff01, 1:12, 1:12, 'facecolor', [.5 .5 .5]);
+        </code>
         
         <!--figure-->
         <center><img src="images/AICbayesVsSwitch.png" style="width: 50%; height: 50%"/></center>   
@@ -171,11 +171,11 @@
         Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) : </p>
         
         <!--Code-->
-        <section class="code">
+        <code class="code">
           >> cd('~/proj/steeve/projInference/data/') <br>
           >> [~,~, data] = slcsvRead('data_PriorStrngths.csv'); <br>
           >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data);
-        </section>
+        </code>
         
         <p> So we compared the median over subjects of the four subjective prior strength parameters fitted by the switching observer to 
         each subject’s data (Fig. 6b) to veridical strength  and found that although the switching observer’s median fitted prior 
@@ -188,9 +188,9 @@
         estimates of the prior distribution. </p>
         
         <!--Code-->
-        <section class="code">  
+        <code class="code">  
             >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,subswstd,subExpstd);
-        </section>   
+        </code>   
         
         
         
@@ -208,13 +208,13 @@
         - Hierarchical Bayesian inference [Mumford 2003]<br>
       
         <!--code-->
-        <section class="code">
+        <code class="code">
              >> model_ref = 'model_CompDiv'; <br> 
              >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
              'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br> 
              >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; <br> 
              >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); 
-        </section>
+        </code>
         
         
         <!--Figure-->
@@ -223,33 +223,33 @@
         <p> We examined how well other Bayesian observers fit the data compared to the switching observer
         
         <!--code  -->
-        <section class="code">
+        <code class="code">
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
            >> model_ref = 'model_CompDiv'; <br>
            >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
            'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior' }; <br>
            >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; <br>
            >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); 
-        </section>
+        </code>
         
         <!--code  -->
-        <section class="code">
+        <code class="code">
               >> model_ref = 'model_CompDiv'; <br>
               >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br>
               'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br>
               >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/'; <br>
               >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path);
-        </section>
+        </code>
         
         <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
         
         <!--code  -->
-        <section class="code">
+        <code class="code">
            >> cd('~/proj/ steeve/ projInference/ data/) <br>
            >> [rowheader, colheader, data] = slcsvRead('modelfitData.csv'); <br>
            >> [nRefWins, nNoWin, nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader, colheader, data, ... <br>
            'Switching observer')
-        </section>
+        </code>
   
   
   
@@ -260,10 +260,10 @@
         <p> We examined whether subjects eye positions changed between prior conditions.  </p>
         
         <!--code  -->
-        <section class="code">
+        <code class="code">
            >> datapath = '~/../myProjData/'; <br>
            >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath', datapath, 'AnovaEyeMvt', 'plotEyeMvtStats', 'filename', 'test');
-        </section>
+        </code>
         
         <p> The eye positions averaged over subjects did not significantly change between priors </p>
         
