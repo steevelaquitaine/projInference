@@ -117,7 +117,7 @@
         <p> This is even clearer when loooking at the AIC difference between the two models, averaged over subjects </p>
         <!--code  -->
         <code class="code">
-           <p> >> [e,ci,m,s] = slMakeCI(mlo - bo,0.95) </p>
+            >> [e,ci,m,s] = slMakeCI(mlo - bo,0.95);
         </code>
   
         <!--table-->
@@ -143,12 +143,12 @@
         <!--code  -->
         <section class="code">
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
-            <p> >> model_ref = 'model_CompDiv'; <br>
+             >> model_ref = 'model_CompDiv'; <br>
              >> models = {'model_Bayes_MAP'}; <br>
              >> path = '/ Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/'; <br>
              >> [~, ~, aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); <br>
              >> figure('color','w') <br>
-             >> SLdrawBar(aicDiff01, 1:12, 1:12, 'facecolor', [.5 .5 .5]) </p>
+             >> SLdrawBar(aicDiff01, 1:12, 1:12, 'facecolor', [.5 .5 .5])
         </section>
         
         <!--figure-->
@@ -172,9 +172,9 @@
         
         <!--Code-->
         <section class="code">
-          <p> >> cd('~/proj/steeve/projInference/data/') <br>
+          >> cd('~/proj/steeve/projInference/data/') <br>
           >> [~,~, data] = slcsvRead('data_PriorStrngths.csv'); <br>
-          >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data); </p>
+          >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data);
         </section>
         
         <p> So we compared the median over subjects of the four subjective prior strength parameters fitted by the switching observer to 
@@ -189,7 +189,7 @@
         
         <!--Code-->
         <section class="code">  
-        <p> >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,subswstd,subExpstd); </p>
+            >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,subswstd,subExpstd);
         </section>   
         
         
@@ -209,11 +209,11 @@
       
         <!--code-->
         <section class="code">
-             <p> >> model_ref = 'model_CompDiv'; <br> 
+             >> model_ref = 'model_CompDiv'; <br> 
              >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
              'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br> 
              >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; <br> 
-             >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); </p>
+             >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); 
         </section>
         
         
@@ -225,30 +225,30 @@
         <!--code  -->
         <section class="code">
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
-           <p> >> model_ref = 'model_CompDiv'; <br>
+           >> model_ref = 'model_CompDiv'; <br>
            >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br> 
            'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior' }; <br>
            >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/ '; <br>
-           >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); </p>
+           >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); 
         </section>
         
         <!--code  -->
         <section class="code">
-              <p> >> model_ref = 'model_CompDiv'; <br>
+              >> model_ref = 'model_CompDiv'; <br>
               >> models = {'model_Bayes_Sampling', 'model_Bayes_Sampling_withCard', 'model_Bayes_WJMtailedPrior', ... <br>
               'model_Bayes_WJM', 'model_Bayes_MAP_withCard', 'model_Bayes_MAP', 'model_Bayes_MAP_FatTailPrior'}; <br>
               >> path = '/Volumes/ DroboBKUP/ data/ dataPsychophy/ proj01_priorStrength/ modelfit/ AIC/'; <br>
-              >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path); </p>
+              >> [AICsvsSw, semAICsvsSw, aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref, models, path);
         </section>
         
         <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
         
         <!--code  -->
         <section class="code">
-           <p> >> cd('~/proj/ steeve/ projInference/ data/) <br>
+           >> cd('~/proj/ steeve/ projInference/ data/) <br>
            >> [rowheader, colheader, data] = slcsvRead('modelfitData.csv'); <br>
            >> [nRefWins, nNoWin, nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader, colheader, data, ... <br>
-           'Switching observer') </p>
+           'Switching observer')
         </section>
   
   
@@ -261,8 +261,8 @@
         
         <!--code  -->
         <section class="code">
-           <p> >> datapath = '~/../myProjData/'; <br>
-           >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath', datapath, 'AnovaEyeMvt', 'plotEyeMvtStats', 'filename', 'test') </p>
+           >> datapath = '~/../myProjData/'; <br>
+           >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath', datapath, 'AnovaEyeMvt', 'plotEyeMvtStats', 'filename', 'test');
         </section>
         
         <p> The eye positions averaged over subjects did not significantly change between priors </p>
@@ -274,9 +274,9 @@
         <!--   >>   [m, ci, condition] = sleyePosMeanAndCIByPrior(data); </p>-->
         <!--</section>-->
         <code>
-           <p> >>   cd ~/.../ projInference/ data; <br>
+           >>   cd ~/.../ projInference/ data; <br>
            >>   [rowheader, colheader, data] = slcsvRead('data_meanEyePosition.csv'); <br>
-           >>   [m, ci, condition] = sleyePosMeanAndCIByPrior(data); </p>
+           >>   [m, ci, condition] = sleyePosMeanAndCIByPrior(data);
         </code>
 
       <!--End Main Content-->
