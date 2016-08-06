@@ -168,15 +168,25 @@ p img {
   border: none;
 }
 
-pre, code {
-  width: 100%;
-  color: #222;
-  background-color: white;
-  font-family: monospace;
-  font-size: 14px;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
+/*pre, code {*/
+/*  width: 100%;*/
+/*  color: #222;*/
+/*  background-color: white;*/
+/*  font-family: monospace;*/
+/*  font-size: 14px;*/
+/*  border-radius: 2px;*/
+/*  -moz-border-radius: 2px;*/
+/*  -webkit-border-radius: 2px;*/
+/*}*/
+
+code {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-family : monospace;
+  font-size: 12px;
+  line-height: 25px;
 }
 
 pre {
