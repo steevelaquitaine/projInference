@@ -179,16 +179,6 @@ p img {
 /*  -webkit-border-radius: 2px;*/
 /*}*/
 
-code {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-  font-family : monospace;
-  font-size: 12px;
-  line-height: 25px;
-}
-
 pre {
   width: 100%;
   padding: 10px;
@@ -196,17 +186,22 @@ pre {
   overflow: auto;
 }
 
-.code {
-  width: 820px;
+code {
   background-color:#EEEEEE;
-  color:black; 
-  line-height:1.5; 
+  display: block;
+  vertical-align: baseline;
+  line-height: 25px;
+  width: 820px;
   padding-top: 1px;  
   padding-bottom: 1px;
-  margin: 0 3 0 3px;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  margin: 0 3 0 3px;  
+  box-shadow: 0 0 10px rgba(0,0,0,.1);  
+}
+
+.code {
+  color: black; 
+  font-size: 12px;    
   font-family: monospace;
-  font-size: 12pt;
 }
 
 pre code {
