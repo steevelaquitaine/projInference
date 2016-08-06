@@ -190,12 +190,12 @@ code {
   background-color:#EEEEEE;
   display: block;
   vertical-align: baseline;
-  line-height: 25px;
+  line-height: 12px;
   width: 820px;
   padding-top: 1px;  
   padding-bottom: 1px;
   margin: 0 3 0 3px;  
-  box-shadow: 0 0 10px rgba(0,0,0,.1);  
+  /*box-shadow: 0 0 10px rgba(0,0,0,.1);  */
 }
 
 .code {
@@ -204,7 +204,7 @@ code {
   font-family: monospace;
 }
 
-pre code {
+pre {
   display: block;
   box-shadow: none;
 }
