@@ -158,7 +158,8 @@
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
              >> model_ref = 'model_CompDiv'; <br>
              >> models = {'model_Bayes_MAP'}; <br>
-             >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br>
+             >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...
+             proj01_priorStrength/modelfit/AIC/'; <br>
              >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br>
              >> figure('color','w') <br>
              >> SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]);
@@ -202,7 +203,8 @@
         
         <!--Code-->
         <code class="code">  
-            >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,subswstd,subExpstd);
+            >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,...<br>
+            subswstd,subExpstd);
         </code>   
         
         
@@ -223,10 +225,12 @@
         <!--code-->
         <code class="code">
              >> model_ref = 'model_CompDiv'; <br> 
-             >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard','model_Bayes_WJMtailedPrior', ... <br> 
-             'model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br> 
+             >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
+             'model_Bayes_WJMtailedPrior','model_Bayes_WJM','model_Bayes_MAP_withCard',...<br>
+             'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br> 
              >> path = '~/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br> 
-             >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); 
+             >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
+             models,path); 
         </code>
         
         
@@ -239,19 +243,26 @@
         <code class="code">
           <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
            >> model_ref = 'model_CompDiv'; <br>
-           >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard','model_Bayes_WJMtailedPrior', ... <br> 
-           'model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br>
-           >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br>
-           >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); 
+           >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
+           'model_Bayes_WJMtailedPrior','model_Bayes_WJM','model_Bayes_MAP_withCard',...<br>
+           'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br>
+           >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/...<br>
+           modelfit/AIC/'; <br>
+           >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
+           models,path); 
         </code>
         
         <!--code  -->
         <code class="code">
               >> model_ref = 'model_CompDiv'; <br>
-              >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard','model_Bayes_WJMtailedPrior', ... <br>
-              'model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br>
-              >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br>
-              >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path);
+              >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
+              'model_Bayes_WJMtailedPrior', ... <br>
+              'model_Bayes_WJM','model_Bayes_MAP_withCard','model_Bayes_MAP',...<br>
+              'model_Bayes_MAP_FatTailPrior'}; <br>
+              >> path = '/Volumes/DroboBKUP/data/dataPsychophy/proj01_priorStrength/...<br>
+              modelfit/AIC/'; <br>
+              >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(...<br>
+              model_ref,models,path);
         </code>
         
         <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
@@ -260,7 +271,8 @@
         <code class="code">
            >> cd('~/proj/steeve/projInference/data/) <br>
            >> [rowheader,colheader,data] = slcsvRead('modelfitData.csv'); <br>
-           >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,colheader,data, ... <br>
+           >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,...<br>
+           colheader,data, ... <br>
            'Switching observer')
         </code>
   
@@ -275,7 +287,8 @@
         <!--code  -->
         <code class="code">
            >> datapath = '~/../myProjData/'; <br>
-           >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,'AnovaEyeMvt','plotEyeMvtStats','filename','test');
+           >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
+           'AnovaEyeMvt','plotEyeMvtStats','filename','test');
         </code>
         
         <p> The eye positions averaged over subjects did not significantly change between priors </p>
