@@ -115,8 +115,8 @@ footer p {
 a {
   text-decoration: none;
   color: #cc0000;
-  font-size : 32px;
-  line-height: 45px;
+  font-size : 24px;
+  line-height: 35px;
 
   /*transition: color 0.5s ease;*/
   /*transition: text-shadow 0.5s ease;*/
