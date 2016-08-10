@@ -283,7 +283,8 @@ Margins
   top: 10px;
   right: 10px;
   z-index: 10;
-  padding: 10px 50px 10px 5px;
+  padding: 5px 5px 1px 5px;
+  /*padding: 10px 50px 10px 5px;*/
   color: #fff;
   background: url('../images/blacktocat.png') #080808 no-repeat 95% 50%;
   font-weight: 100;
