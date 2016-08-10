@@ -41,6 +41,7 @@
         <a href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer"> Switching between prior and evidence outperforms the Bayesian observer <br>
         <a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br>
         <a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br>
+        <a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br>
         <a href="#Eye-movement"> Eye movement <br>
       </section>
     </div>
@@ -279,6 +280,25 @@
            'Switching observer')
         </code>
   
+        <!--section-->
+        <h6><a id="Do-subjects-simply-rely-on-the-previous-direction" class="anchor" href="#Do-subject-simply-rely-on-the-previous-direction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Do subjects simply rely on the previous direction</h3> 
+  
+        <p> An alternative hypothesis is that subjects simply switched biased their estimates toward the previous motion directions without 
+        learning the statistics of the motion directions over trials which is a heuristic that have already been used successfully to 
+        explained perceptual behavior [Loewenstein et al.,]. So we looked at where subjects averaged estimates lied in the trials in
+        which the currently displayed direction was in between the previous direction (clockwise to the displayed direction) and the 
+        prior mean (counterclockwise to the displayed direction). </p>
+        
+        <p> We first looked at each subjects </p>
+        
+        <!--code  -->
+        <code class="code">
+           >> [SigBias2priorAll, SigBias2prevdir, marginAll,ciAll,mAll,sAll] = ... </br>
+                    slplotandStatsPrevDirvsPriorBias({'sub01'},'~/data/... </br>
+                    dataPsychophy/proj01_priorStrength/'); </br>
+        </code>
+        
+        <p> </p>
   
   
   
