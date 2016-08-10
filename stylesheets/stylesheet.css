@@ -275,14 +275,14 @@ Margins
   margin: 0 auto;
 }
 
-
-
+/*Banner on top*/
 #forkme_banner {
   display: block;
   position: absolute;
   top: 10px;
-  right : 100px;
+  right: 10px;
   z-index: 10;
+  /*padding: 10px 50px 10px 10px;*/
   padding-bottom:1px;
   padding-left:10px;
   padding-right:10px;
@@ -291,6 +291,7 @@ Margins
   background: url('../images/blacktocat.png') #080808 no-repeat 95% 50%;
   font-weight: 100;
 }
+
 
 #header_wrap {
   background: #080808;
