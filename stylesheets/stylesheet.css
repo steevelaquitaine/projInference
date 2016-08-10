@@ -282,6 +282,7 @@ Margins
   position: absolute;
   top: 10px;
   right: 1px;
+  left : 50px;
   z-index: 10;
   padding-bottom:1px;
   padding-left:10px;
