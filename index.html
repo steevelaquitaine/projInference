@@ -69,11 +69,12 @@
         
         <!--Section-->
         <h6><a id="Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics" class="anchor" href="#Estimation-error-depends-on-evidence-strength" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Estimation error depends on evidence strength ....and on motion direction statistics</h3>
-        <p>Estimate versus displayed motion directions for different motion noise (from 6% to 24% motion coherence).</p>
+        <p>We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and 
+        different distributions of the motion direction (distribution standard deviation of 80º, 40º, 20º and 10º with fixed mean at 225º).</p>
         
         <!--Code-->
         <code class="code">
-            >> datapath = slgetdatapath('lab');
+            >> datapath = slgetdatapath('lab'); <br>
 
             >> [fitP,fitPbkp,R2,sdata,fitPt,negLogl,negLoglbkp,... <br>
                 Logl_pertrialBestfit,output] = SLfitBayesianModel({'sub01','sub02',... <br>
@@ -88,11 +89,12 @@
                 'filename','fig03_04');
         </code>
     
+        <p>The Bayesian observer predicted subject estimate mean and variability very well..</p>
         <!--figure-->
         <center><img src="images/BayesFit_meanvar.png" style="width: 75%; height: 75%"/></center>   
         
-        <p>The Bayesian observer failed to explain the distribution of subjects estimates. The model predict unimodal distributions where 
-        subjects distribution are clearly bimodal.</p>
+        <p>But it failed to explain the distribution of subjects estimates: where the model predicts unimodal distributions, 
+        subjects estimate distribution were clearly bimodal.</p>
         <!--figure-->
         <center><img src="images/BayesFit_dis.png" style="width: 55%; height: 55%"/></center>   
         
