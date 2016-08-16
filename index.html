@@ -70,6 +70,24 @@
         <!--Section-->
         <h6><a id="Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics" class="anchor" href="#Estimation-error-depends-on-evidence-strength" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Estimation error depends on evidence strength ....and on motion direction statistics</h3>
         <p>Estimate versus displayed motion directions for different motion noise (from 6% to 24% motion coherence).</p>
+        
+        <!--Code-->
+        <code class="code">
+            >> datapath = slgetdatapath('lab');
+
+            >> [fitP,fitPbkp,R2,sdata,fitPt,negLogl,negLoglbkp,... <br>
+                Logl_pertrialBestfit,output] = SLfitBayesianModel({'sub01','sub02',... <br>
+                'sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10',... <br>
+                'sub11','sub12'},... <br>
+                [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],... <br>
+                'dataPathVM',datapath,... <br>
+                'experiment','vonMisesPrior',... <br>
+                'MAPReadout',... <br>
+                'modelPredictions','withData',... <br>
+                'directoryFitParameter','../modelfit/AIC/',... <br>
+                'filename','fig03_04');
+        </code>
+    
         <!--figure-->
         <center><img src="images/BayesFit_meanvar.png" style="width: 75%; height: 75%"/></center>   
         
