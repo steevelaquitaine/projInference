@@ -33,16 +33,15 @@
     <div id="Table_of_content_wrap" class="outer">
       <section id="table_of_content" class="inner">
         <h3> Table of Content </h3>
-        <a href="#Approach-to-inference"> Approach to inference <br>
-        <a href="#Design-an-inference-experiment"> Design an inference experiment <br>
-        <a href="#Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics"> Estimation error depends on evidence strength...and on motion direction statistics <br>
-        <a href="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?"> Why is estimates relationship to physical directions nonlinear? <br>
-        <a href="#Humans-use-environment-statistics"> Humans use environment statistics <br>
-        <a href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer"> Switching between prior and evidence outperforms the Bayesian observer <br>
-        <a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br>
-        <a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br>
-        <a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br>
-        <a href="#Eye-movement"> Eye movement <br>
+        <h6><a href="#Inference"> Inference <br></h6>
+        <h6><a href="#Example-of-an-inference-task"> Example of an inference task <br></h6>
+        <h6><a href="#Task-noise-&-statistics-affect-estimation"> Task noise and statistics affect estimation <br></h6>
+        <h6><a href="#Task-statistics-produce-nonlinearity-in-estimation-?"> Task statistics produce nonlinearity in estimation ? <br></h6>
+        <h6><a href="#Humans-approximate-optimality-with-a-simple-rule"> Humans approximate optimality with a simple rule <br></h6>
+        <h6><a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br></h6>
+        <h6><a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br></h6>
+        <h6><a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br></h6>
+        <h6><a href="#Eye-movement"> Eye movement <br></h6>
       </section>
     </div>
     
@@ -50,14 +49,14 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
           
-        <h6><a id="Approaches-to-inference" class="anchor" href="#Approaches-to-inference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approaches to inference.</h3>  
+        <h6><a id="Inference" class="anchor" href="#Inference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inference.</h3>  
         <p> Three main theories have been proposed as to how humans solve inference problems. 1) Humans might be rational : they use optimal statistical solutions to inference problems or 2) 
         irrational and produce maladaptive solutions to inference problems or 3) they use heuristics computational shortcuts that approximate optimal solutions. This fits in with Herbert 
         Simon theory of bounded rationality according to which humans use satisficing solutions (sufficient and satisfying) (Gigerenzer, Psychological 
         review 1996)</p>
   
-        <h6><a id="Design-an-inference-experiment" class="anchor" href="#Design-an-inference-experiment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designing an inference experiment.</h3>
-        <p> We used a stimulus that has been used extensively in the psychophysics literature and that allows to manipulate sensory noise and also subjects priors : the random dot motion stimulus. 
+        <h6><a id="" class="anchor" href="#Example-of-an-inference-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example of an inference task </h3>
+        <p> We used a stimulus that has been used extensively in the psychophysics literature and that allows to manipulate sensory noise and also subjects priors : the random dot motion stimulus 
         This stimulus is composed of signal dots moving in the same (coherent) directions and noise dots that move in random dots and render the estimation of the motion direction
         difficult. We manipulated the difficulty of estimation by changing the proportion of dots moving coherently (6, 12 or 24%), thus the signal to noise ratio of the motion as follows : </p>
         
@@ -89,8 +88,8 @@
         <center><img src="images/BayesHypo.png" style="width: 75%; height: 75%"></center>      
         
         <!--Section-->
-        <h6><a id="Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics" class="anchor" href="#Estimation-error-depends-on-evidence-strength" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment noise & statistics affect estimation</h3>
-        <p>We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and 
+        <h6><a id="Task-noise-&-statistics-affect-estimation" class="anchor" href="#Task-noise-&-statistics-affect-estimation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Task noise & statistics affect estimation</h3>
+        <p> We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and 
         different distributions of the motion direction (distribution standard deviation of 80º, 40º, 20º and 10º with fixed mean at 225º).</p>
         
         <!--Code-->
@@ -110,11 +109,11 @@
                 'filename','fig03_04');
         </code>
     
-        <p>The Bayesian observer predicted subject estimate mean and variability very well..</p>
+        <p>The Bayesian observer predicted subject estimate mean and variability very well...</p>
         <!--figure-->
         <center><img src="images/BayesFit_meanvar.png" style="width: 75%; height: 75%"/></center>   
         
-        <p>But it failed to explain the distribution of subjects estimates: where the model predicts unimodal distributions, 
+        <p> ... But it failed to explain the subjects' estimates distribution pattern formed over trials: where the model predicts unimodal distributions, 
         subjects estimate distribution were clearly bimodal.</p>
         <!--figure-->
         <center><img src="images/BayesFit_dis.png" style="width: 55%; height: 55%"/></center>   
