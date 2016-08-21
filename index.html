@@ -30,20 +30,34 @@
     </div>
 
     <!--Table of contents-->
-    <div id="Table_of_content_wrap" class="outer">
+    <!--<div id="Table_of_content_wrap" class="outer">-->
+    <!--  <section id="table_of_content" class="inner">-->
+    <!--    <h3> Table of Content </h3>-->
+    <!--    <h6><a href="#Inference"> Inference <br></h6>-->
+    <!--    <h6><a href="#Example-of-an-inference-task"> Example of an inference task <br></h6>-->
+    <!--    <h6><a href="#Task-noise-&-statistics-affect-estimation"> Task noise and statistics affect estimation <br></h6>-->
+    <!--    <h6><a href="#Task-statistics-produce-nonlinearity-in-estimation-?"> Task statistics produce nonlinearity in estimation ? <br></h6>-->
+    <!--    <h6><a href="#Humans-approximate-optimality-with-a-simple-rule"> Humans approximate optimality with a simple rule <br></h6>-->
+    <!--    <h6><a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br></h6>-->
+    <!--    <h6><a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br></h6>-->
+    <!--    <h6><a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br></h6>-->
+    <!--    <h6><a href="#Eye-movement"> Eye movement <br></h6>-->
+    <!--  </section>-->
+    <!--</div>-->
+    
+    
+     <div id="Table_of_content_wrap" class="outer">
       <section id="table_of_content" class="inner">
         <h3> Table of Content </h3>
-        <h6><a href="#Inference"> Inference <br></h6>
-        <h6><a href="#Example-of-an-inference-task"> Example of an inference task <br></h6>
-        <h6><a href="#Task-noise-&-statistics-affect-estimation"> Task noise and statistics affect estimation <br></h6>
-        <h6><a href="#Task-statistics-produce-nonlinearity-in-estimation-?"> Task statistics produce nonlinearity in estimation ? <br></h6>
-        <h6><a href="#Humans-approximate-optimality-with-a-simple-rule"> Humans approximate optimality with a simple rule <br></h6>
-        <h6><a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br></h6>
-        <h6><a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br></h6>
-        <h6><a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br></h6>
-        <h6><a href="#Eye-movement"> Eye movement <br></h6>
+        <h6><a href="#Inference"> INFERENCE <br></h6>
+        <h6><a href="#Example-of-an-inference-task">EXAMPLE OF AN INFERENCE TASK <br></h6>
+        <h6><a href="#Task-noise-&-statistics-affect-estimation"> EFFECT OF TASK NOISE & STATISTICS <br></h6>
+        <h6><a href="#Humans-approximate-optimality"> HUMANS APPROXIMATE OPTIMALITY <br></h6>
+        <h6><a href="#Humans-quickly-learn-complex-statistics"> HUMANS QUICKLY LEARN COMPLEX STATISTICS <br></h6>
+        <h6><a href="#Eye-movement"> EYE POSITIONS <br></h6>
       </section>
     </div>
+    
     
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
@@ -134,8 +148,6 @@
         <!--figure-->
         <center><img src="images/RecencyBias.png" style="width: 50%; height: 50%"/></center>
         
-        
-        <h6><a id="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?" class="anchor" href="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why is estimates relationship to physical directions nonlinear?</h3>
         <p>The bias was also the largest for directions displayed the nearest to the prior mean and the smallest on the 
         opposite side of the prior, producing a nonlinear relationship between displayed and estimated directions. 
         This effect is due to the circularity of the space: the average bias become smaller when directions are displayed 
@@ -156,7 +168,7 @@
         <center><img src="images/BiasAndVarInCircularVsLinearSpace.png"></center>
   
         <!--Head-->
-        <h6><a id="Humans use environment's statistics" class="anchor" href="#Humans-use-environment-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Humans use environment statistics</h3>
+        <h6><a id="Humans-quickly-learn-complex-statisticss" class="anchor" href="#Humans-quickly-learn-complex-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HUMANS QUICKLY LEARN COMPLEX STATISTICS</h3>
         <p>A Bayesian observer that uses the statistical distribution of motion directions fit the data beter than a maximum likelihood observer that only uses sensory likelihood. This indicates that subjects incoporated and ued prior 
         knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
         
@@ -174,33 +186,12 @@
             >> [e,ci,m,s] = slMakeCI(mlo - bo,0.95);
         </code>
   
-        <!--table-->
-        <!--<table style="width:30%">-->
-        <!--<caption> Bayesian observer better fit data than a maximum likelihood observer (lower Akaike Information criterion (AIC)) </caption>-->
-        <!--Table titles-->
-        <!--<tr>-->
-        <!--  <th>Models</th><th>sub01</th><th>sub02</th><th>sub03</th><th>sub04</th><th>sub05</th><th>sub06</th><th>sub07</th><th>sub08</th><th>sub09</th><th>sub10</th><th>sub11</th><th>sub12</th>-->
-        <!--</tr>-->
-        <!--row 1-->
-        <!--<tr>-->
-        <!--  <td>Bayesian observer </td><td> 77182.68 </td><td> 74175.23 </td><td> 84145.32 </td><td> 46451.09 </td><td> 61913.16 </td><td> 75357.9 </td><td> 54584.24 </td><td> 62731.75 </td><td> 84927.68 </td><td> 62633.63 </td><td> 63233.81 </td><td> 66099.47 </td>-->
-        <!--</tr>-->
-        <!--row 2-->
-        <!--<tr>-->
-        <!--  <td>Maximum likelihood observer </td><td> 100803.6 </td><td> 92739.7 </td><td> 110810.02 </td><td> 56504.8 </td><td> 68159.3 </td><td> 88925.5 </td><td> 68253.5 </td><td> 68253.5 </td><td> 101627.7 </td><td> 71161.2 </td><td> 76223.3 </td><td> 76223.3 </td> -->
-        <!--</tr>-->
-        <!--</table>-->
-       <!--Head-->
-  
-        <h6><a id="Switching-between-prior-and-evidence-outperform-the-Bayesian-observer" class="anchor" href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Switching between prior and evidence outperforms the Bayesian observer</h3> 
-  
         <!--code  -->
         <code class="code">
-          <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
              >> model_ref = 'model_CompDiv'; <br>
              >> models = {'model_Bayes_MAP'}; <br>
              >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...
-             proj01_priorStrength/modelfit/AIC/'; <br>
+                            proj01_priorStrength/modelfit/AIC/'; <br>
              >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br>
              >> figure('color','w') <br>
              >> SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]);
@@ -210,18 +201,13 @@
         <center><img src="images/AICbayesVsSwitch.png" style="width: 50%; height: 50%"/></center>   
         
         
-        
-        
-        
         <!--section-->
-        <h6><a id="Subjects-represented-prior-strengths-accurately" class="anchor" href="#Subjects-represented-prior-strengths-accurately" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subjects represented prior strengths accurately</h3> 
-        
         <p> We examined the fit parameters used to model subject prior strengths with the switching observer to determine whether subjects had accurate representations 
         of the spread of the motion direction statistical distribution over trials (experimental prior). We compared the subjective prior strengths prescribed by 
         the switching observer with those predicted by the Basic Bayesian observer. </p>
         
         <!--figure here median prior strengths-->
-        
+
         <p> We tested whether the switching observers predicted strength were statistically more accurate than the strengths predicted by the Bayesian observer.
         Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) : </p>
         
@@ -248,31 +234,29 @@
             subswstd,subExpstd);
         </code>   
         
-        
-        
-        
-        
-        
-        
-       <!--section-->
-        <h6><a id="Why-other-plausible-Bayesian-observers-fail-to-switching" class="anchor" href="#Why-other-plausible-Bayesian-observers-fail-to-switching" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why other plausible Bayesian observers fail to switching</h3> 
-      
+        <p> We tested various other plausible Bayesian observers, relaxing certain assumptions about how subject brain might represent the 
+        likelihood and priors, or how their brain might read out those information. We were inspired by models that have been used by past studies
+        to explain other aspects of perception :
         - a basic Bayesian model [Stocker 2006; Girshick 2011] <br>
         - a sampling Bayesian model [Pouget 2011] <br>
         - a basic Bayesian model with cardinal priors [Stocker 2006; Girshick 2011]<br>
         - a basic Bayesian model with likelihood computed from stimulus components [Stocker 2006; Girshick 2011]<br>
         - Hierarchical Bayesian inference [Mumford 2003]<br>
+        </p>
       
         <!--code-->
         <code class="code">
              >> model_ref = 'model_CompDiv'; <br> 
+             
              >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-             'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
-             'model_Bayes_MAP_withCard',...<br>
-             'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br> 
+                           'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
+                           'model_Bayes_MAP_withCard',...<br>
+                           'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br> 
+                           
              >> path = '~/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br> 
+             
              >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
-             models,path); 
+                                                 models,path); 
         </code>
         
         
@@ -283,14 +267,16 @@
         
         <!--code  -->
         <code class="code">
-          <!--<div style="background-color:#f2f2f2; color:black; line-height:0.8; padding:10px;">   -->
            >> model_ref = 'model_CompDiv'; <br>
+           
            >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-           'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
-           'model_Bayes_MAP_withCard',...<br>
-           'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br>
+                         'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
+                         'model_Bayes_MAP_withCard','model_Bayes_MAP',... <br>
+                         'model_Bayes_MAP_FatTailPrior'}; <br>
+                         
            >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
-           proj01_priorStrength/modelfit/AIC/'; <br>
+                      proj01_priorStrength/modelfit/AIC/'; <br>
+           
            >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
            models,path); 
         </code>
@@ -299,14 +285,16 @@
         <code class="code">
               >> model_ref = 'model_CompDiv'; <br>
               >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-              'model_Bayes_WJMtailedPrior', ... <br>
-              'model_Bayes_WJM','model_Bayes_MAP_withCard',... <br>
-              'model_Bayes_MAP',...<br>
-              'model_Bayes_MAP_FatTailPrior'}; <br>
+                            'model_Bayes_WJMtailedPrior', ... <br>
+                            'model_Bayes_WJM','model_Bayes_MAP_withCard',... <br>
+                            'model_Bayes_MAP',...<br>
+                            'model_Bayes_MAP_FatTailPrior'}; <br>
+              
               >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
-              proj01_priorStrength/modelfit/AIC/'; <br>
+                        proj01_priorStrength/modelfit/AIC/'; <br>
+              
               >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(...<br>
-              model_ref,models,path);
+                                                  model_ref,models,path);
         </code>
         
         <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
@@ -314,10 +302,11 @@
         <!--code  -->
         <code class="code">
            >> cd('~/proj/steeve/projInference/data/) <br>
+           
            >> [rowheader,colheader,data] = slcsvRead('modelfitData.csv'); <br>
+           
            >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,...<br>
-           colheader,data, ... <br>
-           'Switching observer')
+           colheader,data,'Switching observer')
         </code>
   
         <!--section-->
@@ -372,8 +361,9 @@
         <!--code  -->
         <code class="code">
            >> datapath = '~/../myProjData/'; <br>
+           
            >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
-           'AnovaEyeMvt','plotEyeMvtStats','filename','test');
+                                      'AnovaEyeMvt','plotEyeMvtStats','filename','test');
         </code>
         
         <p> The eye positions averaged over subjects did not significantly change between priors </p>
