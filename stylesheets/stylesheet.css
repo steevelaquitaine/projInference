@@ -111,6 +111,7 @@ h6 {
 p {
   margin: 20px 0 20px 0;
   text-indent: 50px;
+  text-align: justify; 
 }
 
 footer p {
