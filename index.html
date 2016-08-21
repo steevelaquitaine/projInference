@@ -96,12 +96,9 @@
             >> [fitP,fitPbkp,R2,sdata,fitPt,negLogl,negLoglbkp,... <br>
                 Logl_pertrialBestfit,output] = SLfitBayesianModel({'sub01','sub02',... <br>
                 'sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10',... <br>
-                'sub11','sub12'},... <br>
-                [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],... <br>
-                'dataPathVM',datapath,... <br>
-                'experiment','vonMisesPrior',... <br>
-                'MAPReadout',... <br>
-                'modelPredictions','withData',... <br>
+                'sub11','sub12'},[NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],... <br>
+                'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
+                'MAPReadout','modelPredictions','withData',... <br>
                 'directoryFitParameter','../modelfit/AIC/',... <br>
                 'filename','fig03_04');
         </code>
@@ -158,8 +155,11 @@
         <!--code  -->
         <code class="code">
               >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47]; <br><br>
+              
               >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; <br><br>
+              
               >> [e,ci,m,s] = slMakeCI(bo,0.95) <br><br>
+              
               >> [e,ci,m,s] = slMakeCI(mlo,0.95)
         </code>
   
@@ -175,7 +175,7 @@
              
              >> models = {'model_Bayes_MAP'}; <br><br>
              
-             >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...
+             >> path = '/Volumes/DroboBKUP/data/dataPsychophy/... <br>
                         &nbsp &nbsp &nbsp &nbsp proj01_priorStrength/modelfit/AIC/'; <br>
              
              >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br><br>
