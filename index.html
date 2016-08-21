@@ -91,7 +91,7 @@
         
         <!--Code-->
         <code class="code">
-            >> datapath = slgetdatapath('lab'); <br>
+            >> datapath = slgetdatapath('lab'); <br><br>
 
             >> [fitP,fitPbkp,R2,sdata,fitPt,negLogl,negLoglbkp,... <br>
                 Logl_pertrialBestfit,output] = SLfitBayesianModel({'sub01','sub02',... <br>
@@ -157,9 +157,9 @@
         
         <!--code  -->
         <code class="code">
-              >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47]; <br>
-              >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; <br>
-              >> [e,ci,m,s] = slMakeCI(bo,0.95) <br>
+              >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47]; <br><br>
+              >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; <br><br>
+              >> [e,ci,m,s] = slMakeCI(bo,0.95) <br><br>
               >> [e,ci,m,s] = slMakeCI(mlo,0.95)
         </code>
   
@@ -171,13 +171,16 @@
   
         <!--code  -->
         <code class="code">
-             >> model_ref = 'model_CompDiv'; <br>
-             >> models = {'model_Bayes_MAP'}; <br>
+             >> model_ref = 'model_CompDiv'; <br><br>
+             
+             >> models = {'model_Bayes_MAP'}; <br><br>
+             
              >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...
-                            proj01_priorStrength/modelfit/AIC/'; <br>
-             >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br>
-             >> figure('color','w') <br>
-             >> SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]);
+                        &nbsp &nbsp &nbsp &nbsp proj01_priorStrength/modelfit/AIC/'; <br>
+             
+             >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br><br>
+
+             >> figure('color','w') ; SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]);
         </code>
         
         <!--figure-->
