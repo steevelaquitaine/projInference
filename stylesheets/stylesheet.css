@@ -57,7 +57,6 @@ Theme Styles
 
 body {
   box-sizing: border-box;
-  /*color:#373737;*/
   color:#000000;
   background-color: white;
   font-size: 18px;
@@ -67,9 +66,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0;
+  margin: 15px 0;
   /*font-weight: 700;*/
-  color:#222222;
+  color:#000000;
   font-family: 'CMS';
   letter-spacing: 1px;
 }
@@ -118,17 +117,6 @@ a {
   color: #000000;
   font-size : 18px;
   line-height: 35px;
-
-  /*transition: color 0.5s ease;*/
-  /*transition: text-shadow 0.5s ease;*/
-  /*-webkit-transition: color 0.5s ease;*/
-  /*-webkit-transition: text-shadow 0.5s ease;*/
-  /*-moz-transition: color 0.5s ease;*/
-  /*-moz-transition: text-shadow 0.5s ease;*/
-  /*-o-transition: color 0.5s ease;*/
-  /*-o-transition: text-shadow 0.5s ease;*/
-  /*-ms-transition: color 0.5s ease;*/
-  /*-ms-transition: text-shadow 0.5s ease;*/
 }
 
 a:hover, a:focus {text-decoration: underline;}
