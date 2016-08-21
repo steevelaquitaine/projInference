@@ -196,9 +196,9 @@ code {
   vertical-align: middle; /*center*/
   line-height: 1.5;
   width: 820px;
-  padding-top: 40px;  
-  padding-bottom: 40px;
-  margin: 0 1 0 1px;  
+  padding-top: 2px;  /*add top grey padding*/
+  padding-bottom: 2px;
+  margin: 45px 0 45px 0px;/*add top & bottom white margin*/
 }
 
 .code {
