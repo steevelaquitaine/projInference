@@ -176,7 +176,7 @@
              >> models = {'model_Bayes_MAP'}; <br><br>
              
              >> path = '/Volumes/DroboBKUP/data/dataPsychophy/... <br>
-                        &nbsp &nbsp &nbsp &nbsp proj01_priorStrength/modelfit/AIC/'; <br>
+                        &nbsp &nbsp &nbsp &nbsp &nbsp proj01_priorStrength/modelfit/AIC/'; <br>
              
              >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br><br>
 
@@ -199,8 +199,10 @@
         
         <!--Code-->
         <code class="code">
-          >> cd('~/proj/steeve/projInference/data/') <br>
-          >> [~,~,data] = slcsvRead('data_PriorStrngths.csv'); <br>
+          >> cd('~/proj/steeve/projInference/data/') <br><br>
+          
+          >> [~,~,data] = slcsvRead('data_PriorStrngths.csv'); <br><br>
+          
           >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data);
         </code>
         
@@ -217,7 +219,7 @@
         <!--Code-->
         <code class="code">  
             >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,...<br>
-            subswstd,subExpstd);
+                                             &nbsp &nbsp &nbsp &nbsp &nbsp subswstd,subExpstd);
         </code>   
         
         <p> We tested various other plausible Bayesian observers, relaxing certain assumptions about how subject brain might represent the 
@@ -235,14 +237,14 @@
              >> model_ref = 'model_CompDiv'; <br> 
              
              >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-                           'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
-                           'model_Bayes_MAP_withCard',...<br>
-                           'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br> 
+              &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_MAP_withCard',...<br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br><br>
                            
-             >> path = '~/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br> 
+             >> path = '~/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br><br>
              
              >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
-                                                 models,path); 
+            &nbsp &nbsp &nbsp &nbsp &nbsp                                   models,path); 
         </code>
         
         
@@ -253,46 +255,46 @@
         
         <!--code  -->
         <code class="code">
-           >> model_ref = 'model_CompDiv'; <br>
+           >> model_ref = 'model_CompDiv'; <br><br>
            
            >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-                         'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
-                         'model_Bayes_MAP_withCard','model_Bayes_MAP',... <br>
-                         'model_Bayes_MAP_FatTailPrior'}; <br>
+           &nbsp &nbsp &nbsp &nbsp &nbsp               'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
+           &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP_withCard','model_Bayes_MAP',... <br>
+           &nbsp &nbsp &nbsp &nbsp &nbsp               'model_Bayes_MAP_FatTailPrior'}; <br><br>
                          
            >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
-                      proj01_priorStrength/modelfit/AIC/'; <br>
+          &nbsp &nbsp &nbsp &nbsp &nbsp          proj01_priorStrength/modelfit/AIC/'; <br><br>
            
            >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
-           models,path); 
+           &nbsp &nbsp &nbsp &nbsp &nbsp               models,path); 
         </code>
         
         <!--code  -->
         <code class="code">
-              >> model_ref = 'model_CompDiv'; <br>
+              >> model_ref = 'model_CompDiv'; <br><br>
               >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-                            'model_Bayes_WJMtailedPrior', ... <br>
-                            'model_Bayes_WJM','model_Bayes_MAP_withCard',... <br>
-                            'model_Bayes_MAP',...<br>
-                            'model_Bayes_MAP_FatTailPrior'}; <br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_WJMtailedPrior', ... <br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_WJM','model_Bayes_MAP_withCard',... <br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP',...<br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP_FatTailPrior'}; <br><br>
               
               >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
-                        proj01_priorStrength/modelfit/AIC/'; <br>
+              &nbsp &nbsp &nbsp &nbsp &nbsp          proj01_priorStrength/modelfit/AIC/'; <br><br>
               
               >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(...<br>
-                                                  model_ref,models,path);
+              &nbsp &nbsp &nbsp &nbsp &nbsp               model_ref,models,path);
         </code>
         
         <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
         
         <!--code  -->
         <code class="code">
-           >> cd('~/proj/steeve/projInference/data/) <br>
+           >> cd('~/proj/steeve/projInference/data/) <br><br>
            
-           >> [rowheader,colheader,data] = slcsvRead('modelfitData.csv'); <br>
+           >> [rowheader,colheader,data] = slcsvRead('modelfitData.csv'); <br><br>
            
-           >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,...<br>
-           colheader,data,'Switching observer')
+           >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,...<br><br>
+           &nbsp &nbsp &nbsp &nbsp &nbsp                colheader,data,'Switching observer')
         </code>
   
         <!--section-->
@@ -306,9 +308,9 @@
         <!--code  -->
         <code class="code">        
            >> [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll] = ...<br> 
-                    slplotandStatsPrevDirvsPriorBias({'sub01','sub02','sub03',...<br> 
-                    'sub04','sub05','sub06','sub07','sub08','sub09','sub10',...<br> 
-                    'sub11','sub12'},'~/data/dataPsychophy/proj01_priorStrength/');
+            &nbsp &nbsp &nbsp &nbsp &nbsp        slplotandStatsPrevDirvsPriorBias({'sub01','sub02','sub03',...<br> 
+            &nbsp &nbsp &nbsp &nbsp &nbsp        'sub04','sub05','sub06','sub07','sub08','sub09','sub10',...<br> 
+            &nbsp &nbsp &nbsp &nbsp &nbsp        'sub11','sub12'},'~/data/dataPsychophy/proj01_priorStrength/');
         </code>
         
          <p> The overall bias over all subject trials was 4.35 deg, 95% CI [ 3.14 5.57 ] toward the prior and the bias was significantly different 
@@ -319,8 +321,8 @@
         <!--code  -->
         <code class="code">
            >> [SigBias2priorAll, SigBias2prevdir, marginAll,ciAll,mAll,sAll] = ... </br>
-                    slplotandStatsPrevDirvsPriorBias({'sub01'},'~/data/... </br>
-                    dataPsychophy/proj01_priorStrength/'); </br>
+            &nbsp &nbsp &nbsp &nbsp &nbsp        slplotandStatsPrevDirvsPriorBias({'sub01'},'~/data/... </br>
+            &nbsp &nbsp &nbsp &nbsp &nbsp        dataPsychophy/proj01_priorStrength/'); </br>
         </code>
         
         <p> 4 out of 12 subjects were significantly biased toward the prior mean and not the previous direction (the average distance
@@ -342,16 +344,18 @@
         
         <!--code  -->
         <code class="code">
-           >> datapath = '~/../myProjData/'; <br>
+           >> datapath = '~/../myProjData/'; <br><br>
            
            >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
-                                      'AnovaEyeMvt','plotEyeMvtStats','filename','test');
+           &nbsp &nbsp &nbsp &nbsp &nbsp             'AnovaEyeMvt','plotEyeMvtStats','filename','test');
         </code>
         
         <p> The eye positions averaged over subjects did not significantly change between priors </p>
         <code class="code">
-           >> cd ~/.../projInference/data; <br>
-           >> [rowheader,colheader,data] = slcsvRead('data_meanEyePosition.csv'); <br>
+           >> cd ~/.../projInference/data; <br><br>
+           
+           >> [rowheader,colheader,data] = slcsvRead('data_meanEyePosition.csv'); <br><br>
+           
            >> [m,ci,condition] = sleyePosMeanAndCIByPrior(data);
         </code>
 
