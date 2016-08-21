@@ -115,8 +115,9 @@ footer p {
 a {
   text-decoration: none;
   color: #000000;
-  font-size : 18px;
-  line-height: 35px;
+  font-size : 27px;
+  line-height: 1,5;
+  /*line-height: 35px;*/
 }
 
 a:hover, a:focus {text-decoration: underline;}
