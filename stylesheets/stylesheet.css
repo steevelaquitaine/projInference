@@ -194,10 +194,10 @@ code {
   display: block;
   vertical-align: middle; /*center*/
   line-height: 1.5;
-  width: 700px;
-  padding-top: 20px;  
-  padding-bottom: 20px;
-  margin: 0 6 0 6px;  
+  width: 820px;
+  padding-top: 40px;  
+  padding-bottom: 40px;
+  margin: 0 1 0 1px;  
 }
 
 .code {
