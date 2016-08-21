@@ -323,9 +323,10 @@ proj_title_wrap {
   font-family: 'CMS';
   display: block;
   top: 10px;
-  left: 10px;
+  /*left: 10px;*/
   z-index: 10;
-  padding: 10px 50px 10px 10px;
+  /*padding: 10px 50px 10px 10px;*/
+  padding: 10px 50px 10px 0px;
   color: black;
   font-weight: 500;
 }
