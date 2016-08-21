@@ -188,15 +188,16 @@ pre {
   overflow: auto;
 }
 
+/*Code blocks*/
 code {
   background-color:#f6f6f6;
   display: block;
-  vertical-align: baseline;
+  vertical-align: middle; /*center*/
   line-height: 1.5;
   width: 700px;
-  padding-top: 10px;  
-  padding-bottom: 10px;
-  margin: 0 3 0 3px;  
+  padding-top: 20px;  
+  padding-bottom: 20px;
+  margin: 0 6 0 6px;  
 }
 
 .code {
