@@ -38,6 +38,7 @@
         <h7><a href="#Humans-approximate-optimality">HUMANS APPROXIMATE OPTIMALITY <br></h7>
         <h7><a href="#Humans-quickly-learn-complex-statistics">HUMANS QUICKLY LEARN COMPLEX STATISTICS <br></h7>
         <h7><a href="#Eye-movement"> EYE POSITIONS <br></h7>
+        <h7><a href="Generalization-to-another-task">GENERALIZATION TO ANOTHER TASK <br></h7>
       </section>
     </div>
     
@@ -339,7 +340,7 @@
 
   
         <!--section-->
-        <h6><a id="Eye-movement" class="anchor" href="#Eye movement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EYE POSITION</h3> 
+        <h6><a id="Eye-movement" class="anchor" href="#Eye-movement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EYE POSITION</h3> 
         <p> We examined whether subjects eye positions changed between prior conditions.  </p>
         
         <!--code  -->
@@ -362,6 +363,18 @@
       <!--End Main Content-->
       </section>
     </div>
+    
+    <!--section-->
+    <h6><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GENERALIZATION TO ANOTHER TASK</h3> 
+    <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location
+    of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background.  </p>
+    
+    <!--Code-->
+    <code class="code">
+      >> analyses({'sub01','sub02','sub03','sub04','sub05','sub06'},... <br>
+      &nspb &nspb &nspb &nspb &nspb     {'StimStrength','Pstd','FeatureSample'},'experiment',...
+      &nspb &nspb &nspb &nspb &nspb     'vonMisesPrior','dataDis','signDistance'); <br>
+    </code>
     
     
     <!-- FOOTER  -->
