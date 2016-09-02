@@ -361,19 +361,21 @@
         </code>
 
 
-     <!--section-->
-    <h6><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GENERALIZATION TO ANOTHER TASK</h3> 
-    <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location
-    of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background.  </p>
-    
-    <!--Code-->
-    <code class="code">
-      >> analyses({'sub01','sub02','sub03','sub04','sub05','sub06'},... <br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp     {'StimStrength','Pstd','FeatureSample'},'experiment',...<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp     'vonMisesPrior','dataDis','signDistance'); <br>
-    </code>
-
-
+       <!--section-->
+      <h6><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GENERALIZATION TO ANOTHER TASK</h3> 
+      <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location
+      of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background.  </p>
+      
+      <!--Code-->
+      <code class="code">
+        >> SLfitBayesianModel({'sub01','sub02','sub03','sub04','sub05','sub06'},...
+        %nbsp %nbsp %nbsp %nbsp %nbsp %nbsp    ones(1,11),... <br>
+        %nbsp %nbsp %nbsp %nbsp %nbsp %nbsp   'dataPathVM',datapath,'experiment','vonMisesPrior',...<br>
+        %nbsp %nbsp %nbsp %nbsp %nbsp %nbsp   'MAPReadout','modelPredictions','withData',...<br>
+        %nbsp %nbsp %nbsp %nbsp %nbsp %nbsp   'directoryFitParameter','../modelfit/AIC/',... <br>
+        %nbsp %nbsp %nbsp %nbsp %nbsp %nbsp   'filename','fig03_04'); <br>
+      </code>
+      
       <!--End Main Content-->
       </section>
     </div>
