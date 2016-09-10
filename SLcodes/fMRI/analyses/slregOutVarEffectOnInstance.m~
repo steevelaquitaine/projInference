@@ -1,0 +1,41 @@
+
+
+%get var1 instances
+%[svol, var1] = getStimvol(v,'myRandomCoh','taskNum',o.taskNum,'phaseNum',o.phaseNum,'segmentNum',o.segmentNum);
+%i = getInstances(v,c.myROIinfo,svol,'n=inf',c.startLag,c.blockLen);
+%i1 = i1{1}.classify.instances;
+%stimVol1 = i{1}.classify.instanceVol;
+
+%get var2 instances
+%[svol, var2] = getStimvol(v,'myRandomDir','taskNum',o.taskNum,'phaseNum',o.phaseNum,'segmentNum',o.segmentNum);
+%i = getInstances(v,c.myROIinfo,svol,'n=inf',c.startLag,c.blockLen);
+%i2 = i{1}.classify.instances;
+%stimVol2 = i{1}.classify.instanceVol;
+
+
+%regressout var2
+%instNew = slregOutVarEffectOnInstance(i1,var1,stimVol1,i2,var2,stimVol2)
+
+function instNew = slregOutVarEffectOnInstance(inst1,var1,stimVol1,inst2,var2,stimVol2)
+
+    instNew = [];
+    keyboard
+
+instmp   = [];
+vartmp  = [];
+svoltmp = [];
+for i = 1 : length(inst1)
+    instmp  = [instmp;inst1{i}]
+    vartmp  = [vartmp;repmat(var1{i},size(inst1{i},1),1)];
+    svoltmp = [svoltmp stimVol1{i}];  
+end
+
+instmp2  = [];
+vartmp2  = [];
+svoltmp2 = [];
+
+for i = 1: length(inst2)
+    instmp2  = [instmp2 ; inst2{i}]
+    vartmp2  = [vartmp2 ; repmat(var2{i},size(inst2{i},1),1)];
+    svoltmp2 = [svoltmp2 stimVol2{i}];  
+end

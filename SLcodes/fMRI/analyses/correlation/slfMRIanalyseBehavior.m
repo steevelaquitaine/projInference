@@ -1,0 +1,5 @@
+
+
+%slfMRIanalyseBehavior.m
+
+function slfMRIanalyseBehavior

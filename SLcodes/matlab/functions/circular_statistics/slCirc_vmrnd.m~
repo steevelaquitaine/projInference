@@ -1,0 +1,69 @@
+function Y = slCirc_vmrnd(theta,kappa)
+
+% alpha = circ_vmrnd(theta, kappa, n)
+%   Simulates n random angles from a von Mises distribution, with preferred 
+%   direction thetahat and concentration parameter kappa.
+%
+%   Input:
+%     theta   - preferred direction (matrix)
+%     kappa   - width (scalar)
+%     n       - number of samples (default: 1)
+%
+%   Output:
+%     alpha   - samples from von Mises distribution
+%
+%   Theta and kappa can be scalars, vectors, or matrices. If both or not
+%   scalar, their dimensions should be identical and n should be 1. 
+%
+%   Examples
+%    Y = circ_vmrnd(0,5)            - draw a sample from VM(0,5)
+%    Y = circ_vmrnd(0,5,100)        - draw 100 samples from VM(0,5)
+%    Y = circ_vmrnd(0,[5 10],100)   - draw 100 samples from VM(0,5) and 100 from VM(0,10)
+%    Y = circ_vmrnd([-pi/2 pi/2],5) - draw one sample from VM(-pi/2,5) and one from VM(pi/2,5)
+%
+%   References:
+%     Statistical analysis of circular data, Fisher, sec. 3.3.6, p. 49
+%
+% Circular Statistics Toolbox for Matlab
+% By Philipp Berens and Marc J. Velasco, 2009
+% Modified by Ronald van den Berg, 2011 
+% input checkingg
+
+%%
+n = 1;
+input_dims = size(theta);
+theta      = theta(:)';
+theta      = repmat(theta,1,n);
+kappa      = ones(size(theta))*kappa;
+
+%draw samples
+a = 1 + sqrt((1+4*kappa.^2));
+b = (a - sqrt(2*a))./(2*kappa);
+r = (1 + b.^2)./(2*b);
+valid = 0;
+z     = 0;
+f     = 0;
+c     = 0;
+
+while ~all(valid) %while all 0
+
+    u(:,~valid) = rand(3,sum(~valid));    
+    z(~valid) = cos(pi*u(1,~valid));
+    f(~valid) = (1+r(~valid).*z(~valid))./(r(~valid)+z(~valid));
+    c(~valid) = kappa(~valid).*(r(~valid)-f(~valid));       
+    valid = u(2,:) < c .* (2-c) | ~(log(c)-log(u(2,:)) + 1 -c < 0);               
+
+end
+
+Y = theta + sign(u(3,:) - 0.5) .* acos(f);
+Y = angle(exp(1i*Y));
+
+%if kappa is very small, draw from a uniform distribution (the above method gives NaN for very small kappa's)
+Y(kappa<1e-6) = 2*pi*rand(sum(kappa<1e-6),1)-pi;
+
+% reshape back to original dimensions of input
+Y = reshape(Y,input_dims);
+
+keyboard
+
+warning on

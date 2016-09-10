@@ -1,0 +1,232 @@
+
+%slfMRIerAnal.m
+%
+%
+%     Author: Steeve Laquitaine
+%       date: 150909
+%    purpose: run all basic event-related analyses
+%
+%      usage: 
+% 
+%         o.myVar         = '_all_'; 
+%         o.taskNum       = 2;
+%         o.phaseNum      = 1;
+%         o.segmentNum    = 2;
+%         o.myPath        = '~/data/sltaskdotdirfmri05/s02520150814';
+%         o.myBase        = 's0025_flatR_WM_occipital_Rad90.hdr';
+%         o.myBasePath    = '~/data/mlrAnatDB/s0025/mlrBaseAnatomies/';
+%         o.myROIname     = {'rMT'}%,'lhV4','lIPS1','lIPS2','lIPS3','lV1',...
+%                           %'lV2d','lV2v','lV3A','lV3d','lV3v','lV7',...
+%                           %'rhV4','rIPS1','rIPS2','rIPS3','rLO1','rLO2',...
+%                           %'rMT','rV1','rV2d','rV2v','rV3A','rV3B','rV3d',...
+%                           %'rV3v','rV7'};
+%         o.myROIpath     = '~/data/mlrAnatDB/s0025/mlrROIs/'
+%         o.myGroup       = 'MotionComp'; %'Concatenation';
+%         o.scanList      = 1 : 18;
+%         o.myGroupScanNum = 1;
+%         o.myr2Thresh     = 0.2;
+%            
+%         o = slfMRIerAnal(o)
+% 
+%
+%  Analyses:
+%
+%   - map r2 calculated from fitting deconvolved hdrs with Bold time Series 
+%     (% signal changes on a flat map)
+%   
+%   - bar # voxels by r2 threshold.
+%
+%   - plot er by voxels sorted by r2.
+
+
+function o = slfMRIerAnal(o)
+
+%backup m.file with date and time
+%filename = matlab.desktop.editor.getActiveFilename;
+%SLBackup(filename)
+
+cd(o.myPath)
+mrLoadRet([])                           %mrLoadRet
+v          = getMLRView;
+v          = loadAnat(v,o.myBase,o.myBasePath);  %flat map
+groupNames = viewGet(v,'groupNames');   %check that concatenation exists
+refreshMLRDisplay(v);               %refresh view
+
+%if no concat
+if sum(strcmp(groupNames,'Concatenation'))~=1;
+
+    %set motion compensation group for concatenation
+    curGroup = 'MotionComp';
+    v = viewSet(v,'curGroup',curGroup);
+    
+    %- detrend, high-pass filter 
+    %- get rid of junk frames, 
+    %- do a de-trending step using a hi-pass filter if you
+    %specify that, and then concatenate the resulting time series into a
+    %single time series that will be saved into a new group called
+    %Concatenation. The mat files are saved in folder "concatenation".
+    %set concatenation parameters
+    [~,params] = concatTSeries(v,[],'justGetParams=1','defaultParams=1','scanList',o.scanList);
+    
+    %concatenate (stack preprocessed scans into one long scan)
+    concatTSeries(v,params);
+    fprintf('\n %12s \n','(slfMRIerAnal) Motion compensation scans have been concatenated')    
+end
+v      = viewSet(v,'curGroup',o.myGroup);
+v      = viewSet(v,'curScan',o.myGroupScanNum);
+
+%----
+%ROIS
+%----
+%loadROI(v,o.myROIname,0,o.myROIpath)
+v = loadROI(v,o.myROIname,1,o.myROIpath);
+viewSet(v,'showrois','all perimeter');
+refreshMLRDisplay(v);
+roiNum = viewGet(v,'roiGroup');             %color ROIs perimeter
+for j = 1 : numel(roiNum)
+    viewSet(v,'roiColor','white',roiNum(j));
+end
+
+%er
+%--
+%params
+[~,params] = eventRelated(v,[],'justGetParams=1','defaultParams=1','scanList',o.myGroupScanNum);
+params.scanParams{o.myGroupScanNum}.stimvolVarInfo.varname    = o.myVar;
+params.applyFiltering                                = 1;         %filtering
+params.scanParams{o.myGroupScanNum}.stimvolVarInfo.taskNum     = o.taskNum;
+params.scanParams{o.myGroupScanNum}.stimvolVarInfo.segmentNum  = o.segmentNum;
+
+%run
+v = eventRelated(v,params);                                       %r2 map
+
+
+
+%-----
+%PLOTS
+%-----
+%make an event-related plot based on ROI r2's thresholded map. We keep the
+%time series of the voxels that show the greater r2 values (voxels activity 
+%that are modeled best). We average those timeSeries into on time series
+%and we use this time series to estimate an hemodynamic response function
+%for our different stimuli (e.g., coherences).
+%make an average time Series for all the voxels that have a r2 greater than
+%a certain threshold.
+myROI          = loadROITSeries(v,o.myROIname);
+scanDims       = viewGet(v,'scanDims');         
+myROI.linearScanCoords = sub2ind(scanDims,myROI.scanCoords(1,:),myROI.scanCoords(2,:),myROI.scanCoords(3,:)); %ROI coord converted to linear
+r2             = viewGet(v,'overlayData',o.myGroupScanNum);    %r2 map that will permit to choose highest r2 voxels
+myROI.r2       = r2(myROI.linearScanCoords);                   %pick ROI's r2s
+tSeries        = mean(myROI.tSeries(myROI.r2>o.myr2Thresh,:)); %average TSeries for high r2 vox
+numVoxelsTotal = sum(myROI.r2>0); % # voxels with r2 greater than the threshold
+numVoxels      = sum(myROI.r2 > o.myr2Thresh);
+stimvol        = getStimvol(v,o.myVar,'taskNum',o.taskNum,'phaseNum',o.phaseNum,'segmentNum',o.segmentNum); %choose the # of HRF to deconvolve (i.e., # of stimuli) from the average TSeries.
+%nhdr           = length(stimvol{:});
+nhdr           = length(stimvol);
+hdrlen         = 50; %hdr length
+
+%make a stimulus convolution matrix (scm, Ninstances by Nhdr's time. 
+%scm = 1 at the times when we estimate hdr values).
+scm            = makescm(v,hdrlen,1,stimvol);
+keyboard
+d              = getr2timecourse(tSeries,nhdr,hdrlen,scm,viewGet(v,'framePeriod')); %deconvolve hdrs from mean TSeries
+
+%plot
+figure('color','w');
+hold all
+ercolors = [0 0 0; 1 0 0];
+for j = 1 : nhdr
+
+%     errorbar(d.time,d.ehdr(j,:),d.ehdrste(j,:),'color',ercolors(j,:),...
+%         'linewidth',2);
+    SLerrorbar(d.time, d.ehdr(j,:), 'yError', d.ehdrste(j,:),['Color=[',num2str(ercolors(j,:)),']'],'linewidth',2,'linesmoothing','on')
+
+end
+box off
+set(gca,'fontsize',14)
+title(['Event-relate plot (',...
+    num2str(numVoxels),'voxels ',...
+    o.myROIname,...
+    ', r2>',num2str(o.myr2Thresh),...
+    ', hdrlen=',num2str(hdrlen),'vols)',])
+ylabel('Signal change (%)')
+xlabel('Time (seconds)')
+
+%display everything altogether
+img = refreshMLRDisplay(viewGet(v,'viewNum'));
+
+
+%# of voxels with r2 greater than varying r2 thresholds
+%------------------------------------------------------
+%plot the # of voxels with r2 greater than different thresholds
+%change the threshold
+myr2Thresholds = 0:0.05:0.8;
+
+%count the # of voxels
+numVoxelsPerr2Thresh = nan(length(myr2Thresholds),1);
+for j = 1 : length(myr2Thresholds)
+    numVoxelsPerr2Thresh(j) = sum(myROI.r2>myr2Thresholds(j));
+end
+
+%draw the # of voxels against threshold
+figure
+SLdrawBar(numVoxelsPerr2Thresh, myr2Thresholds, 1 : length(myr2Thresholds))
+xlabel('r2 thresholds')
+ylabel('# of voxels with r2 > threshold')
+title([num2str(numVoxelsTotal),'voxels, ',o.myROIname])
+
+
+%draw er plot for each voxel
+%---------------------------
+
+%sort voxels from greatest r2 to lowest
+indx = 1 : numel(myROI.r2);
+[~,indx] = sortrows(myROI.r2');
+indx = indx(end:-1:1);
+
+%sort TSeries
+myROI.tSeriesr2Sorted = myROI.tSeries(indx,:);
+
+%figure
+myscreensz = get(0,'screensize');
+figure('color','w','position',[0.25 0.25 0.25 1].*myscreensz([3 4 3 4]));
+
+%each voxel
+for thisVox = 1 : numVoxelsTotal
+    
+    subplot( ceil(sqrt(numVoxelsTotal)), ceil(sqrt(numVoxelsTotal)),thisVox)
+    tSeriesThisVox = myROI.tSeriesr2Sorted(thisVox,:);
+    dThisVox       = getr2timecourse(tSeriesThisVox,nhdr,hdrlen,scm,viewGet(v,'framePeriod')); %deconvolve the voxel's hdr
+
+    %each stim condition (e.g., coherence)
+    for j = 1 : nhdr
+
+        SLerrorbar(dThisVox.time,dThisVox.ehdr(j,:),'yError',dThisVox.ehdrste(j,:),...
+            ['Color=[',num2str(ercolors(j,:)),']'],...
+            'linewidth',2,...
+            'linesmoothing','on',...
+            'MarkerSize',5)
+
+        xlim([0 max(dThisVox.time)])
+        ylim([min(dThisVox.ehdr(:)) max(dThisVox.ehdr(:))])
+
+    end 
+
+    %axis square
+    title(['r2:',num2str(myROI.r2(indx(thisVox)))])
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

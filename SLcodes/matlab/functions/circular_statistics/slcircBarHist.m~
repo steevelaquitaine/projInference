@@ -1,0 +1,21 @@
+
+
+
+%slcircBarHist(1:1:360,10)
+
+
+function slcircBarHist(x,bin)
+
+keyboard
+
+dbinStart = SLvectors2signedAngle(1 : bin : 360,0,'polar');
+dbinEnd = SLvectors2signedAngle(bin : bin : 360,0,'polar');
+
+d20 = SLvectors2signedAngle(x,0,'polar');
+
+for i = 1 : length(binStart)    
+    count(i) = length(find(d20 > dbinStart(i) & d20 <= dbinEnd(i)));
+end
+
+bar(1:bin:360,count)
+

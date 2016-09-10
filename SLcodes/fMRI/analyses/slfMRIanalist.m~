@@ -1,0 +1,1149 @@
+  
+%slfMRIanalistv00.m
+%
+%author: steeve laquitaine
+%  date: 150911
+%purpose: list templates for fMRI analyses
+
+%---------------------------------
+%%Retinotopy (define visual areas)
+%---------------------------------
+
+
+%--------------------------------------------------
+%%Motion localizer (define motion responsive ROIs)
+%--------------------------------------------------
+% slfMRIcorAnal
+
+                          
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ----------------------------- Each session ---------------------------
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% -------------------- Strength (coh) event-related analysis -----------
+%% er. by coherence 
+%------------------
+%note: er is easy to run manually too in mrLoadRet 
+%
+%Advice: run erAnal once and save the result. Then reload it everytime you
+%need because it takes a while for concatenated scans !!
+%Do save "erAnalbyCoh.mat" !
+
+              o.myVar = 'myRandomCoh';
+          o.myROIname = {'V1','V3A','MT','IPS'};
+            o.myGroup = 'Concatenation';
+     o.myGroupScanNum = 1;
+         o.myr2Thresh = 0.2;
+            o.taskNum = 2;   
+           o.phaseNum = 1;       
+         o.segmentNum = 2;                    
+             o.hdrlen = 50;                   
+             o.myBase = 's0025_flatR_WM_occipital_Rad90.hdr';
+            %o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+            o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s002520150923';
+         o.myBasePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+        o.myCanonical = '~/data/datafMRI/mlrAnatDB/s0025/surfaces/s0025_mprage_pp.nii';
+          o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+%              o.myPath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+%          o.myBasePath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+%         o.myCanonical = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/surfaces/s0025_mprage_pp.nii';
+%           o.myROIpath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+                    [o,v] = slfMRIerAnaltmp(o);
+
+%% -------------------- Feature (dir) strength (coh) classification -----
+%% coh rep (mixt dir, at peak, leaveOneOut)
+%Decode coherence from BOLD across directions at peak response
+%Longest 46 min total
+                
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);
+                  
+                  slfMRIclassifAnalSensoryAreas2
+%% coh rep (by dir, at peak, leaveOneOut)
+%Decode coherence from BOLD by directions at peak response
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh_x_myRandomDir=295';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);
+                  [mx,mxz] = slfMRIclassifSAdisplay(o)
+%% coh rep (mixt dir, at peak, high r2, leaveOneOut)
+%Decode coh. from BOLD vox with high r2 at peak with unsorted directions
+                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2);
+     
+                  [mx,mxz] = slfMRIclassifSAdisplay(o)
+%% coh rep (by dir, at peak, high r2, leaveOneOut)
+%Decode coh. from BOLD vox with high r2 at peak separately by direction                 
+di = [15 85 155 225 295];
+for d = 1 : 5
+    o.myGroup = 'Concatenation';
+    o.myScan = 1;
+    o.myClass = sprintf('%s%i','myRandomCoh_x_myRandomDir=',di(d));
+    o.myROIname = {'V1','V3A','MT','IPS'};
+    o.taskNum = 2;
+    o.phaseNum = 1;
+    o.segmentNum = 2;
+    o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+    o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+    o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+    o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+    
+    [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2);
+end
+[mx,mxz] = slfMRIclassifSAdisplay(o)
+%% coh rep (regout)
+%Correction: regression must be done separately on train and tes)
+%Decode coherence from regressed-out-direction BOLD at peak response
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+          o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+               o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+                       o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+          %o.myPath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          %o.myBasePath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+          %o.myCanonical = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/surfaces/s0025_mprage_pp.nii';
+          %o.myROIpath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'regOutVar2','myRandomDir','leaveOneOut');
+
+                  [mx,mxz] = slfMRIclassifSAdisplay(o)		  
+%% coh rep (regout)
+%Decode coherence from regressed-out-direction BOLD at peak response with r2cutoff
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';       
+  
+                 [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2,'regOutVar2','myRandomDir','leaveOneOut');
+		[mx,mxz] = slfMRIclassifSAdisplay(o)		  
+%% coh rep (regout)
+%Decode coherence from regressed-out-direction BOLD at peak response leave one of Kmean instances out
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+          o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+               o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+                       o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'regOutVar2','myRandomDir','slleaveOneOfkmeanInstanceOut',10);
+		  [mx,mxz] = slfMRIclassifSAdisplay(o)		 
+%% coh rep (regout)
+%Decode coherence from regressed-out-direction BOLD at peak response r2cutoff leave one of Kmean instances out
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+	     o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';          
+                 
+	         [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2,'regOutVar2','myRandomDir','slleaveOneOfkmeanInstanceOut',10);
+		[mx,mxz] = slfMRIclassifSAdisplay(o)		  	   
+%% coh rep (mixt dir. at peak, leaveOnverNmean)
+%Decode coh. from BOLD vox at peak, leave-one-out over N mean instances by
+%class.
+                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'slleaveOneOfkmeanInstanceOut',10);
+                  
+                  [mx,mxz] = slfMRIclassifSAdisplay(o)
+%% coh rep (mixt dir, at peak, high r2, leaveOneoverNmean)
+%Decode coh. from BOLD vox at peak, leave-one-out over N mean instances by
+%class, r2 cutoff
+                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2,'slleaveOneOfkmeanInstanceOut',10);
+      
+                  [mx,mxz] = slfMRIclassifSAdisplay(o)                
+%% coh rep (by dir, at peak, leaveOneOverNmean)
+%Decode coh. by dir. from BOLD vox at peak, leave-one-of k mean instances out 
+di = [15 85 155 225 295];
+for d = 1 : 5
+    o.myGroup = 'Concatenation';
+    o.myScan = 1;
+    o.myClass = sprintf('%s%i','myRandomCoh_x_myRandomDir=',di(d));
+    o.myROIname = {'V1','V3A','MT','IPS'};
+    o.taskNum = 2;
+    o.phaseNum = 1;
+    o.segmentNum = 2;
+    o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+    o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+    o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+    o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+    
+    [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'slleaveOneOfkmeanInstanceOut',7);
+end
+
+[mx,mxz] = slfMRIclassifSAdisplay(o)
+%% coh rep (by dir, at peak, leaveOneOverNmean, high r2)
+%Decode coh. by dir. from BOLD vox at peak, leave-one-of k mean instances 
+%out r2cutoff 
+di = [15 85 155 225 295];
+for d = 1 : 5
+    o.myGroup = 'Concatenation';
+    o.myScan = 1;
+    o.myClass = sprintf('%s%i','myRandomCoh_x_myRandomDir=',di(d));
+    o.myROIname = {'V1','V3A','MT','IPS'};
+    o.taskNum = 2;
+    o.phaseNum = 1;
+    o.segmentNum = 2;
+    o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+    o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+    o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+    o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+    
+    [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2,'slleaveOneOfkmeanInstanceOut',7);
+end
+
+[mx,mxz] = slfMRIclassifSAdisplay(o)   
+%% coh rep (mixt dir, at peak, leaveOneOverNmean, high r2)
+%Decode coh. from BOLD vox at peak, leave-one-out over N mean instances by
+%class, r2 cutoff
+                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomCoh';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2,'slleaveOneOfkmeanInstanceOut',10);
+      
+                  [mx,mxz] = slfMRIclassifSAdisplay(o)
+       
+                  
+%% -------------------- Feature (dir) classification -----------------
+%% direction rep (mixt coh, at peak)
+%Decode directions from BOLD at peak response across coh.
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomDir';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);
+%% direction rep (by coh, at peak)
+%Decode directions from BOLD by coherence
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomDir_x_myRandomCoh=0.12';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);                                   
+%% direction rep.
+%Decode dir. from BOLD vox with high r2, mixte coh
+                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'myRandomDir';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+%                 o.myPath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+%             o.myBasePath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+%            o.myCanonical = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/surfaces/s0025_mprage_pp.nii';
+%              o.myROIpath = '~/Dropbox/myDropbox/Project_withJustin/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+                  [o,c,v] = slfMRIclassifAnalSensoryAreas2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13],'r2cutoff',0.2);
+
+                  
+                  
+%-------------------------------------------------------
+
+
+%% -------------------- Switching classification -----------------
+%% Switching areas (near prior (1) vs near motion dir (2))
+%-------------------------------------------------------
+%% Switch rep
+%Decode switch from BOLD unsorted by coh or dir
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'mySwitch';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  o = slfMRIclassifAnalSwitchingArea2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);                  
+%% Switch rep               
+%Decode switch from BOLD sorted by coh                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'mySwitch_x_myRandomCoh=0.06';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  o = slfMRIclassifAnalSwitchingArea2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);                  
+%% Switch rep               
+%Decode switch from BOLD sorted by dir                  
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'mySwitch_x_myRandomDir=295';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  o = slfMRIclassifAnalSwitchingArea2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);                       
+%% Switch rep               
+%Decode switch from BOLD sorted by dir and coh                 
+
+               o.myGroup = 'Concatenation';
+                o.myScan = 1;                                             
+               o.myClass = 'mySwitch_x_myRandomCoh=0.12_x_myRandomDir=295';
+             o.myROIname = {'V1','V3A','MT','IPS'};             
+               o.taskNum = 2;                                             
+              o.phaseNum = 1;
+            o.segmentNum = 2;
+          o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+                o.myPath = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+          o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+             o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+                       
+                  o = slfMRIclassifAnalSwitchingArea2(o,'accuracyAtTime',[7 14;6 13;6 12;7 13]);                  
+
+
+                  
+%--------------------------- Stacking sessions ----------------------------                  
+
+%get instances for each class stacked by session
+%[iS1; iS2...]
+
+%decode
+
+
+                          
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ----------------------------- Stacked sessions ----------------------
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% coh rep (by dir, at peak, leaveOneOut)
+%Decode coherence from BOLD by directions at peak response
+o.myGroup = 'Concatenation';
+o.myScan = 1;
+o.sessPath{1} = '~/data/datafMRI/sltaskdotdirfmri05/s02520150814';
+o.sessPath{2} = '~/data/datafMRI/sltaskdotdirfmri05/s002520150923';
+o.sessPath{3} = '~/data/datafMRI/sltaskdotdirfmri05/s002520150925';
+o.stckPath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myScan = 1;
+o.myROIname = {'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+di = [15 85 155 225 295]; %directions
+parfor d = 1 : 5    
+    myClass = sprintf('%s%i','myRandomCoh_x_myRandomDir=',di(d));
+    [si,output(d),c] = slfmriClassSensStckSess(o,myClass,'accuracyAtTime',[7 14;6 13;6 12;7 13],'loadSavedInstances');
+end
+%%
+o = output(end);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o)
+                  
+
+
+%151217 (done)
+%--------------------------------------------------------------------------
+%% Decode direction
+%decode "switched to prior/dir" by coh at er peak
+%voxels aligned across sessions
+%--------------------------------------------------------------------------
+t0=tic;
+o.myGroup = 'Concatenation';
+o.myScan = 1;
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath 's02520150814'];
+o.sessPath{2} = [o.rootpath 's002520150923'];
+o.sessPath{3} = [o.rootpath 's002520150925'];
+o.stckPath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myScan = 1;
+o.myROIname = {'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+%collect %correct by coherence
+ci = [0.06 0.12];
+for co = 1 : 2    
+    myClass = sprintf('%s%s','myRandomDir_x_myRandomCoh=',num2str(ci(co)));
+    slfmriClassSensStckSess2(o,myClass,'accuracyAtTime',[7 14;6 13;6 12;7 13],...
+        'CalcInstances','loadSavedROI');
+end
+o.duration = toc(t0);
+
+%plot
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myAnalysis = 'accAtTime';
+o.myClass = 'myRandomDir_x_myRandomCoh=0.06';
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+
+%151225 (done)
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" by coh at er peak
+%create switching variable for classification
+%note removing data to balance dataset doesn't change much %correct
+%note: try again with dlPFC, run also IT
+%note: IPS and vlPFC might show something
+%note: FEF very close to significance with large effect size
+%note: debug FeFlarge
+%note: OFC not signif too
+t0=tic;
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s002520150923'];
+o.sessPath{3} = [o.rootpath '/s002520150925'];
+o.myGroup = 'Concatenation';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','--------------------------------------------')
+    %cd session
+    o.myPath = o.sessPath{i};
+    %create switching var
+    o = slmakeSwitchingVar(o);  
+end
+
+%classify
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath 's02520150814'];
+o.sessPath{2} = [o.rootpath 's002520150923'];
+o.sessPath{3} = [o.rootpath 's002520150925'];
+o.myGroup = 'Concatenation';
+o.myScan = 1;
+o.myROIname = {'OFC'};%{'FEFlarge'}%{'parietalBA39'}%{'FEF'};%{'vlPFC'}%{'aPFC'};%{'dlPFC'};%{'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+%each coh
+ci = [0.06 0.12];
+for co = 1:2    
+    fprintf('%s \n',['--- coh:' num2str(ci(co)) ' ----'])
+    %class
+    myClass = {{['mySwitch=1_x_myRandomCoh=' num2str(ci(co))]},{['mySwitch=2_x_myRandomCoh=' num2str(ci(co))]}};   
+    slfmriClassify(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'CalcInstances','nPerm=100','chanceByPerm',...
+        'kFoldCV');
+end
+
+%plot
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myAnalysis = 'accAtTime';
+o.myClass = ['mySwitch=1_x_myRandomCoh=' num2str(ci(co))];
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+o.duration2 = toc(t0);
+
+
+%151220
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" (interleaved coh and dir)
+%create switching variable for classification
+t0=tic;
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s002520150923'];
+o.sessPath{3} = [o.rootpath '/s002520150925'];
+o.myGroup = 'Concatenation';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','--------------------------------------------')
+    %cd session
+    o.myPath = o.sessPath{i};
+    %create switching var
+    o = slmakeSwitchingVar(o);  
+end
+
+%classify
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath 's02520150814'];
+o.sessPath{2} = [o.rootpath 's002520150923'];
+o.sessPath{3} = [o.rootpath 's002520150925'];
+o.myGroup = 'Concatenation';
+o.myScan = 1;
+o.myROIname = {'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+%class
+myClass = {'mySwitch=1','mySwitch=2'};
+slfmriClassify(o,myClass,'accuracyAtTime',...
+    [7 14;6 13;6 12;7 13],'CalcInstances','loadSavedROI','nPerm=100');
+
+o.duration2 = toc(t0);
+
+%% plot
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myGroup = 'Concatenation';
+o.myAnalysis = 'accAtTime';
+o.myClass = {'mySwitch=1','mySwitch=2'};
+o.myROIname = {'V1','V3A','MT','IPS'};
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+%%
+
+
+%151226
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" by direction at er peak
+%create switching variable for classification
+%note: I get way below chance accuracies. I don't understand why. Look at
+%that...effect larger for small sample size (directions distant from prior)
+%it is probably due to sample size (9 instances min).
+t0=tic;
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s002520150923'];
+o.sessPath{3} = [o.rootpath '/s002520150925'];
+o.myGroup = 'Concatenation';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','--------------------------------------------')
+    %cd session
+    o.myPath = o.sessPath{i};
+    %create switching var
+    o = slmakeSwitchingVar(o);  
+end
+
+%% classify
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s002520150923'];
+o.sessPath{3} = [o.rootpath '/s002520150925'];
+o.myGroup = 'Concatenation';
+o.myScan = 1;
+o.myROIname = {'FEF'};%{'FEFlarge'}%{'parietalBA39'}%{'FEF'};%{'vlPFC'}%{'aPFC'};%{'dlPFC'};%{'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+%each coh
+dire = [15 85 155 295];
+for di = 1 : 4   
+    fprintf('%s \n',['--- dir:' num2str(dire(di)) ' ----'])
+    %class
+%     myClass = {{['mySwitch=1_x_myRandomDir=' num2str(dire(di))]},{['mySwitch=2_x_myRandomDir=' num2str(dire(di))]}};   
+%     slfmriClassify(o,myClass,'accuracyAtTime',...
+%         [7 14;6 13;6 12;7 13],'CalcInstances','nPerm=100','chanceByPerm',...
+%         'kFoldCV');
+    %class
+    myClass = {{['mySwitch=1_x_myRandomDir=' num2str(dire(di))]},{['mySwitch=2_x_myRandomDir=' num2str(dire(di))]}};   
+    slfmriClassify(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'CalcInstances','kFoldCV');
+end
+o.duration2 = toc(t0);
+
+%% plot
+o.rootpath =  '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myAnalysis = {'accAtTime','kFoldCV'};
+o.myClass = ['mySwitch=1_x_myRandomDir=' num2str(dire(4))];
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+
+
+%151227 (done)
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" by coh at er peak with 
+% - svm (very good)
+%note: 3-folds : FEF : 63%(12%coh) 3%(6%)
+%note: 6-folds : FEF : 76.14%(12%coh) 61.36%(6%)
+%note: 9-folds : FEF : 81.82%(12%coh) 62%(6%)
+%note: 10-folds: FEF : 81.82%(12%coh) 62%(6%)
+%note: 10-folds: IPS : 81%(12%coh) 62%(6%)
+% - fisher (less good)
+%note: 10-folds: FEF : 72.73%(12%coh) 42.49%(6%)
+
+
+%create switching variable for classification
+t0=tic;
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s002520150923'];
+o.sessPath{3} = [o.rootpath '/s002520150925'];
+o.myGroup = 'Concatenation';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','--------------------------------------------')    
+    o.myPath = o.sessPath{i};%session    
+    tmp = slmakeSwitchingVar(o);%switching var
+    o.behBySess{i} = tmp;
+end
+
+%% init
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath 's02520150814'];
+o.sessPath{2} = [o.rootpath 's002520150923'];
+o.sessPath{3} = [o.rootpath 's002520150925'];
+o.myGroup = 'Concatenation';
+o.myScan = 1;
+o.myROIname = {'IPS'};%{'FEFlarge'}%{'parietalBA39'}%{'FEF'};%{'vlPFC'}%{'aPFC'};%{'dlPFC'};%{'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '~/data/datafMRI/mlrAnatDB/s0025/mlrROIs/';
+
+%% classif by coh
+%  matlabpool 10
+ci = [0.06 0.12];
+for co = 1:2    
+    fprintf('%s \n',['--- coh:' num2str(ci(co)) ' ----'])
+    myClass = {{['mySwitch=1_x_myRandomCoh=' num2str(ci(co))]},{['mySwitch=2_x_myRandomCoh=' num2str(ci(co))]}};   
+    slfmriClassify(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'loadSavedROI','CalcInstances','kFoldCV','svm','chanceByPerm','nPerm=5','test');
+end
+
+%% plot
+o.rootpath = '~/data/datafMRI/sltaskdotdirfmri05/';
+o.myAnalysis = {'accAtTime','kFoldCV','svm'};
+o.myClass = ['mySwitch=1_x_myRandomCoh=' num2str(ci(co))];
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+o.duration2 = toc(t0);
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Those are quick Tests !!! %%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% dir rep (by coh, at peak, leaveOneOut)
+%Decode coherence from BOLD by directions at peak response
+t0=tic;
+o.myGroup = 'MotionComp';
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath 's02520150814'];
+o.sessPath{2} = [o.rootpath 's02520150814'];
+o.sessPath{3} = [o.rootpath 's02520150814'];
+o.stckPath = o.rootpath;
+o.myScan = 1;
+o.myROIname = {'lV1'};%,'V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '/Volumes/Transcend/data/mlrAnatDB/s0025/mlrROIs/';
+ci = [0.06 0.12]; %coh
+% ses={'s02520150814','s02520150814','s02520150814'};
+% slinitfmriClassify('gr=Concatenation','sc=1','roi={lV1}','tnum=2','pnum=1',...
+%     'snum=2',['ses=' ses],...
+%    'rtp=/Volumes/Transcend/data/sltaskdotdirfmri05/')
+for co = 2    
+    fprintf('%s \n',['--- coh:' num2str(ci(co)) ' ----'])
+    myClass = sprintf('%s%s','myRandomDir_x_myRandomCoh=',num2str(ci(co)));
+    [si,o.coOut(co),c] = slfmriClassSensStckSess2(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'CalcInstances','slReSampInst');
+end
+o.duration = toc(t0);
+
+%%
+o = o.coOut(end);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o)
+
+
+%151217
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" by coh
+%create switching variable for classification
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath 's02520150814'];
+o.sessPath{2} = [o.rootpath 's02520150814'];
+o.sessPath{3} = [o.rootpath 's02520150814'];
+o.myGroup = 'Concatenation';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','-----------------------------')
+    %cd session
+    o.myPath = o.sessPath{i};
+    %create switching var
+    o = slmakeSwitchingVar(o);  
+end
+
+%% classify
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s02520150814'];
+o.sessPath{3} = [o.rootpath '/s02520150814'];
+o.myGroup = 'MotionComp';
+o.myScan = 1;
+o.myROIname = {'lV1'};%,'V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '/Volumes/Transcend/data/mlrAnatDB/s0025/mlrROIs/';
+
+ci = [0.06 0.12];%coh
+%each coh
+for co = 1:2    
+    fprintf('%s \n',['--- coh:' num2str(ci(co)) ' ----'])
+    %class
+    myClass = {{['mySwitch=1_x_myRandomCoh=' num2str(ci(co))]},{['mySwitch=2_x_myRandomCoh=' num2str(ci(co))]}};
+    slfmriClassify(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'CalcInstances','slReSampInst','nPerm=2');
+end
+
+%% plot
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.myAnalysis = 'accAtTime';
+o.myClass = ['mySwitch=1_x_myRandomCoh=' num2str(ci(co))];
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+
+
+
+%151225
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" by coh at er peak
+%create switching variable for classification
+t0=tic;
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s02520150814'];
+o.sessPath{3} = [o.rootpath '/s02520150814'];
+o.myGroup = 'MotionComp';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','--------------------------------------------')
+    %cd session
+    o.myPath = o.sessPath{i};
+    %create switching var
+    o = slmakeSwitchingVar(o);  
+end
+
+%% classify
+t0 = tic;
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s02520150814'];
+o.sessPath{3} = [o.rootpath '/s02520150814'];
+o.myGroup = 'MotionComp';
+o.myScan = 1;
+o.myROIname = {'OFC'};%{'FEFlarge'}%{'parietalBA39'}%{'FEF'};%{'vlPFC'}%{'aPFC'};%{'dlPFC'};%{'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '/Volumes/Transcend/data/mlrAnatDB/s0025/mlrROIs/';
+
+%each coh
+ci = [0.06 0.12];
+for co = 1:2    
+    fprintf('\n \n \n %s \n \n \n',['--- coh:' num2str(ci(co)) ' ----'])
+    %class
+    myClass = {{['mySwitch=1_x_myRandomCoh=' num2str(ci(co))]},{['mySwitch=2_x_myRandomCoh=' num2str(ci(co))]}};   
+    slfmriClassify(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'CalcInstances','kFoldCV','svm');
+end
+o.duration2 = toc(t0);
+
+%% plot
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.myAnalysis = 'accAtTime';
+o.myClass = ['mySwitch=1_x_myRandomCoh=' num2str(ci(co))];
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+
+
+
+%151226
+%--------------------------------------------------------------------------
+%% Decoding switching
+%--------------------------------------------------------------------------
+%decode "switched to prior/dir" by direction at er peak
+%create switching variable for classification
+
+t0=tic;
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s02520150814'];
+o.sessPath{3} = [o.rootpath '/s02520150814'];
+o.myGroup = 'MotionComp';
+o.taskNum = 2;
+%each session
+for i = 1 : length(o.sessPath)
+    fprintf('%s%s \n','SESSION:',o.sessPath{1})
+    fprintf('%s \n','--------------------------------------------')
+    %cd session
+    o.myPath = o.sessPath{i};
+    %create switching var
+    o = slmakeSwitchingVar(o);  
+end
+
+%% classify
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.sessPath{2} = [o.rootpath '/s02520150814'];
+o.sessPath{3} = [o.rootpath '/s02520150814'];
+o.myGroup = 'MotionComp';
+o.myScan = 1;
+o.myROIname = {'OFC'};%{'FEFlarge'}%{'parietalBA39'}%{'FEF'};%{'vlPFC'}%{'aPFC'};%{'dlPFC'};%{'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;   
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '/Volumes/Transcend/data/mlrAnatDB/s0025/mlrROIs/';
+
+%each coh
+dire = [15 85 155 225 295];
+for di = 3 %: 5   
+    fprintf('%s \n',['--- dir:' num2str(dire(di)) ' ----'])
+    %class
+    myClass = {{['mySwitch=1_x_myRandomDir=' num2str(dire(di))]},{['mySwitch=2_x_myRandomDir=' num2str(dire(di))]}};   
+    slfmriClassify(o,myClass,'accuracyAtTime',...
+        [7 14;6 13;6 12;7 13],'CalcInstances','kFoldCV');
+end
+o.duration2 = toc(t0);
+
+%% plot
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.myAnalysis = {'accAtTime','kFoldCV','_chanceByPerm'};
+o.myClass = ['mySwitch=1_x_myRandomDir=' num2str(dire(di))];
+o.nRois = length(o.myROIname);
+o.stk = 1; %aligned sessions
+[mx,mxz] = slfMRIclassifSAdisplay(o);
+
+
+
+%Test
+
+%% classify
+t0=tic;
+o.rootpath = '/Volumes/Transcend/data/sltaskdotdirfmri05/';
+o.stckPath = o.rootpath;
+o.sessPath{1} = [o.rootpath '/s02520150814'];
+o.myGroup = 'MotionComp';
+o.myScan = 1;
+o.myROIname = {'IPS'};%{'FEFlarge'}%{'parietalBA39'}%{'FEF'};%{'vlPFC'}%{'aPFC'};%{'dlPFC'};%{'V1','V3A','MT','IPS'};
+o.taskNum = 2;
+o.phaseNum = 1;
+o.segmentNum = 2;
+o.anatFileName = 's0025_flatL_WM_occipital_Rad90';
+o.anatFilePath = '~/data/datafMRI/mlrAnatDB/s0025/mlrBaseAnatomies/';
+o.myROIpath = '/Volumes/Transcend/data/mlrAnatDB/s0025/mlrROIs/';
+
+%each coh
+dire = [15 85 155 225 295];
+myClass = 'myRandomCoh';
+slfmriClassify(o,myClass,'accuracyAtTime',...
+    [7 14;6 13;6 12;7 13],'CalcInstances','leaveOneOut','fisher','balancByRemovI=1');
+o.duration2 = toc(t0);
+
+
+%% get instances and variable database [160112]
+o.dataPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/slStckAnalyses/MotionComp/classif/myRandomCoh/accAtTimeleaveOneOutfisherbalancByRemovI/IPS/';
+o.filename = 'ClassifStckSessmyRandomCoh_IPS_17-Jan-2016.mat';
+o.sessPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/s02520150814';
+d = slfmriGetInstancedb({'myRandomCoh','myRandomDir','mySwitch'},o);
+save('d','d')
+%% Plot each voxel tuning
+voxnum = 1;
+%by switch
+st = slfmrigetVoxTuning(voxnum,'myRandomDir','mySwitch',d);
+vline(225,'k:')
+%by coh
+st = slfmrigetVoxTuning(voxnum,'myRandomDir','myRandomCoh',d);
+
+
+
+
+%% get all voxel selectivities by switch
+%get instance database
+o.dataPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/slStckAnalyses/MotionComp/classif/myRandomCoh/accAtTimeleaveOneOutfisherbalancByRemovI/IPS/';
+o.filename = 'ClassifStckSessmyRandomCoh_IPS_17-Jan-2016.mat';
+o.sessPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/s02520150814';
+d = slfmriGetInstancedb({'myRandomCoh','myRandomDir','mySwitch'},o);
+save('d','d')
+%% near prior
+%note: speed: parfor (4 cores): 0.4 sec per voxel
+o.dataPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/slStckAnalyses/MotionComp/classif/myRandomCoh/accAtTimeleaveOneOutfisherbalancByRemovI/IPS/';
+cd(o.dataPath)
+load d
+tic
+nVox = size(d.instances,2);
+parfor  voxnum = 1 : nVox
+    stP = slfmrigetVoxTuning(voxnum,'myRandomDir','mySwitch=1',d,'cmaes');      
+    %backup params
+    modesP(voxnum) = stP.fitvmMode;
+    ksP(voxnum) = stP.fitvmK;
+    asP(voxnum) = stP.peakAmp;    
+    %check goodness of fit
+    bakP(voxnum) = stP.minsqe;    
+end
+figure; plot(bakP)
+toc
+
+% near direction
+tic
+parfor  voxnum = 1 : nVox
+    stD = slfmrigetVoxTuning(voxnum,'myRandomDir','mySwitch=2',d,'cmaes');      
+    %backup params
+    modesD(voxnum) = stD.fitvmMode;
+    ksD(voxnum) = stD.fitvmK;
+    asD(voxnum) = stD.peakAmp;    
+    %check goodness of fit
+    bakD(voxnum) = stD.minsqe;    
+end
+figure; plot(bakD)
+
+%save params
+cd(o.dataPath);
+save('VoxelsParams','modesP','modesP','ksP','asP','bakP')
+
+%%
+%population activity (response by voxel selectivities) sorted by switching
+%and motion direction
+%unique selectivities when switch-to-dir
+o.dataPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/slStckAnalyses/MotionComp/classif/myRandomCoh/accAtTimeleaveOneOutfisherbalancByRemovI/IPS/';
+cd(o.dataPath)
+load VoxelsParams.mat
+
+%selectivities when switch-to-dir
+modesDu = unique(modesD);
+nmodesDu = length(modesDu);
+%get responses by selectivity for switch-to-direction
+figure('color','w')
+%set direction
+mydir = 295;
+sw = 2;
+thisCond = d.myRandomDir==mydir & d.mySwitch==sw;
+for i = 1 : nmodesDu
+    %selectivities
+    thisMode = modesD==modesDu(i);
+    %responses (averaged over repeats)
+    if any(thisCond==1)
+        thisModeResD{i} = mean(d.instances(thisCond,thisMode),1);
+        hold on; plot(modesDu(i),thisModeResD{i},'.');
+    else
+        fprintf('\n','No condition found')
+        return
+    end
+    
+    %mean response and std by selectivity
+    RespMeansD(i) = mean(thisModeResD{i});
+    RespStdD(i) = std(thisModeResD{i});    
+end
+hold on; myerrorbar(modesDu,RespMeansD,'yError',RespStdD)
+xlim([0 360])
+vline(mydir,'r--')
+vline(225,'b--')
+
+%get responses by selectivity for switch-to-prior
+figure('color','w')
+sw = 1;
+%unique selectivities when switch-to-prior
+modesPu = unique(modesP);
+nmodesPu = length(modesPu);
+thisCond = d.myRandomDir==mydir & d.mySwitch==sw;
+for i = 1 : nmodesPu
+    %modes
+    thisMode = modesP==modesPu(i);
+    %responses (averaged of repeats)
+    if any(thisCond==1)
+        thisModeResP{i} = mean(d.instances(thisCond,thisMode),1);
+        hold on; plot(modesPu(i),thisModeResP{i},'.');
+    else
+        fprintf('\n','No condition found')
+        return
+    end
+    
+    %mean response and std by selectivity
+    RespMeansP(i) = mean(thisModeResP{i});
+    RespStdP(i) = std(thisModeResP{i});    
+end
+hold on; myerrorbar(modesPu,RespMeansP,'yError',RespStdP)
+xlim([0 360])
+vline(mydir,'r--')
+vline(225,'b--')
+
+
+
+

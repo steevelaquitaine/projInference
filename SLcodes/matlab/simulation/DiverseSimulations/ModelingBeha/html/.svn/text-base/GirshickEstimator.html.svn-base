@@ -1,0 +1,336 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>GirshickEstimator</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-09-01"><meta name="DC.source" content="GirshickEstimator.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%Usage</span>
+    <span class="comment">%k.m=42;</span>
+    <span class="comment">%k.p=42;</span>
+    <span class="comment">%[mPdfs,l]=GirshickEstimator(k);</span>
+
+<span class="comment">%d</span>
+<span class="comment">%d are directions in radians (corresponding degrees range from 0:360).</span>
+
+<span class="comment">%k:</span>
+<span class="comment">%k is the precision or concentration parameter (1/width). It is 42 in</span>
+<span class="comment">%Girshick et al,2011. k is a fit parameter.</span>
+<span class="comment">%*IMPORTANT* "In our case measurement distributions and likelihoods are identical because</span>
+<span class="comment">%k is assumed to be same for all motion directions."</span>
+<span class="comment">%Girshick, A. R., Landy, M. S. &amp; Simoncelli, E. P. Cardinal rules:</span>
+<span class="comment">%visual orientation perception reflects knowledge of environmental</span>
+<span class="comment">%statistics. Nature Publishing Group 14, 926?932 (2011).</span>
+<span class="comment">%Swindale, N. V. Orientation tuning curves: empirical description</span>
+<span class="comment">%and estimation of parameters. Biol Cybern 78, 45?56 (1998).</span>
+
+
+<span class="comment">%ui</span>
+<span class="comment">%ui is the preferred orientation (the phase shift of the cosine).</span>
+<span class="comment">%Swindale, N. V. Orientation tuning curves: empirical description</span>
+<span class="comment">%and estimation of parameters. Biol Cybern 78, 45?56 (1998).</span>
+
+<span class="comment">%u=3:6:360 to be sure one of the tuning curve is centered on the prior</span>
+<span class="comment">%mean.</span>
+
+
+<span class="comment">%w</span>
+<span class="comment">%w is the frequency. It is 2 in Girshick's paper because orientation</span>
+<span class="comment">%selectivity peak every 180 degrees that is two times in 360</span>
+<span class="comment">%degrees. In the case of motion direction w=1.</span>
+
+<span class="comment">%The mean of a Von Mises is its mode(easier to calculate) but if the mean</span>
+<span class="comment">%is not a contained in the sample d (e.g., 0.5 while d is 1:1:360) the mode</span>
+<span class="comment">%and is an approximation.</span>
+
+<span class="comment">%%compute weighted sum of cos and sin of angles</span>
+<span class="comment">%r = w'*exp(1i*alpha);</span>
+<span class="comment">%</span>
+<span class="comment">%%obtain mean by</span>
+<span class="comment">%mu = angle(r);</span>
+<span class="comment">%http://www.mathworks.com/matlabcentral/fileexchange/10676-circular-statistics-toolbox-directional-statistics</span>
+
+<span class="comment">%alpha:angle in radian</span>
+
+
+<span class="comment">%References</span>
+<span class="comment">%http://mathworld.wolfram.com/vonMisesDistribution.html</span>
+<span class="comment">%Girshick, A. R., Landy, M. S. &amp; Simoncelli, E. P. Cardinal rules:</span>
+<span class="comment">%visual orientation perception reflects knowledge of environmental</span>
+<span class="comment">%statistics. Nature Publishing Group 14, 926?932 (2011).</span>
+<span class="comment">%Swindale, N. V. Orientation tuning curves: empirical description</span>
+<span class="comment">%and estimation of parameters. Biol Cybern 78, 45?56 (1998).</span>
+<span class="comment">%http://www.mathworks.com/matlabcentral/newsreader/view_thread/237503</span>
+
+<span class="keyword">function</span> [mPdfs,l,pr]=GirshickEstimator(k)
+
+<span class="comment">%direction(degrees)</span>
+di=5:1:355;
+
+<span class="comment">%measurements(degrees)</span>
+m=di;
+
+<span class="comment">%measurement distributions(pdf)</span>
+mPdfs=vmPdfs(di,m,k.m);
+subplot(1,3,1)
+imagesc(m,di,mPdfs);
+set(gca,<span class="string">'YDir'</span>,<span class="string">'normal'</span>);
+colormap(gray);
+
+<span class="comment">%likelihood</span>
+l=mPdfs';
+l=bsxfun(@rdivide,l,sum(l));
+subplot(1,3,2)
+imagesc(m,di,l);
+set(gca,<span class="string">'YDir'</span>,<span class="string">'normal'</span>);
+colormap(gray);
+
+<span class="comment">%prior</span>
+pr=vmPdfs(225,di,k.p);
+pr=bsxfun(@rdivide,pr,sum(pr));
+subplot(1,3,3)
+imagesc(m,di,l);
+set(gca,<span class="string">'YDir'</span>,<span class="string">'normal'</span>);
+colormap(gray);
+
+<span class="comment">%posterior</span>
+po=l.*pr;
+po=po./(sum(po));
+
+
+
+<span class="comment">%measurement distributions</span>
+<span class="keyword">function</span> mPdfs=vmPdfs(di,m,k)
+<span class="keyword">for</span> i=1:numel(di)
+    mPdfs(:,i)=vmPdf(di(i),m,k);
+<span class="keyword">end</span>
+
+<span class="comment">%a measurement pdf</span>
+<span class="keyword">function</span> mPdfs=vmPdf(u,x,k)
+w=1;
+
+<span class="comment">%degrees to radian</span>
+u=de2r(u);
+x=de2r(x);
+
+<span class="comment">%pdf</span>
+mPdfs=exp(k.*cos(w*(x-u)))/2*pi.*besseli(0,k);
+mPdfs=mPdfs/sum(mPdfs);
+
+
+
+
+<span class="comment">%Nested</span>
+<span class="comment">%convert degrees to radians</span>
+<span class="keyword">function</span> radians=de2r(angle)
+radians = (angle/360)*2*pi;
+
+<span class="comment">%convert radians to degrees</span>
+<span class="keyword">function</span> degrees=ra2d(angle)
+degrees = (angle/(2*pi))*360;
+
+<span class="comment">% if larger than 360 degrees then subtract</span>
+<span class="comment">% 360 degrees</span>
+<span class="keyword">while</span> (sum(degrees&gt;360))
+  degrees = degrees - (degrees&gt;360)*360;
+<span class="keyword">end</span>
+
+<span class="comment">% if less than 360 degreees then add</span>
+<span class="comment">% 360 degrees</span>
+<span class="keyword">while</span> (sum(degrees&lt;-360))
+  degrees = degrees + (degrees&lt;-360)*360;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Error using GirshickEstimator (line 68)
+Not enough input arguments.
+</pre><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+
+%Usage
+    %k.m=42; 
+    %k.p=42; 
+    %[mPdfs,l]=GirshickEstimator(k);
+
+%d
+%d are directions in radians (corresponding degrees range from 0:360).
+
+%k:  
+%k is the precision or concentration parameter (1/width). It is 42 in
+%Girshick et al,2011. k is a fit parameter.
+%*IMPORTANT* "In our case measurement distributions and likelihoods are identical because
+%k is assumed to be same for all motion directions."
+%Girshick, A. R., Landy, M. S. & Simoncelli, E. P. Cardinal rules:
+%visual orientation perception reflects knowledge of environmental 
+%statistics. Nature Publishing Group 14, 926?932 (2011).
+%Swindale, N. V. Orientation tuning curves: empirical description 
+%and estimation of parameters. Biol Cybern 78, 45?56 (1998).
+
+
+%ui
+%ui is the preferred orientation (the phase shift of the cosine).
+%Swindale, N. V. Orientation tuning curves: empirical description 
+%and estimation of parameters. Biol Cybern 78, 45?56 (1998).
+
+%u=3:6:360 to be sure one of the tuning curve is centered on the prior
+%mean.
+
+
+%w
+%w is the frequency. It is 2 in Girshick's paper because orientation
+%selectivity peak every 180 degrees that is two times in 360
+%degrees. In the case of motion direction w=1.
+
+%The mean of a Von Mises is its mode(easier to calculate) but if the mean
+%is not a contained in the sample d (e.g., 0.5 while d is 1:1:360) the mode
+%and is an approximation.
+
+%%compute weighted sum of cos and sin of angles 
+%r = w'*exp(1i*alpha);
+%
+%%obtain mean by 
+%mu = angle(r);
+%http://www.mathworks.com/matlabcentral/fileexchange/10676-circular-statistics-toolbox-directional-statistics
+
+%alpha:angle in radian
+
+
+%References
+%http://mathworld.wolfram.com/vonMisesDistribution.html
+%Girshick, A. R., Landy, M. S. & Simoncelli, E. P. Cardinal rules:
+%visual orientation perception reflects knowledge of environmental 
+%statistics. Nature Publishing Group 14, 926?932 (2011).
+%Swindale, N. V. Orientation tuning curves: empirical description 
+%and estimation of parameters. Biol Cybern 78, 45?56 (1998).
+%http://www.mathworks.com/matlabcentral/newsreader/view_thread/237503
+
+function [mPdfs,l,pr]=GirshickEstimator(k)
+
+%direction(degrees)
+di=5:1:355;
+
+%measurements(degrees)
+m=di;
+
+%measurement distributions(pdf)
+mPdfs=vmPdfs(di,m,k.m);
+subplot(1,3,1)
+imagesc(m,di,mPdfs);
+set(gca,'YDir','normal');
+colormap(gray);
+
+%likelihood
+l=mPdfs';
+l=bsxfun(@rdivide,l,sum(l));
+subplot(1,3,2)
+imagesc(m,di,l);
+set(gca,'YDir','normal');
+colormap(gray);
+
+%prior
+pr=vmPdfs(225,di,k.p);
+pr=bsxfun(@rdivide,pr,sum(pr));
+subplot(1,3,3)
+imagesc(m,di,l);
+set(gca,'YDir','normal');
+colormap(gray);
+
+%posterior
+po=l.*pr;
+po=po./(sum(po));
+
+
+
+%measurement distributions
+function mPdfs=vmPdfs(di,m,k)
+for i=1:numel(di)
+    mPdfs(:,i)=vmPdf(di(i),m,k);
+end
+
+%a measurement pdf
+function mPdfs=vmPdf(u,x,k)
+w=1;
+
+%degrees to radian
+u=de2r(u);
+x=de2r(x);
+
+%pdf
+mPdfs=exp(k.*cos(w*(x-u)))/2*pi.*besseli(0,k);
+mPdfs=mPdfs/sum(mPdfs);
+
+
+
+
+%Nested
+%convert degrees to radians
+function radians=de2r(angle)
+radians = (angle/360)*2*pi;
+
+%convert radians to degrees
+function degrees=ra2d(angle)
+degrees = (angle/(2*pi))*360;
+
+% if larger than 360 degrees then subtract
+% 360 degrees
+while (sum(degrees>360))
+  degrees = degrees - (degrees>360)*360;
+end
+
+% if less than 360 degreees then add 
+% 360 degrees
+while (sum(degrees<-360))
+  degrees = degrees + (degrees<-360)*360;
+end
+
+##### SOURCE END #####
+--></body></html>

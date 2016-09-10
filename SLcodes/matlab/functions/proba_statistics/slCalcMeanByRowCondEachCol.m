@@ -31,7 +31,9 @@
 
 function meanbyCond = slCalcMeanByRowCondEachCol(data,rowCond)
 
-nCond = length(unique(rowCond));
-data = data';
+nCond = length(unique(rowCond)); 
+nCol = size(data,1); 
+data = data'; 
 [row_loc, col_loc] = ndgrid(rowCond,1:nCol);
-meanbyCond = accumarray([row_loc(:) col_loc(:)],data(:),[nCond nperm],@mean);
+meanbyCond = accumarray([row_loc(:) col_loc(:)],data(:),[nCond nCol],@mean);
+                          

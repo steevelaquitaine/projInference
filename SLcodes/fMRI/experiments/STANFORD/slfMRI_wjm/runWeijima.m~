@@ -1,0 +1,10 @@
+
+
+
+%runWeijima.m
+%
+%author: steeve laquitaine
+%
+
+%
+weijima2('displayName=Test')

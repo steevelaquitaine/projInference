@@ -1,0 +1,46 @@
+
+%slfitLearningBayes.m
+%
+%
+%
+%    author: steeve laquitaine
+%      date: 160608
+%   purpose: fit learning Bayesian model with maximum likelihood fit with all parameters free
+%
+%     usage:
+%
+%        [fitPbkp,negLoglbkp,exitflagbkp,outputFitbkp,fithistory] = slfitLearningBayes(initp,data,disp,StimStrength,...
+%            pstd,priorShape,priorModes,TheModel,options,varargin)
+%
+%nested functions : slfitLearningBayesSingleParamSet
+
+function [fitPbkp,negLoglbkp,exitflagbkp,outputFitbkp,fithistory] = slfitLearningBayes(initp,data,disp,StimStrength,...
+    pstd,priorModes,TheModel,options,varargin)
+
+%loop over sets of initial parameters
+for i = 1 : size(initp,1)
+    
+    fprintf('%s \n','=================== fitting info ==============================')
+    fprintf('%s \n','(slfitLearningBayes) Algorithm: fminsearch-Nelder Mead')
+    fprintf('%s \n',['(slfitLearningBayes) init parameter set: ',...
+        num2str(i),'/',num2str(size(initp,1))])
+    fprintf('%s \n','(slfitLearningBayes) priors are fixed')
+    fprintf('%s \n','=================================================================')
+    
+    %fit
+    [fitPtmp,negLogl,exitflag,outputFit,history] = slfitLearningBayesSingleParamSet(initp(i,:),data,disp,StimStrength,...
+        pstd,priorModes,TheModel,options,varargin{:});
+    
+    %Fit parameters and SSE
+    fitPbkp(i,:) = fitPtmp;
+    negLoglbkp(i) = negLogl;
+    exitflagbkp{i} =  exitflag;
+    outputFitbkp{i} =  outputFit;
+    fithistory{i}.hist = history;
+    fithistory{i}.initp = initp(i,:);
+end
+output.fitAlgo = 'fminsearch';
+save('fithistory','fithistory')
+
+end
+

@@ -1,0 +1,209 @@
+Bayesian Reasoning MATLAB Tutorial
+
+Michael A. Goodrich
+3 Sept 2004, CS 470
+
+
+NOTE: This tutorial combines explanations with actual MATLAB code.
+When you see text that looks like this, 
+it is actual code that you can enter directly into MATLAB.
+Goal:
+
+The goal of this tutorial is to help you understand how to use Bayes rule to estimate the state of a system.
+Recall that, as applied to estimation, Bayes rule has the form
+
+p(s|x) = p(x|s) p(s) / p(x)
+
+where s=state, x=observation, p(s|x) is the posterior estimate of the state, p(s) is the prior estimate of the state, and p(x|s) is the likelihood.
+C1: Corrupted readings of state
+
+Consider a world with only one state, and suppose that this state is unknown.
+We'll record the true state here. This state is a point in a plane.
+s=[3;5];  % the point in a plane is represented by a column vector.
+Suppose that our goal is to estimate this true state because knowing the true state will allow us to make some kind of decision. Suppose further that we have a sensor that can identify the true state, but that this sensor is very noisy.
+
+To make this concrete, suppose that the true state of the world that we are trying to estimate is the position of our flag in the capture the flag world. Suppose that we can identify our flag by, say, sonars, but that the values returned by the sonars are noisy.
+
+Let's plot the location of the flag, and then show what noisy estimates look like around the flag.
+
+figure(1);
+h=plot(s(1),s(2),'ro');  % Plot the flag as a red circle.
+set(h,'markersize',6,'linewidth',3); % make the circle big.
+axis([0,10,0,10]); % Set the scale of the plot so that we can see the origin.
+hold on;
+n=2*randn(2,100); % Create a 100-sample noise sequence with a standard deviation of 2.
+x=zeros(2,100);
+for (i=1:100)
+    x(:,i)=s+n(:,i);  % Add the noise to the true state to create 100 observations of the true state.
+    plot(x(1,i),x(2,i),'k.');
+end;
+hold off;
+C2: Estimating truth from the x's
+
+Probably the easiest way of estimating s is to take the average of the x's. Let's see what this looks like.
+
+sest=mean(x')';  % The ' indicates a transpose.  Because mean takes the
+                 % average over the columns, I swap things around to get it to work.
+hold on;
+plot(sest(1),sest(2),'bs');  % Plot the average.
+hold off;
+Run this several times to see how the estimate changes depending on which samples of noise occur.
+C3: An iterative estimate
+
+Sometimes, it is nice to compute an estimate as readings come in. This way, you don't have to sit for a long time waiting for enough observations to come in before you make a decision.
+
+To illustrate this, suppose that my goal is to reach the flag quickly but that I only get an observation every tenth of a second. This means that it would take 10 seconds to get the estimate if I require 100 samples.
+
+Is there a way to create an iterative estimate of the mean? Yes. Recall that the equation for an average over 100 samples is
+
+We can turn this into an iterative estimate as follows:
+
+
+Let's use this equation to see how the estimate improves over time.
+
+figure(2); % Switch to a new figure window.
+
+sest=x(:,1); % The first estimate is just the first observation.  Draw it.
+subplot(211); plot(1,sest(1)); hold on;
+line([1,100],[s(1),s(1)]); % Draw a line at the location of the x component.
+subplot(212); plot(1,sest(2)); hold on;
+line([1,100],[s(2),s(2)]); % Draw a line at the location of the y component.
+
+sold=sest;
+for (n=2:100)
+    sest = (n-1)/n * sold + 1/n * x(:,n);
+    subplot(211);plot(n,sest(1),'k.');
+    subplot(212); plot(n,sest(2),'k.');
+    sold=sest;
+end;
+subplot(211); hold off; subplot(212);hold off;
+Run this a couple of times, and note how the estimates get better over time. I think this is cool.
+
+C4: Likelihoods
+
+We can use Bayes rule to produce an iterative estimate of the true state. There are some very good reasons for using the Bayes estimate instead of the simple average estimate, and we'll talk about this in a minute. Before doing so, however, we need to figure out how to use the equation. We'll start with the way that I think is easiest for CS students to understand first.
+
+Recall that in the estimation context, Bayes rule has the form
+
+p(s|x) = p(x|s) p(s) / p(x)
+Each p() in this equation is a complete probability mass function. We need some way to represent each of these probability mass functions in some way that a computer can understand. More precisely, we need some way to keep track of which state is most believable --- this "most believable" state is our best estimate of the true state.
+
+To make this precise, suppose that we have only nine possible states that we are considering (including the true state):
+
+(2;6)   (3;6)   (4;6)
+(2;5)   (3;5)   (4;5)
+(2;4)   (3;4)   (4;4)
+Sa=[2:1:4];
+Sb=[4:1:6];
+% To make the set of possible states more refined, uncomment the following.
+%Sa=[2:0.1:4];
+%Sb=[4:0.1:6];
+I have chosen these nine possible states so that they surround the true state (which, you hopefully recall, is (3;5)). Let's create two tables: one to keep track of the prior belief that each of these states is the true state, and the other to keep track of the posterior belief that each of the states is the true state.
+
+L=length(Sa);
+Pr=ones(L,L); % Initialize the table to all ones
+Po=ones(L,L);
+Pr=Pr/sum(sum(Pr)); % Turn the table into a pmf by dividing by the sum.
+Po=Po/sum(sum(Po)); % Each value is now 1/9.
+%Pr=0*Pr;Pr(2,2)=1;
+The trick will be to turn the uniform prior into an informed posterior given an observation. The trick to doing this is creating a likelihood function. Recall that the likelihood function, p(x|s), encodes what I know about how my observations, x, would be generated if I knew that the true state was s.
+
+In this problem, we made the observations by adding noise to the true state. Recall that x = s + n where n is zero mean and has a standard deviation of 2. Consider state (2;6) and the first observation, x(:,1). What is the probability that if (2;6) is the true state then we will observe x(:,1)? It is simply the probability that x(:,1) = noise drawn from N((2;6),22) where N(,) represents a normal distribution with mean  and deviation . Simply put, the mean of the likelihood function is the state under consideration.
+
+To compute this, recall that the function for a normal density function is
+
+
+where  is the standard deviation and  is the mean. Since the mean of p(x|s) is s, we know that  = s which implies that
+
+
+The only unknown thing left in the Bayes equation is p(x). There are good ways of computing this, but we will use the computer's ability to do a lot of computations rather than using an equation. Recall that
+
+
+This means that
+
+
+which implies that
+
+
+where m(s|x) = p(x|s) p(s). This means that I can compute just the m(s|x) values, and then divide by the total sum of these values to create p(s|x).
+
+Let's try this. Note that I will use the equation for a multivariate Normal equation since we are dealing with states that have two components. This makes the mathmatics a bit different, but the approach is the same.
+
+K=[4,0;0,4]; % covariance matrix.
+m=0*Pr;
+for (i=1:length(Pr))  % For each entry in my prior table.
+    for (j=1:length(Pr))
+        me=[Sa(i);Sb(j)];
+        m(i,j) = 1/sqrt((2*pi)^2*det(K)) * exp(-(x(:,1)-me)'*inv(K)*(x(:,1)-me)/2); % Compute likelihood
+        m(i,j) = m(i,j) * Pr(i,j); % Combine with prior
+    end;
+end;
+Po=m/sum(sum(m));
+I find it helpful to compare Po to Pr side by side so that I can run things a lot and see what happens. One way to do this is to simply type
+
+[Pr,Po]
+C5: Iterative Bayes estimate
+
+Now that we've played around with how to translate an observation x into a posterior estimate via the likelihood function, we can make this process run iteratively as I gain more observations. The easiest way to do this is to set Pr(i+1) = Po(i), that is, use the posterior estimate from the previous observation as the prior for the next observation. Let's see how well this will work to approximate the true state give our coarse set of possible states.
+
+figure(3); % Switch to a new figure window.
+Find the indices that maximize the posterior probability from the set of nine possibilities.
+
+[a,b]=find(Po==max(max(Po)));  % Pull out the indices at which Po achieves its max.
+sest=[Sa(a);Sb(b)];  % The best estimate of the true state.
+
+subplot(211); plot(1,sest(1)); hold on;
+line([1,100],[s(1),s(1)]); % Draw a line at the location of the x component.
+subplot(212); plot(1,sest(2)); hold on;
+line([1,100],[s(2),s(2)]); % Draw a line at the location of the y component.
+
+for (n=2:length(x));
+    Pr=Po;
+    m=0*Pr;
+	for (i=1:length(Pr))  % For each entry in my prior table.
+        for (j=1:length(Pr))
+            me=[Sa(i);Sb(j)];
+            m(i,j) = 1/sqrt((2*pi)^2*det(K)) * exp(-(x(:,n)-me)'*inv(K)*(x(:,n)-me)/2); %Compute likelihood
+            m(i,j) = m(i,j) * Pr(i,j); % Combine with prior    
+        end;
+	end;
+	Po=m/sum(sum(m));
+    [a,b]=find(Po==max(max(Po)));  % Pull out the indices at which Po achieves its max.
+    sest=[Sa(a);Sb(b)];  % The best estimate of the true state.
+    subplot(211);plot(n,sest(1),'k.');
+    subplot(212); plot(n,sest(2),'k.');
+end;   
+subplot(211); hold off;
+subplot(212); hold off;
+C6: Why Bayes
+
+A really good question to ask at this point is why would you use the Bayes approach when the iterative averaging worked just as well. The simplest answer is "the prior." If you have reason to believe something about the answer before you begin making the estimation, you should use that information to improve your estimate. This makes the estimate approach the true value more quickly.
+
+To illustrate, consider a thought experiment. Suppose that the prior belief in the previous section had placed all mass on (3;5). Then, every posterior estimate would have been right on. This is a good thing.
+
+However, what if the prior belief had placed all the mass on (4;5). Then every posterior estimate would have been wrong --- no amount of likelihood evidence would have changed this.
+
+The moral of the story is that prior belief is useful when used properly, but can ensure that all evidence supports wishful thinking if used improperly. Incidently, the field of statistics does not use prior beliefs. All the talk you heard about confidence intervals, T-tests, etc., ignored the possible existence of prior belief. There is still a debate about whether prior belief is a good thing or a bad thing. Note that much of what is called by "Bayesian" in the current literature is little more than statistics --- they just happen to be using conditional probabilities so they call it Bayesian even though the don't think too much about prior beliefs.
+
+There is a second reason for using the Bayes approach, but this is one that is more perceived than real. It is because it is a unifying framework for talking about many, many different estimation techniques. This includes kalman filtering, hidden Markov Models, statistics, and so on.
+
+C7: More sophisticated
+
+In the previous sections, the state of the world stayed constant while were were estimating it. That was awfully nice, but of only limited interest. Moreover, the observations were simply noisy versions of the true state without any systematic deviations. What if the state changes or there is a systematic deviation in the observation?
+
+Let's handle the moving state first, and then talk about the systematic deviation. Suppose that the flag in the capture the flag world is attached to a spring that allows the flag's position to vary in the 2nd position. (I realize that the example is contrived, but the general phenomena is not. Consider trying to estimate the positions of your opponents.) In this case, we can create a sequence of state positions over time:
+
+s=zeros(2:100);
+s(1) = 3 * ones(100,1);
+s(2) = 5 + sin([1:100]/10*pi);
+
+% Plot it.
+figure(4);
+subplot(211);
+plot(s(1,:));
+subplot(212);
+plot(s(2,:));
+
+% Get the observation sequence.
+x = s + n;
+Now, we can apply the Bayesian formula as before with just one small change. Rather than setting Pr(n+1) = Po(n), we instead use our knowledge of how the state changes to alter the estimate for the Prior in the next step.

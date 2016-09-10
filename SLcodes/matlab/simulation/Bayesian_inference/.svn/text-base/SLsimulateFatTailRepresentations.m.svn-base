@@ -1,0 +1,43 @@
+
+
+%description
+
+%reference: Stocker and Simoncelli, 2006, NN
+
+function SLsimulateFatTailRepresentations
+
+
+%%
+figure('color','w')
+clf
+
+motdir=[90 135 180 210];
+
+for i=1:length(motdir)
+    subplot(length(motdir),1,i)
+    ylim([0 0.06])
+    box off
+    hold all
+    
+    
+    %llh
+    llh=vmPdfs(1:1:360,motdir(i),80,'norm');
+    addgain=0.0001;
+    llh=llh+addgain;
+    llh=llh/sum(llh);
+    plot(llh,'color',[.65 .65 .65],'linesmoothing','on')
+    
+    %prior
+    prior=vmPdfs(1:1:360,225,40,'norm');
+    addgain=0.0001;
+    prior=prior+addgain;
+    prior=prior/sum(prior);
+    plot(prior,'b','linesmoothing','on')
+    
+    %posterior
+    post=prior.*llh;
+    post=post/sum(post);
+    plot(post,'--r','linesmoothing','on')
+end
+
+SLremoveDeadSpace(0)

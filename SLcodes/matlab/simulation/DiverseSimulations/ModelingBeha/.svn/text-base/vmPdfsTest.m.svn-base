@@ -1,0 +1,21 @@
+
+
+%von Mises pdf
+function mPdfs=vmPdfsTest(x,u,k,type)
+w=1;
+
+%radians
+x=de2r(x,1); x=x';
+u=de2r(u,1); u=u';
+x2=x(:,ones(numel(u),1));
+u2=u(ones(numel(x),1),:);
+k2=k(ones(numel(x),1),:);
+mPdfs=exp(k2.*cos(w*(x2-u2))-k2)./(2*pi.*besseli(0,k2,1));
+
+%pdf
+if strcmp(type,'norm')==1
+    Z_=sum(mPdfs);
+    Z=Z_(ones(numel(x),1),:);
+    mPdfs=mPdfs./Z;
+else
+end

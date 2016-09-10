@@ -1,0 +1,14 @@
+
+
+series = slMakeStatSeries([],occurrence)
+
+function series = slMakeStatSeries(vals,occurrence)
+
+series = [];
+
+for i = 1 : length(vals)   
+    
+   thisSeries  = repmat(vals(i),1,occurrence(i));
+   series = [series thisseries];
+   
+end

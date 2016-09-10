@@ -1,0 +1,13 @@
+%README
+
+Author : Steeve Laquitaine
+  Date : 150813
+
+Purpose: This project aims to identify the brain regions that represent percept when 	 	 switching between evidence and prior.
+
+Details:
+	80 deg prior, 6 and 12% coherences, 6 directions 15:70:355
+	1 sec Fixation - .3 sec motion - 5 sec ISI - 3 fixed sec Response - 11 Sec ITI
+
+Code  : 
+	copy paste lines in runAll.m one by one

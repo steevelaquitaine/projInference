@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL
+END
+kalmanIndv.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/kalmanIndv.m
+END
+kalmanAuto.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/kalmanAuto.m
+END
+resultplot.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/resultplot.m
+END
+Kalman_filter_tutorial.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/Kalman_filter_tutorial.txt
+END
+example.mat
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/example.mat
+END
+softmax.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/softmax.m
+END
+kalman.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnpub/steeve/!svn/ver/631/matlab/simulation/kalmanfilter_for_RL/kalman.m
+END

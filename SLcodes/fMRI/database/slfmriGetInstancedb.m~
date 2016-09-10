@@ -1,0 +1,69 @@
+
+%slfmriGetInstancedb.m
+%
+%
+% author: steeve laquitaine
+%   date: 160114
+%purpose: make a database of instances, variables and 
+%
+%usage:
+% 
+%   o.dataPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/slStckAnalyses/MotionComp/classif/myRandomCoh/accAtTimeleaveOneOutfisherbalancByRemovI/OFC/';
+%   o.filename = 'ClassifStckSessmyRandomCoh_OFC_12-Jan-2016.mat';
+%   o.sessPath = '/Volumes/Transcend/data/sltaskdotdirfmri05/s02520150814';
+%   variables = {'myRandomCoh','myRandomDir','mySwitch'};
+%   d = slfmriGetInstancedb(variables,o)
+% 
+%input:
+%
+%output:
+%
+%     d : instances, variables and stimvols
+%     o : data params
+
+function [d,o] = slfmriGetInstancedb(variables,o)
+
+otm = o;
+
+%Load instances.
+%Should be a variable "c.i" containing instances and vars associated variables
+cd(o.dataPath)
+
+%load instances and data params
+load(o.filename);
+
+%backup session path
+if isfield(o,'sessPath')
+    o.sessPath = otm.sessPath;
+end
+
+%get variables associated with each instance
+[vars,o] = slfmrigetStimvolVars(c.stimvol1,variables,o);
+
+%update output params info
+o.dataPath = otm.dataPath;
+o.filename = otm.filename;
+o.sessPath = otm.sessPath;
+
+%get instances and stimvols
+nvarsInData = length(c.stimvol1);
+d.instances = [];
+d.stimvol = [];
+for  j = 1 : nvarsInData
+    d.instances = [d.instances; c.i{j}];
+    d.stimvol = [d.stimvol; c.stimvol1{j}'];
+end
+
+%stack instances and their variables
+nvars = length(variables); 
+for i = 1 : nvars    
+    d.(variables{i}) = [];   
+    %collect variables values within cells
+    for  j = 1 : nvarsInData
+        d.(variables{i}) = [d.(variables{i}); vars.(variables{i}){j}];        
+    end
+end
+
+
+
+

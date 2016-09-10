@@ -1,0 +1,215 @@
+
+
+%SLsimPPC.m
+%
+%       $Id: SLsimPPC.m $
+%        by: steeve laquitaine
+%      date: 140606
+%   purpose: remove dead space around the axes of figure
+%
+%usage:
+%   Gain=20;
+%   nbNeuron=200;   
+%   [Lma,Ljaz,logL]=SLsimPPC(70,Gain,nbNeuron)
+% 
+%
+%Description:
+%   All is described in details here
+%   http://homepages.inf.ed.ac.uk/pseries/CCN14/lab4.pdf
+%
+%   A population is described by ~50 neurons with tuning curves describing
+%   the mean spike count of each neuron in 1 second as a function of the
+%   stimulus direction.
+%
+%   The neurons have preferred directions thetai equally spaced between
+%   0 deg and 360 deg.
+%
+%   The tuning curves are von Mises distributions
+%       fi(theta) =  Gain*vm + base firing;
+%   m
+%   The variability of the spike count is Poisson
+%
+%
+%%references:
+%   http://homepages.inf.ed.ac.uk/pseries/CCN14/lab4.pdf
+%   Jazayeri et al,2006, Nat.Neu
+%   Ma et al,2006, Nat.Neu
+%
+%to do:
+%   be careful about the way you generate neural responses. It is possible
+%   that we should have spike count (in 500 ms). In this case responses 
+%   are in term of number of spikes and not firing rate. That may help
+%   solve the problem with exponentiation of likelihood (With J).
+%
+
+%simulate
+function [Lma,Ljaz,logL]=SLsimPPC(stim,G,N)
+
+%tuning curves
+%base spike response, width
+base=1;
+k=40;
+[f,pref,N,diSpace]=makeTuningCurves(N,G,base,k);
+
+%add poisson noise
+[PrgivenS,rSpace,nex]=addPoissonNoise(f,N,diSpace);
+
+%get population response to a stimulus
+responses=makePopulationResponses(stim,PrgivenS,N,rSpace,pref,nex);
+
+%read the posterior probability of all
+%perceivable stimuli from the response
+%assuming Poisson noise
+[Lma,Ljaz,logL]=readPosterior(responses,f,diSpace);
+
+%Tuning curves
+function [f,pref,N,diSpace]=makeTuningCurves(N,G,base,k)
+
+%motion directions
+diSpace=1:1:360;
+
+%neurons' direction preference
+pref=360/N:360/N:360;
+
+%tuning curves
+for ni=1:N
+    %pdf
+    %f(:,ni)=G*vmPdfs(diSpace,pref(ni),2.34,'norm') + base;
+    
+    %Peggy Series
+    %f(:,ni)=G*exp(2.34*cos(de2r(diSpace,1) - de2r(pref(ni),1)) - 2.34) + base;
+    f(:,ni)=G*exp(k*cos(de2r(diSpace,1) - de2r(pref(ni),1)) - k) + base;
+end
+
+%make spike count (integers)
+f=round(f);
+
+%Poisson variability
+function [PrgivenS,rSpace,nex]=addPoissonNoise(f,N,diSpace)
+
+%factorial. For non integer values the gamma function interpolates
+%factorial. It produces smoother densities. Factorial(n)=gamma(n+1);
+
+%range of spike counts
+rSpace=1:1:60;
+
+%calculate probability of each response per direction and neuron
+%directions
+for s=1:length(diSpace)
+    
+    %neurons
+    for ni=1:N
+        
+        %poisson
+        PrgivenS(:,s,ni) = (exp(-f(s,ni)) * f(s,ni).^rSpace)./gamma(rSpace+1);
+        
+        %scale to proba
+        PrgivenS(:,s,ni)=PrgivenS(:,s,ni)/sum(PrgivenS(:,s,ni));
+    end
+end
+
+%plot 5 neurons
+screen=get(0,'ScreenSize'); 
+figure('position',...
+    [.05*screen(3) .4*screen(4) .95*screen(3) .2*screen(4)],'color','w')
+
+%examples
+if N>=5
+    ex=N/5:N/5:N;
+else
+    ex=1;
+end
+
+
+nex=length(ex);
+for i=1:nex    
+    
+    %axis
+    subplot(1,nex+2,i)
+    
+    %plot
+    imagesc(PrgivenS(:,:,ex(i)))    
+    
+    %graphics
+    set(gca,'YDir','normal');
+
+    %label 1st plot
+    if i==1
+        ylabel('Spike counts')
+    end
+    
+    %legend last plot
+    if i==round(nex/2)
+        title('Probability of response')
+    end
+    xlabel('Motion directions (deg)')
+    axis tight
+    box off
+end
+
+%color
+map=colormap('gray');
+colormap(flipud(map));
+
+%Population responses
+function responses=makePopulationResponses(stim,PrgivenS,N,rSpace,pref,nex)
+%get population response to a stimulus: sample a spike count response to 
+%the stimulus from each neuron
+responses=nan(1,N);
+for ni=1:N
+    responses(ni)=randsample(rSpace,1,'true',PrgivenS(:,stim,ni));
+end
+
+%plot population response for each neuron by their preferred direction
+subplot(1,nex+2,nex+1)
+axis square
+scatter(pref,responses,20,'markerfacecolor','k')
+xlabel('Neurons (by pref. direction (deg))')
+title('Pop. response')
+xlim([0 180])
+ylim([0 25])
+
+%read 
+function [Lma,Ljaz,logL]=readPosterior(responses,f,diSpace)
+%logL of each stimulus is a the sum of neurons' 
+%response weighted by their tuning curves response 
+%for this stimulus.
+%questions: can we really safely discard the 2nd
+%term in the equation as stated by Jazayeri et al.?
+%The second term can be discarded when the 
+%representation is homogeneous. Is it the case?
+
+%Posterior obtained from Ma and Jazayeri should be the same.
+for s=1:length(diSpace)
+    
+    %Jazayeri et al.,
+    term2(s) = sum(f(diSpace(s),:));
+    term3 = sum(log(gamma(responses+1)));
+    logL(s) = sum( responses.*log(f(diSpace(s),:)) ) - term2(s) - term3;
+    
+    %Bayes with Poisson variability (Ma et al)
+    Lma(s)=prod(exp(-f(diSpace(s),:)) .* f(diSpace(s),:).^responses./gamma(responses+1));
+end
+
+%scale (*flat prior then marginalized)
+Ljaz=exp(logL)/sum(exp(logL));
+
+%scale
+Lma=Lma./sum(Lma);
+
+%draw
+subplot(1,7,7)
+axis square
+hold all
+%plot(logL)
+plot(Lma,'-g','linesmoothing','on')
+plot(Ljaz,'--','color',[0.9 0.2 0.2],'linesmoothing','on')
+
+xlabel('Motion directions (degrees)')
+ylabel('Likelihood')
+ylim([0 0.28])
+xlim([0 180])
+box off
+SLremoveDeadSpace(0)
+
+

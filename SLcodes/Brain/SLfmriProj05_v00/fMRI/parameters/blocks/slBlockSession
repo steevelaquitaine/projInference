@@ -1,0 +1,68 @@
+
+%slBlockSession.m
+%
+% author: steeve laquitaine	
+%   date: 150814
+%purpose: divide task into 18 blocks of 15 trials (except last block 5 trials)
+%  usage: 
+%	
+%			slBlockSession
+
+
+%
+load fMRIParamsPrior80Coh12and06.mat
+
+taskAll = task;
+clear task
+
+%randomize sequences
+myRand = randperm(taskAll.parameter.dir.trialnum);
+
+taskAll.parameter.dir.series = taskAll.parameter.dir.series(myRand);
+   taskAll.parameter.dir.coh = taskAll.parameter.dir.coh(myRand);
+
+
+%block trials
+nTrialPerBlock = 15;
+nBlocks = round(taskAll.parameter.dir.trialnum/nTrialPerBlock);
+blocki  = repmat([1:nBlocks]',1,15)';
+lastBlock = [];
+
+if length(blocki(:)) ~= taskAll.parameter.dir.trialnum
+    
+    nTrialLastBlock = taskAll.parameter.dir.trialnum - length(blocki(:));
+    lastBlock = repmat(nBlocks+1,1,nTrialLastBlock);
+    nBlocks = nBlocks + 1;
+end
+
+blocks = [blocki(:); lastBlock'];
+blocksi = unique(blocks);
+
+%save to 'block' folder
+mypath = which('fMRIParamsPrior80Coh12and06.mat')
+mypath = SLgetFileParentDir(SLgetFileParentDir(mypath));
+cd([mypath '/blocks'])
+
+%create blocksi
+for i = 1 : nBlocks
+    
+    clear task
+
+    thisBlock = blocks == blocksi(i);
+    
+    task.parameter.dir.series = taskAll.parameter.dir.series(thisBlock);
+    task.parameter.dir.coh = taskAll.parameter.dir.coh(thisBlock);
+	task.parameter.dir.mean = taskAll.parameter.dir.mean;
+	task.parameter.dir.std = taskAll.parameter.dir.std;
+	task.parameter.dir.sample = unique(taskAll.parameter.dir.series);
+	task.parameter.dir.block = i;
+
+	%name
+	if i >= 10
+		fname = ['fMRIParamsPrior80Coh12and06_block' num2str(i) '.mat'];
+	else
+	 	fname = ['fMRIParamsPrior80Coh12and06_block0' num2str(i)];
+	end
+	save(fname,'task','taskAll');
+    
+end

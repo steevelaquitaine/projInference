@@ -1,0 +1,30 @@
+
+%slsimfMRIdatabase.m
+%
+% author: steeve laquitaine
+%purpose: simulate fMRI database for tests
+%
+%usage:
+%
+%       slsimfMRIdatabase
+%
+% 3 variables "mySwitch","myRandomDir","myRandomCoh"
+
+function slsimfMRIdatabase
+
+%% simulate dataset with equiprobable distribution of direction preferences
+%dataset for switch=1, 5 trials, each direction, one coh, 5 select. equip
+%distributed
+d.mySwitch    = [1 1 1 1 1];
+d.myRandomDir = [15 85 155 225 295];
+d.myRandomCoh = [.08 .08 .08 .08 .08];
+d.stimvols = [];
+sel = repmat([15 85 155 225 295],1,100);
+ks = 4*ones(1,length(sel));
+d.instances = vmPdfs(d.myRandomDir,sel,ks,'norm');
+
+%identical dataset for switch 2
+d.mySwitch = [d.mySwitch 2 2 2 2 2];
+d.myRandomDir = [d.myRandomDir 15 85 155 225 295];
+d.myRandomCoh = [d.myRandomCoh .08 .08 .08 .08 .08];
+d.instances = [d.instances;d.instances];

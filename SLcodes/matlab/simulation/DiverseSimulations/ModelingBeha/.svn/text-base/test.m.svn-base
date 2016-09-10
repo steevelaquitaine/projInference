@@ -1,0 +1,17 @@
+
+
+
+d2=find(d==135);
+
+hold all
+plot(llh(:,d2(1)),':b')
+plot(prior(:,d2(1)),':k')
+plot(posterior(:,d2(1)),'r')
+
+
+mp=max(posterior(:,d2(1)));
+find(posterior(:,d2(1))==mp)
+
+newpo=sort(posterior(:,d2(1)));
+
+newpo(end)-newpo(end-1)

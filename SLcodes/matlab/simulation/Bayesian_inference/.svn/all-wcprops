@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnpub/steeve/!svn/ver/772/matlab/simulation/Bayesian_inference
+END
+simBayesInferenceVsCompetitionUnimodal.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnpub/steeve/!svn/ver/631/matlab/simulation/Bayesian_inference/simBayesInferenceVsCompetitionUnimodal.m
+END
+Bayesian_inference.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnpub/steeve/!svn/ver/631/matlab/simulation/Bayesian_inference/Bayesian_inference.m
+END
+SLsimulateFatTailRepresentations.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnpub/steeve/!svn/ver/748/matlab/simulation/Bayesian_inference/SLsimulateFatTailRepresentations.m
+END
+SL.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnpub/steeve/!svn/ver/647/matlab/simulation/Bayesian_inference/SL.m
+END
+SLsimulateBayesianModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/772/matlab/simulation/Bayesian_inference/SLsimulateBayesianModel.m
+END
+simBayesInferenceVsCompetition.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnpub/steeve/!svn/ver/631/matlab/simulation/Bayesian_inference/simBayesInferenceVsCompetition.m
+END
+SLBayesSamplingLookupTable.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/748/matlab/simulation/Bayesian_inference/SLBayesSamplingLookupTable.m
+END

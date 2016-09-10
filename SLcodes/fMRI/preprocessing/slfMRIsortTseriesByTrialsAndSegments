@@ -1,0 +1,18 @@
+
+%slfMRIsortTseriesByTrialsAndSegments.m
+%
+%
+%
+%author: steeve laquitaine
+%  date:
+% usage:
+%
+%		loadScan(v)....
+%		getStimVol(v)....
+%	    slfMRIsortTseriesByTrialsAndSegments(tSeries,trialStart)
+%
+%working on...
+
+function slfMRIsortTseriesByTrialsAndSegments(tSeries,trialStart)
+
+%call slfMRIsortTseriesByTtrials(tSeries,trialStart) if 

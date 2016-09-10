@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel
+END
+simForwardEncoding.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/simForwardEncoding.m
+END
+simulateBOLD.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/simulateBOLD.m
+END
+drawHalfRectifiedSine.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/drawHalfRectifiedSine.m
+END
+getWeightfromForwardEncoding.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/getWeightfromForwardEncoding.m
+END
+ModelingFE.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/ModelingFE.m
+END
+drawForwardEncoding.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/drawForwardEncoding.m
+END
+reconstructDir.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/reconstructDir.m
+END
+SimulateFE.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/SimulateFE.m
+END
+data.mat
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/data.mat
+END
+makeVoxels.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnpub/steeve/!svn/ver/631/matlab/simulation/forwardEncodingModel/makeVoxels.m
+END

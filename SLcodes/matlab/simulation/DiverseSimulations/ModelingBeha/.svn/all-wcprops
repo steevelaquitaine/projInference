@@ -1,0 +1,605 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha
+END
+simExtendedBI.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simExtendedBI.m
+END
+simulation.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simulation.m
+END
+initBayesWithlearntAndCardinalPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initBayesWithlearntAndCardinalPrior.m
+END
+GirshickMLlogLspace.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickMLlogLspace.m
+END
+simCardinal.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simCardinal.m
+END
+data03HeuristinitControl.mat
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/data03HeuristinitControl.mat
+END
+GirshickEstimator.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickEstimator.m
+END
+getLogL.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/getLogL.m
+END
+MODELING.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/MODELING.m
+END
+SimulateSolutionsBayesianInference.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/SimulateSolutionsBayesianInference.m
+END
+initExtendedBI.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initExtendedBI.m
+END
+vmPdfsTest.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/vmPdfsTest.m
+END
+gaussmix.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/gaussmix.m
+END
+EM.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/EM.m
+END
+steeve_exp12_metho_Pstd040_mean225_coh006012024_dir36_t101_075_031perCoh_130217.mat
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd040_mean225_coh006012024_dir36_t101_075_031perCoh_130217.mat
+END
+steeve_exp12_memo_sub05_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub05_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+END
+steeve_exp12_memo_sub04_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub04_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+END
+steeve_exp12_metho_Pstd010_mean225_coh006012024_dir36_t107_073_033perCoh_130217.mat
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd010_mean225_coh006012024_dir36_t107_073_033perCoh_130217.mat
+END
+GirshickPredictions.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickPredictions.m
+END
+Copy_of_simChangLLH.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/Copy_of_simChangLLH.m
+END
+bimodal.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/bimodal.m
+END
+simHeuristicWithlearntPriorAndCardinal.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simHeuristicWithlearntPriorAndCardinal.m
+END
+steeve_exp12_memo_sub09_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub09_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+END
+tuningC.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/tuningC.m
+END
+steeve_exp12_metho_Pstd020_mean225_coh006012024_dir36_t107_075_033perCoh_130217.mat
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd020_mean225_coh006012024_dir36_t107_075_033perCoh_130217.mat
+END
+taskDotDir.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/taskDotDir.m
+END
+vmMAPestimator.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/vmMAPestimator.m
+END
+BayesG.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/BayesG.m
+END
+simBayesWithlearntAndCardinalPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simBayesWithlearntAndCardinalPrior.m
+END
+data03usual.mat
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/data03usual.mat
+END
+u2rad.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/u2rad.m
+END
+makeSSE5.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/makeSSE5.m
+END
+steeve_exp12_metho_Pstd080_mean225_coh006012024_dir36_t106_075_034perCoh_130217.mat
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd080_mean225_coh006012024_dir36_t106_075_034perCoh_130217.mat
+END
+modelig.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/modelig.m
+END
+modelBehavior02.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/modelBehavior02.m
+END
+LikelihoodAndCoherence.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/LikelihoodAndCoherence.m
+END
+testmixofgauss.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/testmixofgauss.m
+END
+simFullBI.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simFullBI.m
+END
+initRun.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initRun.m
+END
+simChangLLH.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simChangLLH.m
+END
+GirshickEs4predWithCardinalPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickEs4predWithCardinalPrior.m
+END
+checkFitHeuristic.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/checkFitHeuristic.m
+END
+initFullBI.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initFullBI.m
+END
+untitled.fig
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/untitled.fig
+END
+steeve_exp12_memo_sub01_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub01_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+END
+LikelihoodAndCoherence2.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/LikelihoodAndCoherence2.m
+END
+steeve_exp12_memo_sub06_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub06_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+END
+initsimData.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initsimData.m
+END
+BayesVM.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/BayesVM.m
+END
+simHeuristic.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simHeuristic.m
+END
+modelBehavior01noBeta.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/modelBehavior01noBeta.m
+END
+drawPred04.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/drawPred04.m
+END
+simulateData.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simulateData.m
+END
+test.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/test.m
+END
+analyses_main.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/analyses_main.m
+END
+initCardinals.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initCardinals.m
+END
+initHeuristicSoftmax.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initHeuristicSoftmax.m
+END
+steeve_exp12_metho_Pstd040_mean225_coh006012024_dir36_t101_075_031perCoh_130217.fig
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd040_mean225_coh006012024_dir36_t101_075_031perCoh_130217.fig
+END
+steeve_exp12_metho_Pstd010_mean225_coh006012024_dir36_t107_073_033perCoh_130217.fig
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd010_mean225_coh006012024_dir36_t107_073_033perCoh_130217.fig
+END
+steeve_exp12_metho_Pstd020_mean225_coh006012024_dir36_t107_075_033perCoh_130217.fig
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd020_mean225_coh006012024_dir36_t107_075_033perCoh_130217.fig
+END
+GirshickML.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickML.m
+END
+data01.mat
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/data01.mat
+END
+data03.mat
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/data03.mat
+END
+steeve_exp12_metho_Pstd080_mean225_coh006012024_dir36_t106_075_034perCoh_130217.fig
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_metho_Pstd080_mean225_coh006012024_dir36_t106_075_034perCoh_130217.fig
+END
+steeve_exp12_memo_sub02_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub02_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+END
+seeConvMotorNoises.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/seeConvMotorNoises.m
+END
+steeve_exp12_memo_sub07_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub07_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+END
+GirshickPredictionsWithlearntAndCardinalPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickPredictionsWithlearntAndCardinalPrior.m
+END
+simVMStd.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simVMStd.m
+END
+getloglnearbyK.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/getloglnearbyK.m
+END
+drawPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/drawPrior.m
+END
+MakePre5.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/MakePre5.m
+END
+drawclc.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/drawclc.m
+END
+simulateBasicData.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simulateBasicData.m
+END
+fixation.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/fixation.m
+END
+GirshickLogL.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickLogL.m
+END
+checkfitchangLLH.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/checkfitchangLLH.m
+END
+initHeuristic.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initHeuristic.m
+END
+fakedata.mat
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/fakedata.mat
+END
+DesigncontrolInitPosition.xlsx
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/DesigncontrolInitPosition.xlsx
+END
+getGirshickLogLgrid.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/getGirshickLogLgrid.m
+END
+GirshickEs4predWithlearntAndCardinalPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickEs4predWithlearntAndCardinalPrior.m
+END
+drawCircStat.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/drawCircStat.m
+END
+GirshickEs4pred.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickEs4pred.m
+END
+arrow.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/arrow.m
+END
+simulateVMStd.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simulateVMStd.m
+END
+initChangLLH.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initChangLLH.m
+END
+steeve_exp12_memo_sub03_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub03_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130217.m
+END
+steeve_exp12_memo_sub08_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/steeve_exp12_memo_sub08_Pstd010020040080_mean225_coh006_012_024_dir36_t_eye_130223.m
+END
+vonMisesVsGaussian.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/vonMisesVsGaussian.m
+END
+simHeuristicSoftmax.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/simHeuristicSoftmax.m
+END
+v1.mat
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/v1.mat
+END
+v2.mat
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/v2.mat
+END
+GirshickPredictionsWithCardinalPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/GirshickPredictionsWithCardinalPrior.m
+END
+VI.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/VI.m
+END
+analyses.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/analyses.m
+END
+BayesWithflatTailVonMisesPrior.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/BayesWithflatTailVonMisesPrior.m
+END
+getGirshickLogL.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/getGirshickLogL.m
+END
+initHeuristicWithlearntPriorAndCardinal.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/initHeuristicWithlearntPriorAndCardinal.m
+END
+ProvePllhmeanPmi.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnpub/steeve/!svn/ver/775/matlab/simulation/DiverseSimulations/ModelingBeha/ProvePllhmeanPmi.m
+END
