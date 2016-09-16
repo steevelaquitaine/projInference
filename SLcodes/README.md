@@ -95,7 +95,10 @@ x = 1:10; y = x';
 for i = 1 : length(y)
    xminy(i,:) = x - y(i);
 end
-```  
+```    
+
+[slissymetric.m](matlab/functions/matrix/slissymetric.m): Check whether matrix is symmetric.  
+
 
 
 ## Graphics
@@ -404,7 +407,10 @@ ________________
 
 notes : requires cloning mgl distribution
 
-##### database
+##### database  
+
+[loadOrReloadROITseries.m](fMRI/database/loadOrReloadROITseries.m) : load and reload ROITseries faster by saving them in a directory once loaded once.  
+
 [slfmriGetDBoverSessions.m](fMRI/database/slfmriGetDBoverSessions.m) : retrieve database built over sessions of trial instances of voxel response to the motion stimulus with their associated variables for each trial (motion direction, coherence, subject switching to prior or evidence, timing of stimulus acquisition volumes).        
 
 [slfmriCreateOrLoadfMRIdb.m](fMRI/database/slfmriCreateOrLoadfMRIdb.m): Create fMRI database structure "d.mat" containing Bold response instances, task variables and timing of volume acquisition from fMRI time series and stimulus "stim.mat" files or load already existing database structure "d.mat".  
@@ -419,6 +425,9 @@ notes : requires cloning mgl distribution
 [slfmriVisualDatabase](fMRI/database/slfmriVisualDatabase.m) : 
 
 
+##### Functional localization analyses  
+
+[slfmriGetMotLocr2](fMRI/analyses/Localization/slfmriGetMotLocr2.m) : load the r-square of fitting brain voxels' responses with a sinewave with the same period as an on/off motion stimulus localizer. Voxels with high r-squared are considered functionnally responsive to motion.
 
 ##### full analyses
 

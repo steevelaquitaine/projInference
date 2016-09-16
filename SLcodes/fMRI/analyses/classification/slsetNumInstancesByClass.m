@@ -28,7 +28,7 @@
 %
 %           'balanceByRemovI': case we balance by removing late instances       
 
-function [instances,pos] = slsetNumInstancesByClass(instances,numInstances,varargin)
+function [instances,pos] = slsetNumInstancesByClass(instances,varargin)
 
 
 %case we balance by removing late instances
@@ -58,9 +58,11 @@ end
 
 %case we sample instances without replacement
 fprintf('%s \n','(slsetNumInstancesByClass)','Randomly sampling instances to balance dataset between conditions')
-
 nClasses = length(instances);
-nInew = numInstances;
+
+%find minimum number of instances
+a = cell2mat(cellfun(@size,instances,'UniformOutput',false)');
+nInew = min(a(:,1));
 
 %get # of instances
 for i = 1 : nClasses

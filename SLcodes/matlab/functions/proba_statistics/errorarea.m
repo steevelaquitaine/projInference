@@ -1,20 +1,26 @@
 
+%errorarea.m
+%
+%
 % steeve laquitaine 12/03/2010 start: 17:30 ; end :18:17
 % Debug1 16.03.2010; end 11:44
-
+%
+%
+%usage:
+%
+%       y = errorarea(A,meancolor,fillcolor)
+%
 % INPUT: a matrix (average the column)
 % OUTPUT: give an error area around the mean line
 
+function y = errorarea(A,meancolor,fillcolor)
 
-
-function [ y ] = errorarea(A,meancolor,fillcolor)
-
-
-% steeve laquitaine 12/03/2010 start: 17:30 ; end :18:17
-% Debug1 16.03.2010; end 11:44
-
-% INPUT: a matrix (average the column)
-% OUTPUT: give an error area around the mean line
+%checking
+if all(isnan(A(:)))
+    fprintf('%s \n','(errorarea) Error : The input matrix is all NaN');
+    dbstack
+    keyboard
+end
 
 moyenne=nanmean(A,2);
 inan=find(isnan(moyenne)==1);
@@ -23,7 +29,7 @@ x=1:size(moyenne,1);
 x=x';
 % sem
 for i=1:size(A,1)
-    error(i,1)=sem(A(i,:));
+    error(i,1) = std(A(i,:))/sqrt(length(A(i,:))-1);
 end    
 error(inan)=[];
 errorupper=moyenne+error;
