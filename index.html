@@ -94,8 +94,7 @@
         <code class="code">
             >> datapath = slgetdatapath('lab'); <br><br>
 
-            >> [fitP,fitPbkp,R2,sdata,fitPt,negLogl,negLoglbkp,... <br>
-                Logl_pertrialBestfit,output] = SLfitBayesianModel({'sub01','sub02',... <br>
+            >> output = SLfitBayesianModel({'sub01','sub02',... <br>
                 'sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10',... <br>
                 'sub11','sub12'},[NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],... <br>
                 'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
@@ -107,6 +106,26 @@
         <p>The Bayesian observer predicted subject estimate mean and variability very well...</p>
         <!--figure-->
         <center><img src="images/BayesFit_meanvar.png" style="width: 50%; height: 50%"/></center>   
+        
+        <p> <strong> Subjects were strongly biased toward the prior mean </strong> (most likely motion direction at 225 deg). The strongest prior when 
+        the motion was the weakest produced biases between (You can select the plot of mean estimate versus displayed directions for the 
+        strongest prior (brown data point) at the weakest coherence (most right panel) and run the following code to extract the plot values
+        and calculate the min and max average biases) </p>
+        
+        <!--Code-->
+        <code class="code">
+          >> [xdata,ydata] = SLcopyPlotData; <br> 
+          >> biases = SLvectors2signedAngle(ydata,xdata,'polar'); <br><br>
+          
+          % normalize biases such that biases toward/away from the prior are positive/negative 
+          >> norm_bias = [biases(xdata<0) ; biases(xdata>0).*repmat(-1,length(biases(xdata>0)),1)];
+          >> minBias = unique(norm_bias(find(norm_bias==min(abs(norm_bias)))))
+          >> meanBias = mean(norm_bias) 
+          >> maxBias = unique(norm_bias(find(norm_bias==max(abs(norm_bias)))))
+          
+        </code>
+        
+        
         
         <p> ... But it failed to explain the subjects' estimates distribution pattern formed over trials: where the model predicts unimodal distributions, 
         subjects estimate distribution were clearly bimodal.</p>
