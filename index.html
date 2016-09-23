@@ -114,14 +114,44 @@
         
         <!--Code-->
         <code class="code">
-          >> [xdata,ydata] = SLcopyPlotData; <br> 
-          >> biases = SLvectors2signedAngle(ydata,xdata,'polar'); <br><br>
+        
+          %locate conditions
+          >> p10_c6 = output.uniqCond(:,1)==10 & output.uniqCond(:,2)==0.06;
+          >> dir_p10_c6 = output.uniqCond(p10_c6,3);
+          
+          %calculate biases
+          >> e = round(output.meanData(p10_c6,:));
+          >> nSub = size(output.meandata);
+          >> for s = 1 : nSub
+          >>    biases(:,s) = SLvectors2signedAngle(e(:,s),dir_p10_c6,'polar')
+          >> end
           
           % normalize biases such that biases toward/away from the prior are positive/negative 
-          >> norm_bias = [biases(xdata<0) ; biases(xdata>0).*repmat(-1,length(biases(xdata>0)),1)];
-          >> minBias = unique(norm_bias(find(norm_bias==min(abs(norm_bias)))))
-          >> meanBias = mean(norm_bias) 
-          >> maxBias = unique(norm_bias(find(norm_bias==max(abs(norm_bias)))))
+          >> norm_bias = [biases(dir_p10_c6<225,:) ; biases(dir_p10_c6>225,:).*repmat(-1,size(biases(dir_p10_c6>225,:)))];
+          
+          %get stats
+          >> nDir = length(dir_p10_c6);
+          >> for d_i = 1 : nDir-1
+          >>    [~,ci,m] = slMakeCI(norm_bias(d_i,:),.95);
+          >>     ciOvS(d_i,:) = ci;
+          >>     meanBiasBydirOvS(d_i) = m;
+          >> end
+
+          %min subject average bias across directions and its confidence intervals <br>
+          >> minBiasOvSByDir = unique(meanBiasBydirOvS(find(meanBiasBydirOvS==min(abs(meanBiasBydirOvS)))))
+          >> CIminBiasAll = ciOvS(find(minBiasOvSByDir == meanBiasBydirOvS),:); <br><br>
+          
+          %Average bias over subjects and confidence intervals <br>
+          >> [~,ciMeanBiasOvS,meanBiasOvS] = slMakeCI(nanmean(norm_bias,1),.95)
+          
+          %max subject average bias across directions and its confidence intervals
+          >> maxBiasOvSByDir = unique(meanBiasBydirOvS(find(meanBiasBydirOvS==max(abs(meanBiasBydirOvS)))))
+          >> CImaxBiasAll = ciOvS(find(maxBiasOvSByDir == meanBiasBydirOvS),:); <br><br>
+          
+          % We calculate bias at the prior mean 225 deg separately because they are always <br>
+          % away from the prior mean when non null negative (clockwise) or positive <br>
+          % (counterclockwise). We interprete this bias as noise. <br>
+          meanBiasOvSatPrior = mean(biases(dir_p10_c6==225,:),2);
           
         </code>
         
