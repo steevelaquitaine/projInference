@@ -411,6 +411,11 @@
       <h6><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GENERALIZATION TO ANOTHER TASK</h3> 
       <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location
       of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background.  </p>
+
+      <p> The stimulus consisted in a wedge (2.5 deg radius, 5 deg angle span). I generated a wedge, filled it with random values, low pass-filtered 
+      the wedge with a 2D Gaussian filter function (30 deg std, centered on zero frequency) and superimposed the filtered wedge on a gray background. Noise was further added to the wedge 
+      stimulus by manipulating its contrast from 1%, 15.6% to 100% contrast across trials based on Michelson (Imax - Imin)/(Imax + Imin) (or Weber produce the same results 
+      in our case: (I - Ib)/Ib) where I is the intensity (Ib background Intensity).</p>      
       
       To run a run of the task with a prior of 80 deg just run this in matlab (you need mgl installed) :
       
