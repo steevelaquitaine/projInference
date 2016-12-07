@@ -32,17 +32,18 @@
     <!--Table of contents-->
     <div id="Table_of_content_wrap" class="outer">
       <section id="table_of_content" class="inner">
-        <h6> Table of Content </h6>
-        <a href="#Approach-to-inference"> Approach to inference <br>
-        <a href="#Design-an-inference-experiment"> Design an inference experiment <br>
-        <a href="#Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics"> Estimation error depends on evidence strength...and on motion direction statistics <br>
-        <a href="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?"> Why is estimates relationship to physical directions nonlinear? <br>
-        <a href="#Humans-use-environment-statistics"> Humans use environment statistics <br>
-        <a href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer"> Switching between prior and evidence outperforms the Bayesian observer <br>
-        <a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br>
-        <a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br>
-        <a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br>
-        <a href="#Eye-movement"> Eye movement <br>
+        <h5 id="top"> TABLE OF CONTENTS </h5>
+        <h7><a href="#Approach-to-inference"> APPROACH TO INFERENCE <br></h7>
+        <h7><a href="#Design-an-inference-experiment"> DESIGN AN EXPERIMENT <br></h7>
+        <h7><a href="#Data"> DATA <br></h7>
+        <h7><a href="#Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics"> Estimation error depends on evidence strength...and on motion direction statistics <br></h7>
+        <h7><a href="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?"> Why is estimates relationship to physical directions nonlinear? <br></h7>
+        <h7><a href="#Humans-use-environment-statistics"> Humans use environment statistics <br></h7>
+        <h7><a href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer"> Switching between prior and evidence outperforms the Bayesian observer <br></h7>
+        <h7><a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br></h7>
+        <h7><a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br></h7>
+        <h7><a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br></h7>
+        <h7><a href="#Eye-movement"> Eye movement <br></h7>
       </section>
     </div>
     
@@ -73,6 +74,18 @@
         <!--figure-->
         <center><img src="images/BayesHypo.png"></center>      
         
+
+
+        <!--Section-->
+        <h7><a id="Data" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> DATA </a></h7>   
+
+        <p> Number of trials per subjects : sub01 : 5367 .... (insert table here) </p>
+
+        <p> You can access data files : <a href="data"> here </a></p>
+      
+
+
+
         <!--Section-->
         <h6><a id="Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics" class="anchor" href="#Estimation-error-depends-on-evidence-strength" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Estimation error depends on evidence strength ....and on motion direction statistics</h3>
         <p>We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and 
@@ -349,16 +362,21 @@
         3.97 deg, 95% CI [0.57 7.38] for subject 9; 1.57 deg, 95% CI [ -2.34 5.49 ] for subject 11;  1.38 deg, 95% CI [-3.97 6.72]
         for subject 12.</p>
 
+
   
-        <!--section-->
-        <h6><a id="Eye-movement" class="anchor" href="#Eye movement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Eye movement</h3> 
-        
-        <p> We examined whether subjects eye positions changed between prior conditions.  </p>
+        <!--section-->        
+        <h7><a id="Eye-movement" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EYE POSITIONS </a></h7> 
+
+        <p> We examined whether subjects eye positions changed between prior conditions. 
+
+        <p><strong> Data processing workflow : </strong> All eye position data were stored on a local computer in the following path : <p>
+        '~/data/dataPsychophy/proj01_priorStrength/data'. 
+        <p> Eye position data were sorted and organized for each subject in a separate .mat file (e.g., dataEye01 for subject 1) : </p>
         
         <!--code  -->
         <code class="code">
-           >> datapath = '~/../myProjData/'; <br>
-           >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
+           >> datapath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
+           >> [dataEye01,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
            'AnovaEyeMvt','plotEyeMvtStats','filename','test');
         </code>
         
