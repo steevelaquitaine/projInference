@@ -16,7 +16,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio {
   margin: 0;
   padding: 0;
   border: 0;
@@ -57,7 +57,7 @@ Theme Styles
 
 body {
   box-sizing: border-box;
-  color:#373737;
+  color:#000000;
   background-color: white;
   font-size: 18px;
   font-family: 'CMS';
@@ -66,15 +66,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0;
-  /*font-weight: 700;*/
-  color:#222222;
+  margin: 30px 0;
+  color:#000000;
   font-family: 'CMS';
   letter-spacing: 1px;
 }
 
 h1 {
-  color:#222222;
+  color:#000000;
   font-family: 'CMS';
   letter-spacing: 1px;
   line-height: 1.1;
@@ -86,26 +85,33 @@ h2 {
   padding-bottom: 10px;
   font-size: 32px;
   background: url('../images/bg_hr.png') repeat-x bottom;
+  line-height: 1.1;
 }
 
 h3 {
   font-size: 24px;
+  line-height: 1.1;
 }
 
 h4 {
   font-size: 21px;
+  line-height: 1.1;
 }
 
 h5 {
   font-size: 18px;
+  line-height: 1.1;
 }
 
 h6 {
-  font-size: 16px;
+  font-size: 27px;
+  line-height: 1.1;
 }
 
 p {
-  margin: 10px 0 15px 0;
+  margin: 20px 0 20px 0;
+  text-indent: 50px;
+  text-align: justify; 
 }
 
 footer p {
@@ -115,19 +121,9 @@ footer p {
 a {
   text-decoration: none;
   color: #000000;
-  font-size : 24px;
-  line-height: 35px;
-
-  /*transition: color 0.5s ease;*/
-  /*transition: text-shadow 0.5s ease;*/
-  /*-webkit-transition: color 0.5s ease;*/
-  /*-webkit-transition: text-shadow 0.5s ease;*/
-  /*-moz-transition: color 0.5s ease;*/
-  /*-moz-transition: text-shadow 0.5s ease;*/
-  /*-o-transition: color 0.5s ease;*/
-  /*-o-transition: text-shadow 0.5s ease;*/
-  /*-ms-transition: color 0.5s ease;*/
-  /*-ms-transition: text-shadow 0.5s ease;*/
+  font-size : 20px;
+  line-height: 1.5;
+  /*line-height: 35px;*/
 }
 
 a:hover, a:focus {text-decoration: underline;}
@@ -169,6 +165,24 @@ p img {
   border: none;
 }
 
+#videoal {
+    /* ... put any margin, padding, etc. here you like */
+}
+
+#videoal div.video {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    width: 200px;
+    height: 200px;
+    margin: 0 10px 10px 0;
+}
+
+#videoal div.video video {
+    width: 100%;
+    height: 100%;
+}
+
 pre {
   width: 100%;
   padding: 10px;
@@ -176,20 +190,21 @@ pre {
   overflow: auto;
 }
 
+/*Code blocks*/
 code {
   background-color:#f6f6f6;
   display: block;
-  vertical-align: baseline;
-  line-height: 15px;
+  vertical-align: middle; /*center*/
+  line-height: 1.5;
   width: 820px;
-  padding-top: 5px;  
-  padding-bottom: 5px;
-  margin: 0 3 0 3px;  
+  padding-top: 2px;  /*add top grey padding*/
+  padding-bottom: 2px;
+  margin: 45px 0 45px 0px;/*add top & bottom white margin*/
 }
 
 .code {
   color: black; 
-  font-size: 12px;    
+  font-size: 14px;    
   font-family: consolas;
 }
 
@@ -311,11 +326,12 @@ proj_title_wrap {
   font-family: 'CMS';
   display: block;
   top: 10px;
-  left: 10px;
+  /*left: 10px;*/
   z-index: 10;
-  padding: 10px 50px 10px 10px;
+  /*padding: 10px 50px 10px 10px;*/
+  padding: 10px 50px 10px 0px;
   color: black;
-  font-weight: 200;
+  font-weight: 500;
 }
 
 /*name of the writer*/
