@@ -4,7 +4,7 @@ by Steeve Laquitaine
 
 /*@import url(github-light.css);*/
 
-html, body, div, span, applet, object, iframe,
+/*html, body, div, span, applet, object, iframe,
 h1,h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -24,7 +24,7 @@ time, mark, audio {
   font-family : 'CMS';
   font-size: 18px;
   line-height: 25px;
-}
+}*/
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -126,6 +126,10 @@ a {
   /*line-height: 35px;*/
 }
 
+/* Color body links */
+a.class2 {color:blue;}
+/* a:hover, a:focus {text-decoration: underline;} */
+
 a:hover, a:focus {text-decoration: underline;}
 
 footer a {
@@ -199,7 +203,7 @@ code {
   width: 820px;
   padding-top: 2px;  /*add top grey padding*/
   padding-bottom: 2px;
-  margin: 45px 0 45px 0px;/*add top & bottom white margin*/
+  margin: 0px 0 0px 0px;/*add top & bottom white margin*/
 }
 
 .code {

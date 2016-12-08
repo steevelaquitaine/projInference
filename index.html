@@ -7,6 +7,26 @@
     <meta name="description" content="Project inference : Design an experiment which requires human subjects to do inference, analyse, mine and model their behavior to understand whether/how they do inference ?">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="fonts/Serif/cmun-serif.css" />
+
+    <!--Mathematics with MathJax-->
+    <script type="text/x-mathjax-config">      
+      MathJax.Hub.Config({
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX", "output/HTML-CSS"],
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+              processEscapes: true
+          },
+          "HTML-CSS": { 
+            availableFonts: ["STIX"],
+          }
+      });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>  
+
   </head>
 
   <body>
@@ -31,29 +51,15 @@
     <!--Table of contents    -->
      <div id="Table_of_content_wrap" class="outer">
       <section id="table_of_content" class="inner">
-<<<<<<< HEAD
         <h5 id="top"> TABLE OF CONTENTS </h5>
-        <h7><a href="#Approach-to-inference"> APPROACH TO INFERENCE <br></h7>
-        <h7><a href="#Design-an-inference-experiment"> DESIGN AN EXPERIMENT <br></h7>
-        <h7><a href="#Data"> DATA <br></h7>
-        <h7><a href="#Estimation-error-depends-on-evidence-strength-and-on-motion-direction-statistics"> Estimation error depends on evidence strength...and on motion direction statistics <br></h7>
-        <h7><a href="#Why-is-estimates-relationship-to-physical-directions-nonlinear-?"> Why is estimates relationship to physical directions nonlinear? <br></h7>
-        <h7><a href="#Humans-use-environment-statistics"> Humans use environment statistics <br></h7>
-        <h7><a href="#Switching-between-prior-and-evidence-outperform-the-Bayesian-observer"> Switching between prior and evidence outperforms the Bayesian observer <br></h7>
-        <h7><a href="#Subjects-represented-prior-strengths-accurately"> Subjects represented prior strengths accurately <br></h7>
-        <h7><a href="#Why-other-plausible-Bayesian-observers-fail-to-switching"> Why other plausible Bayesian observers fail to switching <br></h7>
-        <h7><a href="#Do-subjects-simply-rely-on-the-previous-direction"> Do subjects simply rely on the previous direction <br></h7>
-        <h7><a href="#Eye-movement"> Eye movement <br></h7>
-=======
-        <h5> TABLE OF CONTENTS </h5>
-        <h6><a href="#Inference"> INFERENCE <br></h7>
+        <h7><a href="#Inference"> INFERENCE <br></h7>
         <h7><a href="#Example-of-an-inference-task">EXAMPLE OF AN INFERENCE TASK <br></h7>
+        <h7><a href="#Data"> DATA <br></h7>
         <h7><a href="#Task-noise-&-statistics-affect-estimation">EFFECT OF TASK NOISE & STATISTICS <br></h7>
         <h7><a href="#Humans-approximate-optimality">HUMANS APPROXIMATE OPTIMALITY <br></h7>
         <h7><a href="#Humans-quickly-learn-complex-statistics">HUMANS QUICKLY LEARN COMPLEX STATISTICS <br></h7>
         <h7><a href="#Eye-movement"> EYE POSITIONS <br></h7>
         <h7><a href="#Generalization-to-another-task">GENERALIZATION TO ANOTHER TASK <br></h7>
->>>>>>> a08df1ebf534af3d99af38dcac20029c45c715f4
       </section>
     </div>
     
@@ -62,13 +68,14 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
           
-        <h6><a id="Inference" class="anchor" href="#Inference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>INFERENCE</h3>  
+        <h7><a id="Inference" class="anchor" href="#Inference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">INFERENCE</a></h7>  
         <p> Three main theories have been proposed as to how humans solve inference problems. 1) Humans might be rational : they use optimal statistical solutions to inference problems or 2) 
         irrational and produce maladaptive solutions to inference problems or 3) they use heuristics computational shortcuts that approximate optimal solutions. This fits in with Herbert 
         Simon theory of bounded rationality according to which humans use satisficing solutions (sufficient and satisfying) (Gigerenzer, Psychological 
         review 1996)</p>
-  
-        <h6><a id="" class="anchor" href="#Example-of-an-inference-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EXAMPLE OF AN INFERENCE TASK </h3>
+
+        <h7><a id="Example-of-an-inference-task" class="anchor" href="#Example-of-an-inference-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EXAMPLE OF AN INFERENCE TASK </a></h7>   
+      
         <p> We used a stimulus that has been used extensively in the psychophysics literature and that allows to manipulate sensory noise and also subjects priors : the random dot motion stimulus 
         This stimulus is composed of signal dots moving in the same (coherent) directions and noise dots that move in random dots and render the estimation of the motion direction
         difficult. We manipulated the difficulty of estimation by changing the proportion of dots moving coherently (6, 12 or 24%), thus the signal to noise ratio of the motion as follows : </p>
@@ -113,7 +120,7 @@
 
 
         <!--Section-->
-        <h6><a id="Task-noise-&-statistics-affect-estimation" class="anchor" href="#Task-noise-&-statistics-affect-estimation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EFFECT OF TASK NOISE & STATISTICS</h3>
+        <h7><a id="Task-noise-&-statistics-affect-estimation" class="anchor" href="#Task-noise-&-statistics-affect-estimation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">EFFECT OF TASK NOISE & STATISTICS</a></h7>
         <p> We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and 
         different distributions of the motion direction (distribution standard deviation of 80º, 40º, 20º and 10º with fixed mean at 225º).</p>
         
@@ -182,7 +189,8 @@
           
         </code>
         
-        
+                  
+        <h7><a id="Humans-approximate-optimality" class="anchor" href="#Humans-approximate-optimality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">HUMANS APPROXIMATE OPTIMALITY</a></h7>  
         
         <p> ... But it failed to explain the subjects' estimates distribution pattern formed over trials: where the model predicts unimodal distributions, 
         subjects estimate distribution were clearly bimodal.</p>
@@ -225,7 +233,7 @@
         <center><img src="images/BiasAndVarInCircularVsLinearSpace.png"></center>
   
         <!--Head-->
-        <h6><a id="Humans-quickly-learn-complex-statisticss" class="anchor" href="#Humans-quickly-learn-complex-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HUMANS QUICKLY LEARN COMPLEX STATISTICS</h3>
+        <h7><a id="Humans-quickly-learn-complex-statistics" class="anchor" href="#Humans-quickly-learn-complex-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">HUMANS QUICKLY LEARN COMPLEX STATISTICS</a></h7>
         <p>A Bayesian observer that uses the statistical distribution of motion directions fit the data beter than a maximum likelihood observer that only uses sensory likelihood. This indicates that subjects incoporated and ued prior 
         knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
         
@@ -415,36 +423,40 @@
         for subject 12.</p>
 
 
-  
-<<<<<<< HEAD
+
         <!--section-->        
         <h7><a id="Eye-movement" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EYE POSITIONS </a></h7> 
+        <p> We examined whether subjects eye positions changed between prior conditions. <p>
+        <p><strong>Data munging:</strong> We get raw data measured by our eyetracker (.edf files saved on local computer in "rawpath"), format and moved them to easily usable formats (.mat and .csv) in the project folder ("projInference") cloned in "irootpath" like that : </p>
+        <!-- Code -->
+        <code class="code">
+            rawpath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
+            irootpath = '~/proj/steeve/'; <br>
+            subject = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07',... <br>
+            &nbsp &nbsp &nbsp &nbsp &nbsp  'sub08','sub09','sub10','susb11','sub12'}; <br>
+            iMungeEyeData(subjects,rawpath,irootpath)
+        </code>    
+        <p> You can access the munged data files : <a href="data/eye" class="class2"> here </a></p>
 
-        <p> We examined whether subjects eye positions changed between prior conditions. 
+        <p><strong>Analysis:</strong> I extracted the eye's horizontal (x) and vertical (y) positions (2 x N trials matrix) for each prior and run an hotelling $T^2$ test for each pair of priors (all pairwise combinations of 4 priors = 6 Hotelling $T^2$ test) which is something like that : </p>
 
-        <p><strong> Data processing workflow : </strong> All eye position data were stored on a local computer in the following path : <p>
-        '~/data/dataPsychophy/proj01_priorStrength/data'. 
-        <p> Eye position data were sorted and organized for each subject in a separate .mat file (e.g., dataEye01 for subject 1) : </p>
-        
+        <!-- Code -->
+        <code class="code">
+            irootpath = '/proj/steeve/projInference/'; <br>
+            subject = 'sub01'; <br>
+            iAnalEyePosHotellingT2(subject,irootpath)
+        </code> 
+
+
+        <p>We also tested the hypothesis that eye positions are the same between prior conditions with two anovas one over the horizontal and one over the vertical position (for now from raw data on local computer).</p>
         <!--code  -->
         <code class="code">
-           >> datapath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
-           >> [dataEye01,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
+           datapath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
+           [dataEye01,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
            'AnovaEyeMvt','plotEyeMvtStats','filename','test');
-=======
-        <!--section-->
-        <h6><a id="Eye-movement" class="anchor" href="#Eye-movement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EYE POSITION</h3> 
-        <p> We examined whether subjects eye positions changed between prior conditions.  </p>
-        
-        <!--code  -->
-        <code class="code">
-           >> datapath = '~/../myProjData/'; <br>
-           >> [eyedatabank,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
-           &nbsp &nbsp &nbsp &nbsp &nbsp             'AnovaEyeMvt','plotEyeMvtStats','filename','test');
->>>>>>> a08df1ebf534af3d99af38dcac20029c45c715f4
         </code>
         
-        <p> The eye positions averaged over subjects did not significantly change between priors </p>
+        <p> The eye distance to the fixation point, averaged over subjects, was not significantly different between priors </p>
         <code class="code">
            >> cd ~/.../projInference/data; <br>
            >> [rowheader,colheader,data] = slcsvRead('data_meanEyePosition.csv'); <br>
@@ -453,7 +465,7 @@
 
 
        <!--section-->
-      <h6><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GENERALIZATION TO ANOTHER TASK</h3> 
+      <p><h7><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">GENERALIZATION TO ANOTHER TASK</a></h7> </p>
       <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location
       of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background.  </p>
 
@@ -462,7 +474,7 @@
       stimulus by manipulating its contrast from 1%, 15.6% to 100% contrast across trials based on Michelson (Imax - Imin)/(Imax + Imin) (or Weber produce the same results 
       in our case: (I - Ib)/Ib) where I is the intensity (Ib background Intensity).</p>      
       
-      To run a run of the task with a prior of 80 deg just run this in matlab (you need mgl installed) :
+      <p> To run a run of the task with a prior of 80 deg just run this in matlab (you need mgl installed) : </p>
       
       <!--Code-->
       <code class="code">
