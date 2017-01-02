@@ -54,10 +54,13 @@
         <h5 id="top"> TABLE OF CONTENTS </h5>
         <h7><a href="#Inference"> INFERENCE <br></h7>
         <h7><a href="#Example-of-an-inference-task">EXAMPLE OF AN INFERENCE TASK <br></h7>
+        <h7><a href="#Basic-Bayesian-model">A BASIC BAYESIAN MODEL OF OPTIMALITY <br></h7>
         <h7><a href="#Data"> DATA <br></h7>
         <h7><a href="#Task-noise-&-statistics-affect-estimation">EFFECT OF TASK NOISE & STATISTICS <br></h7>
         <h7><a href="#Humans-approximate-optimality">HUMANS APPROXIMATE OPTIMALITY <br></h7>
         <h7><a href="#Humans-quickly-learn-complex-statistics">HUMANS QUICKLY LEARN COMPLEX STATISTICS <br></h7>
+        <h7><a href="#switching-learning">LEARNING TO SWITCH<br></h7>
+        <h7><a href="#no-recency-bias">NO RECENCY BIAS<br></h7>
         <h7><a href="#Eye-movement"> EYE POSITIONS <br></h7>
         <h7><a href="#Generalization-to-another-task">GENERALIZATION TO ANOTHER TASK <br></h7>
       </section>
@@ -107,6 +110,13 @@
         <!--figure-->
         <center><img src="images/BayesHypo.png" style="width: 75%; height: 75%"></center>      
         
+
+
+        <h7><a id="Basic-Bayesian-model" class="anchor" href="#Basic-Bayesian-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> A BASIC BAYESIAN MODEL OF OPTIMALITY </a></h7>   
+
+
+        <p> Initial model parameters : <p>    
+        <p> sub01 : [80 40 20 1.74 4.77 10.74 34.25 NaN 0.001 15 NaN]</p>
 
 
         <!--Section-->
@@ -423,11 +433,75 @@
         for subject 12.</p>
 
 
+        <!-- SECTION -->
+        <h7><a id="switching-learning" class="anchor" href="#switching-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> LEARNING TO SWITCH </a></h7> 
 
-        <!--section-->        
-        <h7><a id="Eye-movement" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EYE POSITIONS </a></h7> 
+        <p> We plotted a scatter of the slopes between estimate and displayed directions for 100 first versus last trials within blocks. 100 first and last are sorted for each prior and pooled across prior blocks. Trial data are linearized as data + distances to true motion direction (now range between -180 deg and 540) then averaged for each direction, coherence and prior condition. The means are then fitted with a line producing a slope estimate for each condition.</p>
+
+        <!-- Code -->
+        <code class="code">
+            %calculate Pearson correlation coefficient and p-value for correlation <br>
+            datapath = '~/data/dataPsychophy/proj01_priorStrength/'; <br>
+            [linfit_early,linfit_late,rbySub,pbySub] = slAnalysisLearningScatterEarlyVsLateBiasAllSubjects({'sub01',... <br>
+            'sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'},...<br>
+            datapath,'vonMisesPrior')<br><br>
+
+            %calculate confidence interval for Pearson correlation coefficient <br>
+            for i = 1 : 12; rall(i) = r{i}(2,1); end <br>
+            [err_margin,ci,m,s] = slMakeCI(rall,.95) <br><br>
+
+            %report Pearson correlation p-value p for each subject <br>
+            for i = 1 : 12; pall(i)=p{i}(2,1); end  
+        </code> 
+
+        <!-- figures -->
+        <center><img src="images/slopesEarlyLast.png" style="width: 100%; height: 100%"></center>
+
+        <p><strong> Results: </strong> The slope in the first hundred trials were well correlated with the last 100 trials slopes (r = 0.84, 95% CI [0.73 0.94] over subjects, n=12 subjects, p=1.7e-6, p=4.2e-5, p=4.1e-6, p=1.05e-6, p=7e-3, p=3e-4, p=2.9e-4, p=0.33, p=2.1e-05, p=7e-3, p=9.1e-8, p=9.8e-5 for subjects 1 to 12 respectively; all p<0.01) </p>
+
+
+        <!-- SECTION  -->
+        <h7><a id="no-recency-bias" class="anchor" href="#no-recency-bias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> NO RECENCY BIAS </a></h7> 
+
+        <p> While both the Basic Bayesian and switching observer are predicated on learning the prior distribution, subjects may have used information just from the previous trial, for example biasing estimations on the previous motion direction, which would be a sample from the prior and thus approximate Bayesian inference. If this were the case, then trial estimates should be biased towards the previous motion direction even if that direction is opposite to the mean of the prior. However when trials were sorted such that current displayed directions were positioned between prior mean and previous directions, subject estimates were significantly biased toward the prior mean and not the previous motion direction.</p>
+        
+        <!-- Code -->
+        <code class="code">
+            %polar plots with average over all subjects <br>
+            analyses({'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09',...<br>
+            'sub10','sub11','sub12'},{'coh','Pstd','sample_dir'},...<br>
+            'dataPath','~/data/dataPsychophy/proj01_priorStrength/',... <br>   
+            'experiment','vonMisesPrior','slgetprevDirEffect');
+        </code> 
+
+         <p> The average estimate over all subject trials was significantly biased toward the prior mean, distant from the current direction by 4.35 deg, 95% CI [3.14 5.57], n=7504 trials, which is significantly larger than 0) suggesting that they learnt priors over stimulus history and did not solely rely on the previous stimulus. </p>
+
+         <!-- Code -->
+        <code class="code">
+            [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll] = slplotandStatsPrevDirvsPriorBias(...<br>
+            {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'},...<br>
+            '~/data/ <br>dataPsychophy/proj01_priorStrength/'); 
+        </code> 
+
+        <p> Now to examine each subject separately : </p>
+        
+        <!-- Code -->
+        <code class="code">
+            subs = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'};<br>
+            for i = 1 : length(subs) <br>
+                [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll]=slplotandStatsPrevDirvsPriorBias(...<br>
+                subs(i),'~/data/dataPsychophy/proj01_priorStrength/'); <br>
+            end
+        </code> 
+
+        <p> The bias toward the prior was significant for 4 out of 12 subjects (the average distance between the estimate and the current direction was 2.93 deg, 95% CI [0.03 5.82] for subject 1, n=758 trials ;  21.40 deg, 95% CI [17.30 25.51] for subject 2, n= 691 ; 7.29 deg, 95% CI [4.55 10.02] for subject 3, n = 801; 12.24 deg, 95% CI [6.70 17.78] for subject 10, n = 548). The remaining 8 out of 12 subjects were not significantly biased neither toward the prior nor toward the previous direction (the average distance between the estimate and the current direction was -0.56 deg, 95% CI [-5.66 4.55] for subject 4, n = 387; -2.25 deg, 95% CI [-7.39 2.88] for subject 5, n = 553; -0.43 deg, 95% CI [-4.18 3.32] for subject 6, n = 699; 1.30 deg, 95% CI [-2.75 5.35] for subject 7, n = 530; -1.99 deg, 95% CI [ -7.59 3.62 ] for subject 8, n = 508; 3.97 deg, 95% CI [0.57 7.38] for subject 9, n = 782; 1.57 deg, 95% CI [ -2.34 5.49 ] for subject 11, n = 656;  1.38 deg, 95% CI [-3.97 6.72] for subject 12, n = 589. <p> 
+
+        <!--SECTION-->        
+        <h7><a id="Eye-movement" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EYE POSITIONS </a></h7>
+
         <p> We examined whether subjects eye positions changed between prior conditions. <p>
         <p><strong>Data munging:</strong> We get raw data measured by our eyetracker (.edf files saved on local computer in "rawpath"), format and moved them to easily usable formats (.mat and .csv) in the project folder ("projInference") cloned in "irootpath" like that : </p>
+        
         <!-- Code -->
         <code class="code">
             rawpath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
@@ -483,8 +557,50 @@
       <code class="code">
           >> sltaskLoc('displayName=VPixx','computeStim','p=80');
       </code>
+
+      <p> We fitted the data with the basic Bayesian observer and the switching heuristic. </p>    
+      <p> Basic Bayesian observer's initial model parameters were : <p>    
+      .....
+
+      <p> ...We found the initial parameters by manually and qualitatively fitting the model to each subject data like that: </p>
       
+      <!--Code-->
+      <code class="code">
+        datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
+        SLfitBayesianModel({'sub06'},[600 2 1 0.7 1 2 20 NaN 0.001 15 NaN],... <br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp  'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp  'MAPReadout','modelPredictions','withData','inputFitParameters');
+      </code>
+
+      <p> ...We then fitted the model to each subject data like that: </p>
       
+      <!--Code-->
+      <code class="code">
+        datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal';<br>
+        subs = {'sub01','sub02','sub03','sub04','sub05','sub06'};<br>
+        initp = [20 2 1 0.7 1 10 20 NaN 0.001 15 NaN;<br>
+            600 1 0.5 0.4 2 10 20 NaN 0.001 15 NaN;<br>
+            600 1 0.5 0.4 2 10 20 NaN 0.001 15 NaN;<br>
+            600 1 0.5 0.4 1 1 20 NaN 0.001 15 NaN;<br>
+            600 1 0.8 0.2 0.2 0.4 0.4 NaN 0.001 15 NaN;<br>
+            600 2 1 0.7 1 2 20 NaN 0.001 15 NaN];<br><br>
+    
+        for i = 1 : length(subs)<br>
+        SLfitBayesianModel(subs(i),initp(i,:),...<br>
+            'dataPathVM',datapath,'experiment','vonMisesPrior',...<br>
+            'filename','datafit','MAPReadout','MaxLikelihoodFit','fminsearch','filename',['data' subs{i}]);<br>
+        end
+    </code>
+
+      
+      <!--Code-->
+      <code class="code">
+        datapath = '/Volumes/DroboBKUP/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
+        SLfitBayesianModel({'sub01'},[100 3 3 1 2.5 7.7 43 NaN 0.001 15 NaN ] ,... <br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
+        'MAPReadout','modelPredictions','withData','inputFitParameters'); <br>
+      </code>
+
       <!--Code-->
       <code class="code">
         >> SLfitBayesianModel({'sub01','sub02','sub03','sub04','sub05','sub06'},...<br>
@@ -495,6 +611,18 @@
         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'filename','locationTask'); <br>
       </code>
       
+      <p> <strong> Result </strong>  : The switching observer also fitted the data better than the basic Bayesian observer (the average AIC difference was 36, 95% CI [-130 202] over subjects, n=6 subjects, in favor of switching for 4 subjects out of 6).</p>
+
+	  <!--Code-->
+      <code class="code">
+		model_ref = 'model_CompDiv';
+		models = {'model_Bayes_MAP'};
+		datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal/modelfit/AIC/';
+		[AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...
+    	models,datapath);
+		[e,ci,m,s] = slMakeCI(aicDiff,0.95); 
+	  </code>
+
       <!--End Main Content-->
       </section>
     </div>
