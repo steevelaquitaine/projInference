@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Project inference : Design an experiment which requires human subjects to do inference, analyse, mine and model their behavior to understand whether/how they do inference ?">
+  <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+  <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css" />
+
+  <!--Mathematics with MathJax-->
+  <script type="text/x-mathjax-config">      
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true
+  },
+  "HTML-CSS": { 
+  availableFonts: ["STIX"],
+}
+});
+</script>
+<script type="text/javascript" async
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>  
+
+</head>
+
+<body>
+
+  <title>Test whether Switching results from sharp prior transfer</title>
+
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/steevelaquitaine/projInference">Github</a>
+      <a id="project_author" href="http://steevelaquitaine.blogspot.com">Steeve laquitaine </a>
+    </header>
+  </div>
+
+  <!--TITLE-->
+  <div id="proj_title_wrap" class="outer">
+    <header class="inner">
+      <section id="proj_title" class="inner">
+        <h1 id="proj_title"> Test whether Switching results from sharp prior transfer </h1>
+      </section>
+    </header>
+  </div>
+
+  <!--Table of contents    -->
+  <div id="Table_of_content_wrap" class="outer">
+    <section id="table_of_content" class="inner">
+      <h5 id="top"> TABLE OF CONTENTS </h5>
+      <h7><a href="#firstblock80"> <b>Analyse first blocks when 80 deg 
+        prior </b><br></h7>       
+        <h7><a href="#datadescri">&nbsp &nbsp Data description <br></h7>
+        <h7><a href="#fitpool">&nbsp &nbsp Fit pooled subjects<br></h7>   
+        <h7><a href="#fiteach">&nbsp &nbsp Fit each subject<br></h7>       
+        <h7><a href="#SPPsc"><b>Experiment with 80 deg prior only</b><br></h7>             
+        <h7><a href="#task"> &nbsp &nbsp Task <br></h7>
+        <h7><a href="#datacleaning"> &nbsp &nbsp Clean data <br></h7>
+        <h7><a href="#ModelComp"> &nbsp &nbsp Model fitting<br></h7>
+        <h7><a href="#SLP">&nbsp &nbsp &nbsp &nbsp Switching between LLH and prior<br></h7>
+        <h7><a href="#SPP">&nbsp &nbsp &nbsp &nbsp Switching between Posterior and prior<br></h7>      
+        <h7><a href="#BS">&nbsp &nbsp &nbsp &nbsp Bayes sampling<br></h7>
+        <h7><a href="#BBM">&nbsp &nbsp &nbsp &nbsp Bayes MAP<br></h7>
+        <h7><a href="#BBLS">&nbsp &nbsp &nbsp &nbsp Bayes BLS<br></h7>
+        <h7><a href="#BLTP">&nbsp &nbsp &nbsp &nbsp Bayes MAP tailed prior<br></h7>
+        <h7><a href="#BLTPB">&nbsp &nbsp &nbsp &nbsp Bayes BLS tailed prior<br></h7>
+        <h7><a href="#BLTL">&nbsp &nbsp &nbsp &nbsp Bayes BLS tailed LLH<br></h7>
+        <h7><a href="#BLTLMAP">&nbsp &nbsp &nbsp &nbsp Bayes MAP tailed LLH<br></h7>
+        <h7><a href="#BLTLP">&nbsp &nbsp &nbsp &nbsp Bayes BLS tailed LLH and tailed prior<br></h7>      
+        <h7><a href="#BLTLPMAP">&nbsp &nbsp &nbsp &nbsp Bayes MAP tailed LLH and tailed prior<br></h7>
+        <h7><a href="#BC">&nbsp &nbsp &nbsp &nbsp Bayes MAP cardinal<br></h7>
+        <h7><a href="#BSC">&nbsp &nbsp &nbsp &nbsp Bayes sampling cardinal<br></h7>
+        <h7><a href="#BME">&nbsp &nbsp &nbsp &nbsp Bayes MAP motion energy model<br></h7>
+        <h7><a href="#BBLSME">&nbsp &nbsp &nbsp &nbsp Bayes BLS motion energy model<br></h7>
+        <h7><a href="#BMETP">&nbsp &nbsp &nbsp &nbsp Bayes MAP motion energy tailed prior <br></h7>
+        <h7><a href="#BBLSMETP">&nbsp &nbsp &nbsp &nbsp Bayes BLS motion energy tailed prior <br></h7>
+        <h7><a href="#modelcomparison">&nbsp &nbsp Model selection (AIC)<br></h7>
+        <h7><a href="#SwitchingParams">&nbsp &nbsp Switching best fit parameters and Switching probabilities <br></h7>
+      </section>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+        <p><h7><a id="firstblock80" class="anchor" href="#firstblock80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Analyse first prior blocks when 80 deg prior </b></a></h7> </p> 
+
+        <p><h7><a id="datadescri" class="anchor" href="#datadescri" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Data description </b></a></h7> </p>  
+
+        <p> I looked at the data from both the direction and location tasks. Prior used in the first block of the direction task were :</p>
+
+        <p>
+          - 80º prior for sub05,10 <br>
+          - 40º priors for sub03,08.<br>
+          - 20º priors for sub04,06,07,12.<br>
+          - 10º priors for sub01,02,09,11.<br><br>
+        </p>
+
+        <p>In the location task <br>
+          - all 6 subjects started with the 80º prior <br><br>        
+
+          In total: <br>
+          - 8 subjects started with 80 deg prior <br>
+          - 4 of them with two prior blocks in the location task : sub01, 03, 05, 06.<br><br></p>
+
+          <p>We checked subjects separately but particularly subjects with the most data : sub01, 03, 05, 06. </p>
+
+          <code class="code">
+            datapath = '/Volumes/MoonData/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
+            output = SLfitCompetitionModel({'sub01'},
+            [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],
+            'dataPathVM',datapath,
+            'experiment','vonMisesPrior',
+            'modelPredictions','withData',
+            'directoryFitParameter','../modelfit/AIC/',
+            'filename','locationTask',
+            'session',{'sess01','sess01'},
+            'run',{'run01','run02'}) <br> <br>
+
+            set(figure(3),'Position',[357 60 198 717]) <br>
+            set(figure(4),'Position',[556 60 198 717]) <br>
+            set(figure(5),'Position',[754 61 198 717]) <br>
+          </code>  
+
+          <p><b>Results</b> : 
+           <ul>
+            <li>At 100% contrast, estimates cluster at the evidence (no bimodality) as expected, for all subject. </li>
+            <li>At 10% contrast, data simply too noisy : insufficient data sample size for very low contrast stimulus. </li>
+            <li>At 15.6% contrast, subject 01, 03 and 06 might show bimodality. Subject 02 (still need to check 4) might show bimodality but data sample size is too small.</li></p> 
+          </ul>
+
+          <p> We also averaged data from the first 80 deg prior blocks over all subjects . </p>  
+
+          <code class="code">
+            datapath = '/Volumes/MoonData/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
+            output = SLfitCompetitionModel({'sub01','sub02','sub03','sub04','sub05','sub06'},
+            [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],
+            'dataPathVM',datapath,
+            'experiment','vonMisesPrior',
+            'modelPredictions','withData',
+            'directoryFitParameter','../modelfit/AIC/',
+            'filename','fig06','session',{'sess01'},'run',{'run01'}); <br><br>
+
+            set(figure(3),'Position',[357 60 198 717]) <br>
+            set(figure(4),'Position',[556 60 198 717]) <br>
+            set(figure(5),'Position',[754 61 198 717]) <br>
+          </code>
+
+          <p><b>Results</b> : Bimodality is clear at intermediate contrast (0.156) when averaging the first block over all subjects, but not always there (for all directions) </p> 
+
+          <p><b>1 - Pick up best examples</b></p>
+          <ul>
+            <li>sub01 : 15.6% contrast - dis at prior, dis +/-6 rows above and below that show bimodality  </li>
+            <li>sub03 : 15.6% contrast - dis at prior, dis +/-6 rows above and below that show bimodality  </li>
+            <li>Check that both are classified as switchers ! </li>
+          </ul>
+
+          <p><b>2 - Pick up worst examples</b></p>
+          <ul>
+            <li>sub05 : even at 15.6% contrast - dis at prior (very noisy), dis +/-6 rows above and below that are very noisy too.  </li>
+            <li>sub06 : unclear, might be something</li>
+            <li>Check that classified randomly to any model ! </li>
+          </ul>
+
+          <p>We don't show the estimate distribtion for the motion directions that were furthest from the prior as sample were very few (prior tail) and not interpretable. We show at the prior and at intermediate distance to the prior. </p>
+
+          <p>We can pool data from pairs of nearby motion directions (e.g., 5 with 15 etc..) to increase data sample size.</p>
+
+          <code class="code">
+            datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal';<br><br>
+
+            output = SLfitCompetitionModel({'sub01','sub03','sub05','sub06'}, 
+            [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],
+            'dataPathVM',datapath, 'experiment','vonMisesPrior',
+            'modelPredictions','withData', 'directoryFitParameter',
+            '../modelfit/AIC/', 'filename','locationTask',
+            'session',{'sess01'}, 'run',{'run01'},'binNearbyDir');<br><br>
+
+            set(figure(3),'Position',[357 60 198 717]);
+            set(figure(4),'Position',[556 60 198 717]);
+            set(figure(5),'Position',[754 61 198 717]);
+          </code>
+
+          <p>And to get even more data, we can try to get all the starting 80 deg prior blocks: the 1 blocks from sub02 and 4 and the 2 blocks for each subject 1,3,5,6 for a total of 10 blocks. Here we specify each run to retrieve by session and subject. To reduce noise we can also bin histogram with a bin of 20 deg instead of 10 deg.</p>
+
+          <code class="code">
+            close all;
+            datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal'; <br><br>
+            output = SLfitCompetitionModel({'sub01','sub02','sub03','sub04','sub05','sub06'},
+            [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],
+            'dataPathVM',datapath, 'experiment','vonMisesPrior',
+            'modelPredictions','withData', 'directoryFitParameter',
+            '../modelfit/AIC/', 'filename','locationTask',
+            'sortRunbySub',{'sub01','sub01','sub02','sub03','sub03','sub04','sub05','sub05','sub06','sub06'},
+            'session',{'sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01'},
+            'run',{'run01','run02','run01','run01','run02','run01','run01','run02','run01','run02'},'binNearbyDir');<br><br>
+            set(figure(3),'Position',[357 60 198 717]);
+            set(figure(4),'Position',[556 60 198 717]);
+            set(figure(5),'Position',[754 61 198 717]);
+          </code>
+
+          <!--section-->
+          <p><h7><a id="fitpool" class="anchor" href="#fitpool" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Fit pooled subjects </b></a></h7> </p>  
+
+          <p>We also fitted the Switching observer and the Basic Bayesian observer to the pooled data to a quantitatively determine whether subject switch already in their first 80 deg prior. If yes this indicates that switching is not transfered from previous blocks </p>
+
+          <p>Switching initial parameters were the average over subjects initial parameters found when searching for parameters that produced predictions that match best each subject entire dataset . </p>
+
+          <code class="code">
+            close all
+            datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal';<br>
+
+            initp = mean([500 2.6 0.6 0.1 0.35 1 3 NaN 0.02 100; 47830 0.8 0.8 0.11 8.4 8.4 8.4 NaN 0.003 42; 9506 7.4 1.4 0.6 0.85 4.8 7.5 NaN 0.04 32; 49767 2.5 1.3 0.3 0.6 5.6 40.9 NaN 0.019 32.15; 600 0.8 0.6 0.08 0.1 0.2 0.2 NaN 0.001 60; 600 6 2 0.7 3 7 20 NaN 0.00104 50]); <br><br>
+
+            output = SLfitCompetitionModel({'sub01','sub02','sub03','sub04','sub05','sub06'}, ... 
+            initp,'pscaling',[1e-4 1 1 10 1 1 1e-1 NaN 1e2 1e-1], ...
+            'dataPathVM',datapath, 'experiment','vonMisesPrior', ...
+            'MaxLikelihoodFit','fminsearch',...
+            'filename','fitSubPoolLoc', ...
+            'sortRunbySub',{'sub01','sub01','sub01','sub02','sub02','sub03','sub03','sub03','sub04','sub04','sub05','sub05','sub05','sub06','sub06','sub06'},...
+            'session',{'sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01'}, ...
+            'run',{'run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run03'});
+          </code>
+
+          <p>We fitted the Basic bayesian observer to the same dataset. </p>
+
+          <p>The Basic Bayesian observer's initial parameters were the average over subjects initial parameters found when searching for parameters that produced predictions that match best each subject entire dataset . </p>
+
+          <code class="code">
+            close all
+            datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal';<br>
+            initp = mean([200 1.8 0.5 0.2 0.5 0.8 1.5 NaN 0.001 40 NaN;
+            200 1.1 0.6 0.3 1.5 2 2.5 NaN 0.001 60 NaN;
+            200 1.5 1 0.4 2 2 2 NaN 0.001 60 NaN;
+            600 1 0.5 0.4 1 1 20 NaN 0.001 15 NaN;
+            600 0.8 0.8 0.2 0.2 0.4 0.4 NaN 0.001 15 NaN;
+            600 2 1 0.7 1 2 20 NaN 0.001 15 NaN]); <br><br>
+            output = SLfitCompetitionModel({'sub01','sub02','sub03','sub04','sub05','sub06'}, ... 
+            [18134 3.35 1.11 0.31 2.21 4.5 13.3 NaN 0.01 52.6], ...
+            'pscaling',[1e-4 1 1 10 1 1 1e-1 NaN 1e2 1e-1], ...
+            'dataPathVM',datapath, 'experiment','vonMisesPrior', ...
+            'MaxLikelihoodFit','fminsearch',...
+            'filename','fitSubPoolLoc', ...
+            'sortRunbySub',{'sub01','sub01','sub01','sub02','sub02','sub03','sub03','sub03','sub04','sub04','sub05','sub05','sub05','sub06','sub06','sub06'},...
+            'session',{'sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01'}, ...
+            'run',{'run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run03'});
+          </code>
+
+          <p> Now we can load the fitting results : <b> Switching outperforms the Basic Bayesian observer for early blocks starting with 80 deg priors </b>. </p>
+
+          <code class="code">      
+            models = {'model_CompDiv','model_Bayes_MAP'}; <br>
+            path = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal/modelfit/AIC_earlyBlocks/'; <br>
+            for i = 1 : length(models) <br>
+            [AICs(i,:),~,sub(i,:)] = slLoadSavedFitParams('AIC',[path models{i} '/'],'AIC_earlyBlocks'); <br>
+            end
+          </code>
+
+          <p>and visualize how each model (top: switching, bottom : Bayesian) fitted the data. </p>
+
+          <code class="code">     
+            fitdatapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal/modelfit/ AIC_earlyBlocks/'; <br>
+            [~,allvars] = slLoadSavedFitParams('allVars',[fitdatapath  'model_CompDiv/'],'AIC_earlyBlocks');<br>
+
+            datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal/'; <br>
+            output = SLfitCompetitionModel({'sub01','sub02','sub03','sub04','sub05','sub06'},
+            allvars.fitP, 'dataPathVM',datapath,
+            'experiment','vonMisesPrior', 'modelPredictions','withData',
+            'inputFitParameters', 'filename','fig06',
+            'sortRunbySub',{'sub01','sub01','sub01','sub02','sub02','sub03','sub03','sub03','sub04','sub04','sub05','sub05','sub05','sub06','sub06','sub06'},
+            'session',{'sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01'},
+            'run',{'run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run03'});<br><br>
+
+            set(figure(3),'Position',[357 60 198 717])<br>
+            set(figure(4),'Position',[556 60 198 717])<br>
+            set(figure(5),'Position',[754 61 198 717]) <br>
+          </code>
+
+          <p> Basic Bayesian observer </p>
+
+          <code class="code">     
+            fitdatapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal/modelfit/AIC_earlyBlocks/';<br>
+            [~,allvars] = slLoadSavedFitParams('allVars',[fitdatapath 'model_Bayes_MAP/'],'AIC_earlyBlocks');<br>
+
+            datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal/';<br>
+            output = SLfitBayesianModel({'sub01','sub02','sub03','sub04','sub05','sub06'},
+            allvars.fitP, 'dataPathVM',datapath,
+            'experiment','vonMisesPrior','MAPReadout','poolTrialsAsOneSub','modelPredictions','withData',
+            'inputFitParameters', 'filename','fig06',
+            'sortRunbySub',{'sub01','sub01','sub01','sub02','sub02','sub03','sub03','sub03','sub04','sub04','sub05','sub05','sub05','sub06','sub06','sub06'},
+            'session',{'sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01','sess01'},
+            'run',{'run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run01','run02','run03','run01','run02','run03'});<br>
+          </code>
+
+
+          <!--section-->
+          <p><h7><a id="fiteach" class="anchor" href="#fiteach" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Fit each subject </b></a></h7> </p>  
+
+          <p> Switching, here again, might be an artefact of pooling all data over subjects: e.g., some subjects choose the prior, others the likelihood. We need to fit each subject individually then average over them. This is only possible if there is sufficient data per subject.</p>
+
+          <code class="code">                  
+            datapath = '/Volumes/MoonData/data/dataPsychophy/proj04_LocPriorStrengthFinal'; 
+            subs = {'sub01','sub02','sub03','sub04','sub05','sub06'};
+
+            initp = [200 1.8 0.5 0.2 0.5 0.8 1.5 NaN 0.001 40 NaN; ...
+            200 1.1 0.6 0.3 1.5 2 2.5 NaN 0.001 60 NaN; ...
+            200 1.5 1 0.4 2 2 2 NaN 0.001 60 NaN; ...
+            600 1 0.5 0.4 1 1 20 NaN 0.001 15 NaN; ...
+            600 0.8 0.8 0.2 0.2 0.4 0.4 NaN 0.001 15 NaN; ...
+            600 2 1 0.7 1 2 20 NaN 0.001 15 NaN];
+
+            pscales = ones(6,11);
+
+            sortRunbySub = {{'sub01','sub01','sub01'},{'sub02','sub02'},...
+            {'sub03','sub03','sub03'},{'sub04','sub04'},{'sub05','sub05','sub05'},...
+            {'sub06','sub06','sub06'}};
+            session =  {{'sess01','sess01','sess01'},{'sess01','sess01'},...
+            {'sess01','sess01','sess01'},{'sess01','sess01'},{'sess01','sess01','sess01'},...
+            {'sess01','sess01','sess01'}};
+            run = {{'run01','run02','run03'},{'run01','run02'},...
+            {'run01','run02','run03'},{'run01','run02'},{'run01','run02','run03'},...
+            {'run01','run02','run03'}};
+
+            for i = 1 : length(subs)  
+            output = SLfitBayesianModel(subs(i),...
+            initp(i,:), ...
+            'pscaling',pscales(i,:),...
+            'dataPathVM',datapath, ...
+            'experiment','vonMisesPrior','MAPReadout','MaxLikelihoodFit','fminsearch',...
+            'filename',['datafit' subs{i}],...
+            'sortRunbySub',sortRunbySub{i},...
+            'session',session{i}, ...
+            'run',run{i});
+            outputallBayes{i} = output;
+            end
+          </code>    
+
+
+          <p>Switching : </p>
+
+          <code class="code">    
+            %%
+            datapath = '~/MoonData/data/dataPsychophy/proj04_LocPriorStrengthFinal'; 
+            subs = {'sub01','sub02','sub03','sub04','sub05','sub06'};
+
+            initp = [500 2.6 0.6 0.1 0.35 1 3 NaN 0.02 100;
+            47830 0.8 0.8 0.11 8.4 8.4 8.4 NaN 0.003 42;
+            9506 7.4 1.4 0.6 0.85 4.8 7.5 NaN 0.04 32;
+            49767 2.5 1.3 0.3 0.6 5.6 40.9 NaN 0.019 32.15;
+            600 0.8 0.6 0.08 0.1 0.2 0.2 NaN 0.001 60;
+            600 6 2 0.7 3 7 20 NaN 0.00104 50];
+
+            pscales = ones(6,10)
+
+            sortRunbySub = {{'sub01','sub01','sub01'},{'sub02','sub02'},...
+            {'sub03','sub03','sub03'},{'sub04','sub04'},{'sub05','sub05','sub05'},...
+            {'sub06','sub06','sub06'}};
+            session =  {{'sess01','sess01','sess01'},{'sess01','sess01'},...
+            {'sess01','sess01','sess01'},{'sess01','sess01'},{'sess01','sess01','sess01'},...
+            {'sess01','sess01','sess01'}};
+            run = {{'run01','run02','run03'},{'run01','run02'},...
+            {'run01','run02','run03'},{'run01','run02'},{'run01','run02','run03'},...
+            {'run01','run02','run03'}};
+
+            for i = 1 : length(subs)  
+            output = SLfitCompetitionModel(subs(i),...
+            initp(i,:), ...
+            'pscaling',pscales(i,:),...
+            'dataPathVM',datapath, ...
+            'experiment','vonMisesPrior','MaxLikelihoodFit','fminsearch',...
+            'filename',['datafit' subs{i}],...
+            'sortRunbySub',sortRunbySub{i},...
+            'session',session{i}, ...
+            'run',run{i});
+            end
+          </code>     
+
+          <p><b>Result</b> : here also the Switching observer outperforms the Basic Bayesian observer for all subjects. </p>
+
+
+
+
+
+
+          <!--section-->
+          <p><h7><a id="SPPsc" class="anchor" href="#SPPsc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Checking switching in an experiment with only 80 deg prior </b></a></h7> </p>  
+
+          <p> Another experiment was run with 3 subjects and 80 deg prior only (fMRI and training psychophysics data). We checked whether subjects switched. </p>
+
+          <code class="code">
+            s327 
+            s357 
+            s358 
+            <!--End Main Content-->
+          </code>
+
+          <p>Conclusion : we couldn't use this dataset because two priors with different means (225 and 135 deg) were used in alternance which does not allow to challenge the prior transfer hypothesis. Each block had too few trials (15 trials in fMRI) which prevents from only using the first blocks and only 5 motion directions were tested. </p>
+
+
+          <!--section-->
+          <p><h7><a id="priorTransfer" class="anchor" href="#priorTransfer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Prior transfer task with new subjects and only 80 degrees prior </b></a></h7> </p>  
+
+          <!--section-->
+          <p><h7><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Task </b></a></h7> </p>  
+
+          <p></p>
+
+          <!--section-->
+          <p><h7><a id="datacleaning" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Data cleaning</b></a></h7> </p>  
+
+          <p></p>
+
+          <code class="code">
+
+            <font color = 'green'> %load stim file then run </font><br>
+            slquickCheckData
+
+          </code>
+
+          <!--section-->
+          <p><h7><a id="ModelComp" class="anchor" href="#priorTransfer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Model comparison </b></a></h7> </p> 
+
+
+          <!--SECTION-->
+          <p><h7><a id="SLP" class="anchor" href="#BLTL" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Switching between likelihood and prior </b></a></h7> </p>  
+
+          <p> We searched for initial parameters graphically : </p>
+
+          <code class= "code">
+            datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+            output = SLfitCompetitionModel({'sub01'},
+            [80 30 2 0.7 NaN 0.001 30],
+            'dataPathVM',datapath,'experiment','vonMisesPrior',
+            'modelPredictions','withData',
+            'inputFitParameters',
+            'filename','fitswitchLLHorPrior');            
+          </code>
+
+          <p> We then fitted the data for each subject with the best matching initial parameters (rows,initp) : </p>
+
+          <code class= "code">
+           initp = [7 1.2 0.3 0.01 NaN NaN NaN NaN 0.06 40; 
+           14 3 1 0.05 NaN NaN NaN NaN 0.04 60;
+           40 10 2 0.1 NaN NaN NaN NaN 0.06 50;
+           25 5 1.4 0.2 NaN NaN NaN NaN 0.1 15;
+           5 2 1 0.1 NaN NaN NaN NaN 0.03 40]; <br><br>
+
+           clear <br>          
+           tic <br>
+           subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+           datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+           pscales = ones(5,10) <br><br>
+           for i = 1 : length(subject)<br>
+           output = SLfitCompetitionModel(subject(i),initp(i,:),
+           'pscaling',pscales(i,:),
+           'dataPathVM',datapath,'experiment','vonMisesPrior',
+           'MaxLikelihoodFit','fminsearch',
+           'filename','datafitsw');<br>                 
+           end
+           toc
+         </code>    
+
+         <p>Note : subject 1 has 4 clear peaks, not 2. Cardinal effect ?</p>
+
+         <!--section-->
+         <p><h7><a id="SPP" class="anchor" href="#BLTL" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Switching between posterior and prior</b></a></h7> </p>  
+         <p></p>
+
+         <p>We searched for initial parameters by matching predictions and estimate distribution best : </p>
+
+         <code class= "code">
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          output = SLfitCompetitionModel({'sub01'},
+          [5 1 0.6 0.001 NaN NaN NaN NaN 0.06 30],
+          'dataPathVM',datapath,'experiment','vonMisesPrior',
+          'modelPredictions','withData',
+          'inputFitParameters',
+          'filename','fitswitchPostorPrior80',
+          'switchPostorPrior');            
+        </code>
+
+        <p> We then fitted the data for each subject with the best matching initial parameters (rows,initp) : </p>
+
+        <code class= "code">
+          clear <br>   
+          tic <br>  
+          initp = [
+          5 1 0.6 0.001 NaN NaN NaN NaN 0.06 30; <!-- subject 1 -->
+          10 2 1 0.07 NaN NaN NaN NaN 0.001 30; <!-- subject 2 -->
+          47 9 2 0.1 NaN NaN NaN NaN 0.03 30; <!-- subject 3 -->
+          15 4 1 0.2 NaN NaN NaN NaN 0.1 30; <!-- subject 4 -->
+          5 2 1 0.07 NaN NaN NaN NaN 0.06 30]; <!-- subject 7 --><br><br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          pscales = ones(5,10) <br><br>
+          for i = 1 : length(subject)<br>
+          output = SLfitCompetitionModel(subject(i),initp(i,:),
+          'pscaling',pscales(i,:),
+          'dataPathVM',datapath,'experiment','vonMisesPrior',
+          'MaxLikelihoodFit','fminsearch',
+          'filename','datafitswPoOrPr80',
+          'switchPostorPrior');<br>                 
+          end <br>
+          toc
+        </code>
+
+        <!--SECTION-->
+        <p><h7><a id="BS" class="anchor" href="#BS" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes sampling </b></a></h7> </p>  
+
+        <p>We manually searched the initial parameters that best graphically reproduced the data </p>
+
+        <code class="code">
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'; <br> SLfitBayesianModel({'sub01'},[100 20 4 1.5 NaN 0.001 75 NaN],
+          'dataPathVM',datapath,'inputFitParameters','experiment','vonMisesPrior','filename','predFile','SamplingReadout','modelPredictions','withData');
+        </code>
+
+        <p> We then fitted the data for each subject with the best matching initial parameters (rows,initp) : </p>
+
+        <code class= "code">
+          tic <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          initp = [
+          11 2 1 0.5 NaN NaN NaN NaN 0.08 75 NaN; <!-- subject 1 -->
+          10 3.5 2 0.5 NaN NaN NaN NaN 0.001 75 NaN; <!-- subject 2 -->
+          60 15 3 0.5 NaN NaN NaN NaN 0.01 75 NaN; <!-- subject 3 -->
+          20 5 2 0.8 NaN NaN NaN NaN 0.07 60 NaN; <!-- subject 4 -->
+          6 3 2 0.1 NaN NaN NaN NaN 0.03 75 NaN]; <!-- subject 7 --><br><br>
+          pscales = ones(5,11);<br><br>     
+          for i = 1 : length(subject)<br>
+          output = slshortfitBayesSmp(subject(i),initp(i,:),pscales(i,:),datapath);<br>
+          end<br>
+          toc<br>
+
+        </code>
+
+        <p><h7><a id="BBM" class="anchor" href="#BBO" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Bayes MAP </b></a></h7> </p>                
+        <p>To search initial parameters : </p>
+        <code class="code">
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          output = SLfitBayesianModel({'sub01'},[80 40 20 1.74 NaN 0.001 15 NaN],'dataPathVM',datapath,
+          'experiment','vonMisesPrior','filename','datafit','MAPReadout','modelPredictions','withData','inputFitParameters');
+        </code>
+
+        <p> We then fitted each subject data starting the fit from the best matching initial parameters for each subject (rows in initp) : </p>
+        <code class="code">
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [
+          30 2 2 0.1 NaN NaN NaN NaN 0.03 15 NaN; 
+          30 3 1 0.2 NaN NaN NaN NaN 0.03 15 NaN; 
+          80 7 2 0.2 NaN NaN NaN NaN 0.001 15 NaN;
+          12 3 1 0.5 NaN NaN NaN NaN 0.03 15 NaN; 
+          10 2 1 0.3 NaN NaN NaN NaN 0.03 15 NaN];<br><br>  
+          pscales = ones(5,11);<br>
+          for i = 1 : length(subject) <br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling', pscales(i,:),'dataPathVM',datapath,'experiment','vonMisesPrior','filename','datafit','MAPReadout','MaxLikelihoodFit', 'fminsearch'); 
+          end <br>
+        </code>
+
+        <!--SECTION-->
+        <p><h7><a id="BBLS" class="anchor" href="#BBLS" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes BLS </b></a></h7> </p>  
+        <p> We searched for initial parameters graphically : </p>
+
+        <code class= "code">
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          SLfitBayesianModel({'sub01'},[100 20 4 NaN NaN NaN NaN NaN 0.001 75 0],'dataPathVM',datapath,'inputFitParameters','experiment','vonMisesPrior','filename','predFile','BLSReadout','modelPredictions','withData');    
+        </code>
+
+        <p>and fitted data :</p>
+
+        <code class="code">        
+          clear <br>          
+          tic <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [10 1 0.5 0.001 NaN NaN NaN NaN 0.06 15 NaN;
+          100 5 1 0.4 NaN NaN NaN NaN 0.08 12 NaN;
+          450 10 2 0.005 NaN NaN NaN NaN 0.03 30 NaN;
+          30 2 1 0.5 NaN NaN NaN NaN 0.03 15 NaN;
+          20 2 1 0.1 NaN NaN NaN NaN 0.07 15 NaN]; <br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'<br><br>
+          for i = 1 : length(subject)<br>
+          
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80/';<br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling',ones(1,11), 
+          'dataPathVM',datapath,'experiment','vonMisesPrior', 
+          'BLSReadout', 
+          'MaxLikelihoodFit','fminsearch', 
+          'filename','datafitBayesBLS','savedfolder','BayesBLS')<br><br>
+          end<br>
+          toc<br>
+        </code>
+
+        <p>The Bayes BLS model predicted peaks were more biased to the center location in between the motion direction and the prior mean than the Bayes MAP predicted peak. Thus better fit required stronger likelihoods. </p>
+
+        <!--SECTION-->
+        <p><h7><a id="BLTP" class="anchor" href="#BLTP" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes MAP tailed prior </b></a></h7> </p>  
+        <p> We searched for initial parameters graphically : </p>
+
+        <code class= "code">
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          SLfitBayesianModel({'sub01'},[100 20 4 NaN NaN NaN NaN NaN 0.001 75 0],'dataPathVM',datapath,'inputFitParameters','experiment','vonMisesPrior','filename','predFile','MAPReadout','modelPredictions','withData','FatTailPrior'),;      
+        </code>
+
+        <p> We used the same fit parameters as for the Basic Bayesian observer and set the initial tailed mixture parameter value to 0 (last parameter). We then fitted the model to the data</p>
+
+        <code class="code">        
+          clear <br>          
+          tic <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [30 2 2 0.1 NaN NaN NaN NaN 0.03 15 0; 
+          30 3 1 0.2 NaN NaN NaN NaN 0.03 15 0; 
+          80 7 2 0.2 NaN NaN NaN NaN 0.001 15 0; 
+          12 3 1 0.5 NaN NaN NaN NaN 0.03 15 0; 
+          10 2 1 0.3 NaN NaN NaN NaN 0.03 15 0];<br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'<br><br>
+          for i = 1 : length(subject)<br>
+          output = slshortfitBayesTailedPrior(subject(i),initp(i,:),ones(5,11),datapath);<br>      
+          end<br>
+          toc<br>
+        </code>
+
+
+        <!--SECTION-->
+        <p><h7><a id="BLTPB" class="anchor" href="#BLTPB" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes BLS tailed prior </b></a></h7> </p>  
+        <p> We searched for initial parameters graphically : </p>
+
+        <code class= "code">
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          SLfitBayesianModel({'sub01'},[100 20 4 NaN NaN NaN NaN NaN 0.001 75 0],'dataPathVM',datapath,'inputFitParameters','experiment','vonMisesPrior','filename','predFile','BLSReadout','modelPredictions','withData','FatTailPrior');      
+        </code>
+
+        <p> We used the same fit parameters as for the Basic Bayesian observer and set the initial tailed mixture parameter value to 0 (last parameter). We then fitted the model to the data</p>
+
+        <code class="code">        
+          clear <br>          
+          tic <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [10 1 0.5 0.001 NaN NaN NaN NaN 0.06 15 0;
+          100 5 1 0.4 NaN NaN NaN NaN 0.08 12 0;
+          450 10 2 0.005 NaN NaN NaN NaN 0.03 30 0;
+          30 2 1 0.5 NaN NaN NaN NaN 0.03 15 0;
+          20 2 1 0.1 NaN NaN NaN NaN 0.07 15 0]; <br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'<br><br>
+          for i = 1 : length(subject)<br>
+          
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80/';<br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling',ones(1,11), 
+          'dataPathVM',datapath,'experiment','vonMisesPrior', 
+          'FatTailPrior','BLSReadout', 
+          'MaxLikelihoodFit','fminsearch', 
+          'filename','datafitBtailedPrior','savedfolder','BayesBLStailedPrior')<br><br>
+
+          end<br>
+          toc<br>
+        </code>
+
+        <p>Bayes BLS tailed prior predicted one peak for motion directions distant from the prior due to the likelihood exponentially decaying tail that cancelled the prior, similar as Bayes MAP tailed piror. The Bayes BLS tailed prior predicted peaks that were more biased in between the motion direction and prior than the Bayes MAP tailed prior which predicted peaks more at the motion direction. Thus better fitting the data required stronger likelihood than for Bayes MAP tailed prior. </p>
+
+        <!-- SECTION -->
+        <p><h7><a id="BLTL" class="anchor" href="#BLTL" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes BLS tailed LLH </b></a></h7> </p>  
+
+        <p>We manually searched for initial parameters that best graphically reproduced the data : </p>          
+
+        <code class="code">  
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';<br>
+          o = slMakePredictionsWJM({'sub01'},[3 0.7 1e-2 32],
+          'experiment','vonMisesPrior','dataPath',datapath)
+        </code>
+
+        <p> We then fitted each subject data starting the fit from the best matching initial parameters for each subject (rows in initp). I fitted this model on a High Performance Cluster (Stanford's Sherlock) see details <a href="pages/fit_BayesLgTailBLS.html" class="class2"> here </a> to see how.</p>
+
+        <code class= "code">
+          clear <br>          
+          tic <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [
+          2 0.01 0.5 10; <!-- subject 1 -->
+          3 0.08 0.2 10; <!-- subject 2 -->
+          4 0.08 0.01 10; <!-- subject 3 -->
+          1 0.1 0.03 32; <!-- subject 4 -->
+          1 0.3 0.01 32]; <!-- subject 7 --> <br><br>       
+          for i = 1 : length(subject)<br>
+          o = slFitWJM(subject(i),initp(i,:),
+          'pscaling',[1 1 1 1],
+          'experiment','vonMisesPrior','fminsearch','dataPath',datapath,'BLSReadout')
+          toc
+        </code>    
+
+
+        <!-- SECTION -->
+        <p><h7><a id="BLTLMAP" class="anchor" href="#BLTLMAP" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Bayes MAP tailed LLH MAP</b></a></h7> </p>  
+
+        <p>We manually searched for initial parameters that best graphically reproduced the data : </p>          
+
+        <code class="code">  
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';<br>
+          o = slMakePredictionsWJM({'sub01'},[3 0.7 1e-2 32],
+          'experiment','vonMisesPrior','dataPath',datapath,'MAPReadout')
+        </code>
+
+        <p> We then fitted each subject data starting the fit from the best matching initial parameters for each subject (rows in initp). I fitted this model on a High Performance Cluster (Stanford's Sherlock) see details <a href="pages/fit_BayesLgTailBLS.html" class="class2"> here </a></p> to see how. Here are the initial parameters
+        used. </p>
+
+        <code class= "code">
+          clear <br>          
+          tic <br>
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [0.7 0.005 0.08 32; <!-- subject 1 -->
+          1 0.01 0.06 32; <!-- subject 2 -->
+          2 0.1 0.01 32; <!-- subject 3 -->
+          1 0.4 0.01 32; <!-- subject 4 -->
+          1 0.4 0.05 20]; <!-- subject 7 --> <br><br>       
+          for i = 1 : length(subject)<br>
+          o = slFitWJM(subject(i),initp(i,:),
+          'pscaling',[1 1 1 1],
+          'experiment','vonMisesPrior','fminsearch','dataPath',datapath,'MAPReadout')<br>
+          end <br>
+          toc
+        </code>  
+
+        <p><h7><a id="BLTLP" class="anchor" href="#BLTLP" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes tailed LLH and prior BLS </b></a></h7> </p>  
+
+        <p>We use the same initial parameters as for the Bayes long tailed likelihood BLS readout and we set the prior tail coefficient at 0. To quickly check the model predictions you can run :</p>          
+
+        <code class="code">  
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';<br>
+          o = slMakePredictionsWJMlgTprior({'sub07'},[2 0.1 0.01 32 0], 'experiment','vonMisesPrior','dataPath',datapath,'BLSReadout','debug') 
+        </code>  
+
+        <p> We then fitted each subject data starting the fit from the best matching initial parameters for each subject (rows in initp). I fitted this model on a High Performance Cluster (Stanford's Sherlock).</p>
+
+        <code class= "code">
+          clear <br>          
+          tic <br>
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [2 0.01 0.5 10 0; <!-- subject 1 -->
+          3 0.08 0.2 10 0; <!-- subject 2 -->
+          4 0.08 0.01 10 0; <!-- subject 3 -->
+          1 0.1 0.03 32 0; <!-- subject 4 -->
+          1 0.3 0.01 32 0]; <!-- subject 7 --> <br><br>  for i = 1 : length(subject)<br>     
+          o = slFitWJMlgTprior(subject(i),initp(i,:),
+          'pscaling',[1 1 1 1 1],'BLSReadout',
+          'experiment','vonMisesPrior','fminsearch','dataPath',datapath)
+          end <br>
+          toc
+        </code>   
+
+        <p><h7><a id="BLTLPMAP" class="anchor" href="#BLTLPMAP" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes tailed likelihood and tailed prior MAP </b></a></h7> </p>  
+        <p> We use the same initial parameters as for the Bayes long tailed likelihood MAP Readout and set prior tail coefficient to 0. To check model predictions :</p>          
+        <code class="code">  
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';<br>
+          o = slMakePredictionsWJMlgTprior({'sub07'},[2 0.1 0.01 32 0], 'experiment','vonMisesPrior','dataPath',datapath,'MAPReadout','debug') 
+        </code>  
+
+        <p> I fitted this model on a High Performance Cluster (Stanford's Sherlock).</p>
+
+        <code class= "code">
+          clear <br>          
+          tic <br>
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          initp = [0.7 0.005 0.08 32 0; <!-- subject 1 -->
+          1 0.01 0.06 32 0; <!-- subject 2 -->
+          2 0.1 0.01 32 0; <!-- subject 3 -->
+          1 0.4 0.01 32 0; <!-- subject 4 -->
+          1 0.4 0.05 20 0]; <!-- subject 7 --> <br><br>     
+          for i = 1 : length(subject)<br>     
+          o = slFitWJMlgTprior(subject(i),initp(i,:),
+          'pscaling',[1 1 1 1 1],'MAPReadout',
+          'experiment','vonMisesPrior','fminsearch','dataPath',datapath)
+          end <br>
+          toc
+        </code> 
+
+
+        <p><h7><a id="BC" class="anchor" href="#BC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Bayes Cardinal </b></a></h7> </p>  
+
+        <p>Same as basic Bayes except that cardinal prior strength initial parameter was set to 0. </p>
+
+        <p><h7><a id="BSC" class="anchor" href="#BSC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Bayes Sampling Cardinal </b></a></h7> </p>  
+
+        <code class="code">
+          subject = {'sub01','sub02','sub03','sub04','sub07'}; <br>
+          datapath='~/Desktop/dataPsychophy/proj02_priorStrength80'<br>
+          initp = [ 11 2 1 0.5 NaN NaN NaN 0 0.08 75 NaN; 10 3.5 2 0.5 NaN NaN NaN 0 0.001 75 NaN; 60 15 3 0.5 NaN NaN NaN 0 0.01 75 NaN; 20 5 2 0.8 NaN NaN NaN 0 0.07 60 NaN; 6 3 2 0.1 NaN NaN NaN 0 0.03 75 NaN];<br>
+          pscales = ones(5,11);<br>
+          for i = 1 : length(subject)<br>
+          output = slshortfitBayesSmp(subject(i),initp(i,:),pscales(i,:),datapath);<br>
+          end<br>
+          toc
+        </code>
+
+        <p><h7><a id="BME" class="anchor" href="#BME" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes MAP motion energy</b></a></h7></p>  
+
+        <p> We searched the best initial parameters </p>   
+
+        <code class="code">
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';
+          output = SLfitBayesianModel({'sub04'},[0.3 NaN 0.03 15 NaN],...
+          'dataPathVM',datapath, 'experiment','vonMisesPrior','filename',...
+          'datafit','MAPReadout','motionenergymodel','modelPredictions','inputFitParameters','withData');
+        </code>
+
+        <p> and fitted each subject data </p>   
+
+        <code class="code">
+          tic <br>
+          initp = [0.0001 NaN 0.2 4150 NaN;
+          0 NaN 0 3000 NaN;
+          0 NaN 0.000 10000 NaN;
+          0.5 NaN 0 500 NaN;
+          0.2 NaN 0 700 NaN]; <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>        
+          for i = 1 : length(subject)<br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling',ones(1,5), 'dataPathVM', datapath, 'experiment', 'vonMisesPrior','filename','datafit','motionenergymodel','MAPReadout', 'MaxLikelihoodFit', 'fminsearch','savedfolder','BayesMAPmoten');<br>
+          end<br>
+          toc
+        </code>
+
+        <p><b>Why the model fails :</b> The model predictions are similar to the Bayes MAP long tailed LLH model : two peaks one at the prior mean and another in between the prior mean and the motion direction. Prior must be weak otherwise it pulls the peak in between the prior mean and motion direction for direction near the prior mean and its exponentially decaying tail cancels the likelihood at distant motion directions. </p>
+
+        <p><h7><a id="BBLSME" class="anchor" href="#BBLSME" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Bayes BLS motion energy </b></a></h7> </p>  
+
+        <p> We searched the best initial parameters </p>   
+
+        <code class="code">
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';
+          output = SLfitBayesianModel({'sub04'},[0.3 NaN 0.03 15 NaN],...
+          'dataPathVM',datapath, 'experiment','vonMisesPrior','filename',...
+          'datafit','BLSReadout','motionenergymodel','modelPredictions','inputFitParameters','withData');
+        </code>
+
+        <p> and fitted each subject data </p>   
+
+        <code class="code">
+          tic <br>
+          initp = [0 NaN 0.2 100000 NaN;
+          0.3 NaN 0 500 NaN;
+          0.02 NaN 0 1000 NaN;
+          0.4 NaN 0 400 NaN;
+          0.5 NaN 0 300 NaN]; <br>
+
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          for i = 1 : length(subject)<br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling',ones(1,5), 'dataPathVM', datapath, 'experiment', 'vonMisesPrior', 'filename', ['datafit' subject{i}],'motionenergymodel','BLSReadout', 'MaxLikelihoodFit', 'fminsearch','savedfolder','BayesBLSmoten');<br>
+          end<br>
+          toc
+        </code>
+
+        <p><b>Why the model fails :</b> The model predictions are similar to the Bayes MAP long tailed LLH model : two peaks one at the prior mean and another in between the prior mean and the motion direction. Prior must be weak otherwise it pulls the peak in between the prior mean and motion direction for direction near the prior mean and its exponentially decaying tail cancels the likelihood at distant motion directions. </p>
+
+        <p><h7><a id="BMETP" class="anchor" href="#BMETP" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Bayes MAP motion energy tailed prior</b></a></h7></p>  
+
+        <p> Initial parameters were same as Bayes MAP motion energy except that tailed prior was initialized at 0. </p>   
+
+        <code class="code">
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';
+          output = SLfitBayesianModel({'sub04'},[0.3 NaN 0.03 15 0],...
+          'dataPathVM',datapath, 'experiment','vonMisesPrior','filename',...
+          'datafit','MAPReadout','motionenergymodel','modelPredictions','inputFitParameters','withData','FatTailPrior');
+        </code>
+
+        <p> and fitted each subject data </p>   
+
+        <code class="code">
+          tic <br>
+          initp = [0.0001 NaN 0.2 4150 0;
+          0 NaN 0 3000 0;
+          0 NaN 0.000 10000 0;
+          0.5 NaN 0 500 0;
+          0.2 NaN 0 700 0]; <br>
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>        
+          for i = 1 : length(subject)<br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling',ones(1,5), 'dataPathVM', datapath, 'experiment', 'vonMisesPrior','filename','datafit','motionenergymodel','MAPReadout', 'MaxLikelihoodFit', 'fminsearch','FatTailPrior','savedfolder','BayesMAPmotenTailedPrior');<br>
+          end<br>
+          toc
+        </code>
+
+        <p><h7><a id="BBLSMETP" class="anchor" href="#BBLSMETP" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Bayes BLS motion energy tailed prior</b></a></h7> </p>  
+
+        <p> Initial parameters were same as Bayes BLS motion energy except that tailed prior was initialized at 0.</p>
+
+        <code class="code">
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80';
+          output = SLfitBayesianModel({'sub02'},[0.3 NaN 0 500 0],...
+          'dataPathVM',datapath, 'experiment','vonMisesPrior','filename',...
+          'datafit','BLSReadout','motionenergymodel','modelPredictions','inputFitParameters','withData','FatTailPrior');
+        </code>
+
+        <p> and fitted each subject data </p>   
+
+        <code class="code">
+          tic <br>
+          initp = [0 NaN 0.2 100000 0;
+          0.3 NaN 0 500 0;
+          0.02 NaN 0 1000 0;
+          0.4 NaN 0 400 0;
+          0.5 NaN 0 300 0]; <br>
+
+          subject = {'sub01','sub02','sub03','sub04','sub07'};<br>
+          datapath = '~/Desktop/dataPsychophy/proj02_priorStrength80'; <br>
+          pscales = ones(5,11); <br>
+          for i = 1 : length(subject)<br>
+          output = SLfitBayesianModel(subject(i),initp(i,:),'pscaling',ones(1,5), 'dataPathVM', datapath, 'experiment', 'vonMisesPrior', 'filename', 'datafit','motionenergymodel','BLSReadout', 'MaxLikelihoodFit', 'fminsearch','FatTailPrior','savedfolder','BayesBLSmotenTailedPrior');
+          end<br>
+          toc
+        </code>      
+
+        <p><h7><a id="modelcomparison" class="anchor" href="#modelcomparison" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Model comparison </b></a></h7> </p>  
+
+        <code class="code">
+          models = {
+          'model_switching_MAP',
+          'model_switchingPostorPrior_MAP',
+          'model_Bayes_MAP_tailedLLH',
+          'model_Bayes_BLS',                                       
+          'model_Bayes_BLS_tailedPrior',                           
+          'model_Bayes_MAP', 
+          'model_Bayes_MAP_tailedPrior',
+          'model_Bayes_MAP_withCard' 
+          'model_Bayes_BLS_tailedLLH','model_Bayes_Sampling',
+          'model_Bayes_Sampling_withCard',            
+          'model_Bayes_MAP_tailedLLH_tailedprior'
+          'model_Bayes_BLS_tailedLLH_tailedprior',
+          'model_Bayes_BLS_moten',
+          'model_Bayes_BLS_moten_tailedprior',
+          'model_Bayes_MAP_moten',
+          'model_Bayes_MAP_moten_tailedprior'}<br>
+          datafitpath = '~/Desktop/dataPsychophy/proj02_priorStrength80/modelfit/AIC/';<br>
+          for i = 1 : length(models)<br>
+          [AICs(i,:),~,sub(i,:)] = slLoadSavedFitParams('AIC',[datafitpath models{i} '/'],'AIC');<br>
+          end <br><br>
+
+          model_ref = 'model_switching_MAP';<br>
+          [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,models(2:end),path);<br>
+          for i = 1 : length(models)-1 <br>
+          [e(i),ci(i,:),m(i),s(i)] = slMakeCI(aicDiff(:,i),0.95); <br>
+          end<br><br>
+          <font color="green"> Get the number of subjects better fit by switching </font><br>
+          sum(aicDiff>0)
+        </code>
+
+        <p><h7><a id="SwitchingParams" class="anchor" href="#SwitchingParams" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b> Switching best fit parameters and probabilities </b></a></h7> </p> 
+
+        <code class="code">
+          datafitpath = '~/Desktop/dataPsychophy/proj02_priorStrength80/modelfit/AIC/';<br>
+          [~,allvars,sub] = slLoadSavedFitParams('allVars',[datafitpath 'model_switching_MAP/'],'AIC');<br>
+          nSubjects = length(allvars);<br>
+          for i = 1 : nSubjects<br>
+          fitP(i,:) = allvars(i).fitP<br>
+          end<br>
+          fitP = fitP(:,~isnan(fitP(1,:)));<br>
+          fitP = num2cell(fitP);<br>
+          header = {'Kl24','Kl12','Kl6','Kp80','Prand','Km'};<br>
+          headername = {'Subjects\Best parameters'};<br>
+          rownames = num2cell([1 : nSubjects])';<br>
+          mattable = [[headername header];[rownames fitP]];<br>
+          cd ~/Desktop/<br>
+          slconvMatCelltoCSV(mattable,'table')<br>
+        </code>
+
+        <p>Write in the terminal : </p>
+        <code class="code">
+          R<br>
+          library(xtable)<br>
+          setwd('~/Desktop/')<br>
+          dataset = read.csv('table.csv',header=TRUE,sep=",")<br>
+          print(xtable(dataset), include.rownames=FALSE)<br>
+        </code>
+
+        <p>Fine tune, copy the printed latex output in "latexit" to plot the table and save in the file format you want.</p>
+
+      </section>
+    </div>
+
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+  </html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Fitting on High performance cluster">
+  <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+  <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css" />
+
+  <!--Mathematics with MathJax-->
+  <script type="text/x-mathjax-config">      
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true
+  },
+  "HTML-CSS": { 
+  availableFonts: ["STIX"],
+}
+});
+</script>
+<script type="text/javascript" async
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>  
+
+</head>
+
+<body>
+  
+  <title>Fitting on High performance cluster</title>
+  
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/steevelaquitaine/projInference">Github</a>
+      <a id="project_author" href="http://steevelaquitaine.blogspot.com">Steeve laquitaine </a>
+    </header>
+  </div>
+
+  <!--TITLE-->
+  <div id="proj_title_wrap" class="outer">
+    <header class="inner">
+      <section id="proj_title" class="inner">
+        <h1 id="proj_title"> Fitting on High performance cluster </h1>
+      </div>
+      
+      <!--Table of contents    -->
+      <div id="Table_of_content_wrap" class="outer">
+        <section id="table_of_content" class="inner">
+          <h5 id="top"> TABLE OF CONTENTS </h5>               
+        </section>
+      </div>
+      
+      
+      <!-- MAIN CONTENT -->
+      <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+         
+          <p> Transfer your data and codes to Sherlock cluster</p>
+
+          <code class="code">                
+            rsync -a --stats ~/Desktop/SLcodes steeve@sherlock.stanford.edu:/home/steeve/proj/ <br>
+            rsync -a --stats ~/Desktop/mgl steeve@sherlock.stanford.edu:/home/steeve/proj/ <br>
+            rsync -a --stats ~/Desktop/mrTools steeve@sherlock.stanford.edu:/home/steeve/ <br>proj/                        
+          </code>                
+
+          <p>Then write a "slWJMMAPReadout01.matlab" file and save it in /home/steeve/ on Sherlock.</p>
+
+          <code class="code">                
+            #!/bin/bash                 <br>
+            #BATCH --job-name=slWJMMAPReadout01<br>
+            #SBATCH --output=slWJMMAPReadout01.out<br>
+            #SBATCH --error=slWJMMAPReadout01.err<br>
+            #SBATCH --time=167:00:00<br>
+            #SBATCH --qos=long<br>
+            #SBATCH --nodes=1<br>
+            #SBATCH --ntasks-per-node=16<br>
+            #SBATCH --export=All<br>
+            #SBATCH --mem-per-cpu 4000<br>
+            #SBATCH --mem 64000  <br>
+            #SBATCH --exclusive<br>
+            #SBATCH --mail-type=ALL<br>
+            ##my commands<br>
+            ##load matlab<br>
+            ml load matlab<br>
+            ##add code library path<br>
+            matlab -nojvm -r "addpath(genpath('~/proj')); slFitWJM({'sub01'},[3 0.7 2.7 8 33 1e-2 32],'pscaling',ones(1,7),'MAPReadout','experiment','vonMisesPrior','fminsearch','sherlock')" outputWJMMAPReadout01.log<br>
+          </code>
+
+          <p> Submit job </p>
+
+          <code class="code">   
+            sbatch slWJMMAPReadout01.matlab
+          </code>
+
+          <p>And confirmation of submissions for subject 1 to 12 are displayed respectively : </p>
+          
+          <code class="code">         
+            Submitted batch job 15416695<br>
+            Submitted batch job 15416698<br>
+            Submitted batch job 15417181<br>
+            Submitted batch job 15417183<br>
+            Submitted batch job 15417190<br>
+            Submitted batch job 15417204<br>
+            Submitted batch job 15417207<br>
+            Submitted batch job 15417208<br>
+            Submitted batch job 15417209<br>
+            Submitted batch job 15417210<br>
+            Submitted batch job 15417211<br>
+            Submitted batch job 15417212<br>
+          </code>   
+          
+
+          <p>Then if you check the status of your jobs by calling squeue -u $user</p>
+          
+          <code class="code">     
+            squeue -u steeve
+          </code>     
+
+          <p>You get </p>
+
+          <code class="code">     
+           JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)<br>
+           15417207    normal sub07wjm   steeve PD       0:00      1 (QOSGrpCpuLimit)<br>
+           15417208    normal sub08wjm   steeve PD       0:00      1 (QOSGrpCpuLimit)<br>
+           15417209    normal sub09wjm   steeve PD       0:00      1 (QOSGrpCpuLimit)<br>
+           15417210    normal sub10wjm   steeve PD       0:00      1 (QOSGrpCpuLimit)<br>
+           15417211    normal sub11wjm   steeve PD       0:00      1 (QOSGrpCpuLimit)<br>
+           15417212    normal sub12wjm   steeve PD       0:00      1 (QOSGrpCpuLimit)<br>
+           15416695    normal sub01wjm   steeve  R      40:03      1 sh-2-34<br>
+           15416698    normal sub02wjm   steeve  R      20:46      1 sh-3-10<br>
+           15417204    normal sub06wjm   steeve  R       1:56      1 sh-2-36<br>
+           15417190    normal sub05wjm   steeve  R       2:04      1 sh-3-36<br>
+           15417183    normal sub04wjm   steeve  R       2:43      1 sh-5-13<br>
+           15417181    normal sub03wjm   steeve  R       3:09      1 sh-3-27<br>
+         </code>    
+
+         <p> where "PD" means your job is pending and "R" that it is running. You can actually see that it is running by opening your job output (assuming you matlab function print stuffs) by opening the .out file you have created in your submission batch file at its beginning (3rd line, e.g., in that case outputWJMMAPReadout01.log). Go to your home directory /home/steeve/ and open it : </p>
+
+         <code class="code">     
+          vim slWJMMAPReadout02.out
+        </code>
+
+        <p>When computations are done you can get back the results e.g., for subject 01, by :</p>
+
+        <code class="code">     
+          scp -r steeve@sherlock.stanford.edu:data/fitWJMsub01 ~/Desktop/
+        </code>
+
+      </section>
+    </div>
+    
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+  </html>

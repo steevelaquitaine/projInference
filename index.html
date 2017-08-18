@@ -1,642 +1,1029 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Project inference : Design an experiment which requires human subjects to do inference, analyse, mine and model their behavior to understand whether/how they do inference ?">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="stylesheet" href="fonts/Serif/cmun-serif.css" />
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Project inference : Design an experiment which requires human subjects to do inference, analyse, mine and model their behavior to understand whether/how they do inference ?">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="stylesheet" href="fonts/Serif/cmun-serif.css" />
 
-    <!--Mathematics with MathJax-->
-    <script type="text/x-mathjax-config">      
-      MathJax.Hub.Config({
-          extensions: ["tex2jax.js"],
-          jax: ["input/TeX", "output/HTML-CSS"],
-          tex2jax: {
-              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-              displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-              processEscapes: true
-          },
-          "HTML-CSS": { 
-            availableFonts: ["STIX"],
-          }
-      });
-    </script>
-    <script type="text/javascript" async
-      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
-    </script>  
+  <!--Mathematics with MathJax-->
+  <script type="text/x-mathjax-config">      
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true
+  },
+  "HTML-CSS": { 
+  availableFonts: ["STIX"],
+}
+});
+</script>
+<script type="text/javascript" async
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>  
 
-  </head>
+</head>
 
-  <body>
-    
-    <title>How do we make visual inference</title>
-    
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/steevelaquitaine/projInference">Github</a>
-          <a id="project_author" href="http://steevelaquitaine.blogspot.com">Steeve laquitaine </a>
-        </header>
-    </div>
+<body>
 
-    <!--TITLE-->
-    <div id="proj_title_wrap" class="outer">
-        <header class="inner">
-        <section id="proj_title" class="inner">
+  <title>How do we make visual inference</title>
+
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/steevelaquitaine/projInference">Github</a>
+      <a id="project_author" href="http://steevelaquitaine.blogspot.com">Steeve laquitaine </a>
+    </header>
+  </div>
+
+  <!--TITLE-->
+  <div id="proj_title_wrap" class="outer">
+    <header class="inner">
+      <section id="proj_title" class="inner">
         <h1 id="proj_title"> How do we make visual inference ? </h1>
-    </div>
-    
-    <!--Table of contents    -->
-     <div id="Table_of_content_wrap" class="outer">
-      <section id="table_of_content" class="inner">
-        <h5 id="top"> TABLE OF CONTENTS </h5>
-        <h7><a href="#Inference"> INFERENCE <br></h7>
-        <h7><a href="#Example-of-an-inference-task">EXAMPLE OF AN INFERENCE TASK <br></h7>
-        <h7><a href="#Basic-Bayesian-model">A BASIC BAYESIAN MODEL OF OPTIMALITY <br></h7>
-        <h7><a href="#Data"> DATA <br></h7>
-        <h7><a href="#Task-noise-&-statistics-affect-estimation">EFFECT OF TASK NOISE & STATISTICS <br></h7>
-        <h7><a href="#Humans-approximate-optimality">HUMANS APPROXIMATE OPTIMALITY <br></h7>
-        <h7><a href="#Humans-quickly-learn-complex-statistics">HUMANS QUICKLY LEARN COMPLEX STATISTICS <br></h7>
-        <h7><a href="#switching-learning">LEARNING TO SWITCH<br></h7>
-        <h7><a href="#no-recency-bias">NO RECENCY BIAS<br></h7>
-        <h7><a href="#Eye-movement"> EYE POSITIONS <br></h7>
-        <h7><a href="#Generalization-to-another-task">GENERALIZATION TO ANOTHER TASK <br></h7>
       </section>
-    </div>
-    
-    
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-          
-        <h7><a id="Inference" class="anchor" href="#Inference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">INFERENCE</a></h7>  
-        <p> Three main theories have been proposed as to how humans solve inference problems. 1) Humans might be rational : they use optimal statistical solutions to inference problems or 2) 
-        irrational and produce maladaptive solutions to inference problems or 3) they use heuristics computational shortcuts that approximate optimal solutions. This fits in with Herbert 
-        Simon theory of bounded rationality according to which humans use satisficing solutions (sufficient and satisfying) (Gigerenzer, Psychological 
-        review 1996)</p>
+    </header>
+  </div>
 
-        <h7><a id="Example-of-an-inference-task" class="anchor" href="#Example-of-an-inference-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EXAMPLE OF AN INFERENCE TASK </a></h7>   
-      
-        <p> We used a stimulus that has been used extensively in the psychophysics literature and that allows to manipulate sensory noise and also subjects priors : the random dot motion stimulus 
-        This stimulus is composed of signal dots moving in the same (coherent) directions and noise dots that move in random dots and render the estimation of the motion direction
-        difficult. We manipulated the difficulty of estimation by changing the proportion of dots moving coherently (6, 12 or 24%), thus the signal to noise ratio of the motion as follows : </p>
-        
-        <!--video-->
-        <div id="videoal" align ="center" style="padding:10px">
+  <!--Table of contents    -->
+  <div id="Table_of_content_wrap" class="outer">
+    <section id="table_of_content" class="inner">
+      <h5 id="top"> TABLE OF CONTENTS </h5>
+      <h7><a href="#Inference"> THE PROBLEM OF INFERENCE <br></h7>
+      <h7><a href="#Example-of-an-inference-task"> INFERENCE TASK <br></h7>
+      <h7><a href="#datadescri"> DATA DESCRIPTION <br></h7>
+      <h7><a href="#Basic-Bayesian-model">BAYESIAN MODEL OF OPTIMALITY <br></h7>
+      <h7><a href="#setupAna"> SETUP DATA & CODES <br></h7>
+      <h7><a href="#Task-noise-&-statistics-affect-estimation">SENSITIVITY TO TASK NOISE & STATISTICS <br></h7>
+      <h7><a href="#hs">HUMANS SWITCH <br></h7>
+      <h7><a href="#Humans-quickly-learn-complex-statistics">HUMANS QUICKLY LEARN STATISTICS <br></h7>
+      <h7><a href="#Modelcomp">MODEL COMPARISON <br></h7>          
+      <h7><a href="#aictable"> AIC table<br></h7>
+      <h7><a href="#switching-learning">LEARNING TO SWITCH<br></h7>
+      <h7><a href="#no-recency-bias">NO RECENCY BIAS<br></h7>
+      <h7><a href="#Eye-movement"> EYE POSITIONS <br></h7>
+      <h7><a href="#Generalization-to-another-task"> GENERALIZATION TO ANOTHER TASK <br></h7>
+      <h7><a href="#GOINGDEEPER">GOING DEEPER WITH MORE ANALYSES<br></h7>
+      <h7><a href="#firstBlockcont"> &nbsp &nbsp <i>Switching not due to transfer of sharp prior</i><br></h7>
+      <h7><a href="#fitLoc"> &nbsp &nbsp <i>Model comparison location task</i><br></h7>
+      <h7><a href="#earlyVsLate"> &nbsp &nbsp <i> Switching stable across time</i><br></h7>
+    </section>
+  </div>
+
+
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+
+      <h7><a id="Inference" class="anchor" href="#Inference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">INFERENCE</a></h7>  
+
+      <p> Three main theories have been proposed as to how humans solve inference problems. 1) Humans might be rational : they use optimal statistical solutions to inference problems or 2) irrational and produce maladaptive solutions to inference problems or 3) they use heuristics computational shortcuts that approximate optimal solutions. This fits in with Herbert Simon theory of bounded rationality according to which humans use satisficing solutions (sufficient and satisfying) (Gigerenzer, Psychological review 1996 </p>
+
+      <h7><a id="Example-of-an-inference-task" class="anchor" href="#Example-of-an-inference-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EXAMPLE OF AN INFERENCE TASK </a></h7>   
+
+      <p> We used a stimulus that has been used extensively in the psychophysics literature and that allows to manipulate sensory noise and also subjects priors : the random dot motion stimulus This stimulus is composed of signal dots moving in the same (coherent) directions and noise dots that move in random dots and render the estimation of the motion direction difficult. We manipulated the difficulty of estimation by changing the proportion of dots moving coherently (6, 12 or 24%), thus the signal to noise ratio of the motion as follows : </p>
+
+      <!--video-->
+      <div id="videoal" align ="center" style="padding:10px">
+        <div class="video">
+          <video controls autoplay>
+            <source src="images/motioncoh06.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video">
+            <video controls autoplay>
+              <source src="images/motioncoh12.mp4" type="video/mp4">
+              </video>
+            </div>
             <div class="video">
-                <video controls autoplay>
-                    <source src="images/motioncoh06.mp4" type="video/mp4">
+              <video controls autoplay>
+                <source src="images/motioncoh24.mp4" type="video/mp4">
                 </video>
-            </div>
-            <div class="video">
-               <video controls autoplay>
-                    <source src="images/motioncoh12.mp4" type="video/mp4">
-               </video>
-            </div>
-            <div class="video">
-               <video controls autoplay>
-                    <source src="images/motioncoh24.mp4" type="video/mp4">
-               </video>
-            </div>
-        </div>
-        
-        <p>We designed a motion direction estimation experiment in which humans were asked to estimate the motion direction of the noisy motions on 
-        <center><img src="images/exp.png" style="width: 50%; height: 50%"></center>
-        
-        <p>In this experiment statistical optimality can be achieved by combining noisy evidence of the motion with knowledge of the motion 
-        direction statistics learnt over motion stimulus history using Bayesian inference</p>
-        <!--figure-->
-        <center><img src="images/BayesHypo.png" style="width: 75%; height: 75%"></center>      
-        
+              </div>
+            </div>      
+
+            <p> We designed a motion direction estimation experiment in which humans were asked to estimate the motion direction of the noisy motions on </p>
+
+            <center><img src="images/exp.png" style="width: 50%; height: 50%"></center>
+
+            <p>The experiment code and task parameters are stored in SLcodes/Behavior/experiments/Exp01_Variance_Pstd010020040080_coh006012024_dirfull_Pmean225_fix10_mot035_fB01_speed28_PwMate_reBalanced_stat4_v2/runExp/. You can run the experiment if you have mgl and SLcodes libraries installed. </p>
+
+            <!-- code -->
+            <code class="code">
+              taskDotDir('steeve_exp12_metho_Pstd010_mean225_coh006012024_dir36_t107_073_033perCoh_130217')<br>
+              taskDotDir('steeve_exp12_metho_Pstd080_mean225_coh006012024_dir36_t106_075_034perCoh_130217')<br>
+              taskDotDir('steeve_exp12_metho_Pstd020_mean225_coh006012024_dir36_t107_075_033perCoh_130217')<br>
+              taskDotDir('steeve_exp12_metho_Pstd040_mean225_coh006012024_dir36_t101_075_031perCoh_130217')<br>
+            </code>
+
+            <p>In this experiment statistical optimality can be achieved by combining noisy evidence of the motion with knowledge of the motion direction statistics learnt over motion stimulus history using Bayesian inference</p>
+
+            <!--figure-->
+            <center><img src="images/BayesHypo.png" style="width: 75%; height: 75%"></center>      
+
+            <h7><a id="datadescri" class="anchor" href="#datadescri" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> DATA DESCRIPTION </a></h7>
+
+            <p></p>
+
+            <h7><a id="Basic-Bayesian-model" class="anchor" href="#Basic-Bayesian-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> A BASIC BAYESIAN MODEL OF OPTIMALITY </a></h7>   
+
+            <p> Initial model parameters : </p>    
+            <p> sub01 : [80 40 20 1.74 4.77 10.74 34.25 NaN 0.001 15 NaN]</p>
+
+            <h7><a id="setupAna" class="anchor" href="#setupAna" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> GET DATA AND SETUP ANALYSIS CODES </a></h7>   
+
+            <p>Download my library (SLcodes : data munging, analyses, visualization) and justingardner libraries (mgl, mrTools : task structure, task variables) codes. Download the online data from Google drive (problem with data size, need fixing..don't use right now). You should have four folders. </p>
+
+            <!--Code-->
+            <code class="code">
+              git clone https://github.com/steevelaquitaine/SLcodes SLcodes <br>
+              git clone https://github.com/justingardner/mgl mgl <br>
+              git clone https://github.com/justingardner/mrTools mrTools <br>
+            </code>
+
+            <p>Add library path (the one you download it to) to matlab path</p>
+
+            <code class="code">
+              addpath(genpath('/Users/steeve_laquitaine/Dropbox/myDropbox/Codes/SLcodes/')) <br> 
+              addpath(genpath('~/proj/mgl'))  <br>
+              addpath(genpath('~/proj/mrTools')) <br>
+            </code>                
+
+            <p> (not working yet) Download the data from <a href="https://drive.google.com/open?id=0B_PA-21cc0IZX09maUhONF9kcm8" class="class2"> google drive </a> </p>
+
+            <p>On moon, data are in : "/Volumes/MoonData/data/dataPsychophy/proj01_priorStrength/data/". Use datapath=slgetdatapath('lab') to access. </p>
+
+            <p>On other computers : "~/Desktop/dataPsychophy/proj01_priorStrength/data/". Use datapath=slgetdatapath('home') to access. </p>
+
+            <p>Online: <a href="data"> here </a></p>
+
+            <p>To copy data from moon : </p>
+
+            <code class="code">
+              mkdir ~/Desktop/proj01_priorStrength/ <br>
+              scp steeve@moon:/Volumes/MoonData/data/dataPsychophy/proj01_priorStrength/data ~/Desktop/proj01_priorStrength/
+            </code>
+
+            <p> Data information Table here ....</p>        
+
+            <!--Section-->
+            <h7><a id="Task-noise-&-statistics-affect-estimation" class="anchor" href="#Task-noise-&-statistics-affect-estimation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">EFFECT OF TASK NOISE & STATISTICS</a></h7>
+
+            <p> We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and different distributions of the motion direction (distribution standard deviation of 80º, 40º, 20º and 10º with fixed mean at 225º).</p>
+
+            <!--Code-->
+            <code class="code">
+              >> datapath = slgetdatapath('lab'); <br><br>
+
+              >> output = SLfitBayesianModel({'sub01','sub02',... <br>
+              'sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10',
+              'sub11','sub12'},[NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN], 
+              'dataPathVM',datapath,'experiment','vonMisesPrior', 
+              'MAPReadout','modelPredictions','withData', 'directoryFitParameter','../modelfit/AIC/',
+              'filename','fig03_04');
+            </code>
+
+            <p>The Bayesian observer predicted subject estimate mean and variability very well </p>
+
+            <!--figure-->
+            <center><img src="images/BayesFit_meanvar.png" style="width: 50%; height: 50%"/></center>   
+
+            <p> <strong> Subjects were strongly biased toward the prior mean </strong> (most likely motion direction at 225 deg). The strongest prior when the motion was the weakest produced biases between (You can select the plot of mean estimate versus displayed directions for the strongest prior (brown data point) at the weakest coherence (most right panel) and run the following code to extract the plot values and calculate the min and max average biases) </p>
+
+            <!--Code-->
+            <code class="code">
+
+              %locate conditions
+              >> p10_c6 = output.uniqCond(:,1)==10 & output.uniqCond(:,2)==0.06;
+              >> dir_p10_c6 = output.uniqCond(p10_c6,3);
+
+              %calculate biases
+              >> e = round(output.meanData(p10_c6,:));
+              >> nSub = size(output.meandata);
+              >> for s = 1 : nSub
+              >>    biases(:,s) = SLvectors2signedAngle(e(:,s),dir_p10_c6,'polar')
+              >> end
+
+              % normalize biases such that biases toward/away from the prior are positive/negative 
+              >> norm_bias = [biases(dir_p10_c6<225,:) ; biases(dir_p10_c6>225,:).*repmat(-1,size(biases(dir_p10_c6>225,:)))];
+
+              %get stats
+              >> nDir = length(dir_p10_c6);
+              >> for d_i = 1 : nDir-1
+              >>    [~,ci,m] = slMakeCI(norm_bias(d_i,:),.95);
+              >>     ciOvS(d_i,:) = ci;
+              >>     meanBiasBydirOvS(d_i) = m;
+              >> end
+
+              %min subject average bias across directions and its confidence intervals <br>
+              >> minBiasOvSByDir = unique(meanBiasBydirOvS(find(meanBiasBydirOvS==min(abs(meanBiasBydirOvS)))))
+              >> CIminBiasAll = ciOvS(find(minBiasOvSByDir == meanBiasBydirOvS),:); <br><br>
+
+              %Average bias over subjects and confidence intervals <br>
+              >> [~,ciMeanBiasOvS,meanBiasOvS] = slMakeCI(nanmean(norm_bias,1),.95)
+
+              %max subject average bias across directions and its confidence intervals
+              >> maxBiasOvSByDir = unique(meanBiasBydirOvS(find(meanBiasBydirOvS==max(abs(meanBiasBydirOvS)))))
+              >> CImaxBiasAll = ciOvS(find(maxBiasOvSByDir == meanBiasBydirOvS),:); <br><br>
+
+              % We calculate bias at the prior mean 225 deg separately because they are always <br>
+              % away from the prior mean when non null negative (clockwise) or positive <br>
+              % (counterclockwise). We interprete this bias as noise. <br>
+              meanBiasOvSatPrior = mean(biases(dir_p10_c6==225,:),2);
+
+            </code>
 
 
-        <h7><a id="Basic-Bayesian-model" class="anchor" href="#Basic-Bayesian-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> A BASIC BAYESIAN MODEL OF OPTIMALITY </a></h7>   
+            <h7><a id="hs" class="anchor" href="#hs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">HUMANS SWITCH</a></h7>  
+
+            <p> ... But it failed to explain the subjects' estimates distribution pattern formed over trials: where the model predicts unimodal distributions, 
+              subjects estimate distribution were clearly bimodal.</p>
+
+              <code class="code">
+                datapath = slgetdatapath('lab'); <br>
+
+                [fitP,fitPbkp,R2,sdata,fitPt,negLogl,negLoglbkp,
+                Logl_pertrialBestfit,output] = SLfitCompetitionModel({'sub01','sub02',
+                'sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10',
+                'sub11','sub12'},
+                [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],
+                'dataPathVM',datapath,
+                'experiment','vonMisesPrior',
+                'modelPredictions','withData',
+                'directoryFitParameter','../modelfit/AIC/',
+                'filename','fig06');
+              </code>
+
+              <!--figure-->
+              <center><img src="images/BayesFit_dis.png" style="width: 55%; height: 55%"/></center>   
+
+              <p>The behavior rather posits for an model in which people do not integrate their prior and sensory likelihood in a posterior that 
+                estimate that lie in between the two but rather switch between the two representations. </p>
+                <!--figure-->
+                <center><img src="images/SwitchingAndFits.png" style="width: 75%; height: 75%"/></center>  
+
+                <p>We tested other plausible Bayesian observers but all failed to explain the data better than the switching observer </p>
+                <!--figure-->
+                <center><img src="images/AICsFailureModes.png" style="width: 35%; height: 35%"/></center>  
+
+                <p>We also tested whether subject did not learn priors but simply relied on the previous trial displayed motion direction 
+                  (a recency strategy). However the data clearly indicate that subjects were biased toward the prior mean and not the previous 
+                  trial and that the stronger the prior and the stronger their bias toward the prior mean, indicating that subjects learn and 
+                  used the prior mean and strengths. </p>
+                  <!--figure-->
+                  <center><img src="images/RecencyBias.png" style="width: 50%; height: 50%"/></center>
+
+                  <p>The bias was also the largest for directions displayed the nearest to the prior mean and the smallest on the 
+                    opposite side of the prior, producing a nonlinear relationship between displayed and estimated directions. 
+                    This effect is due to the circularity of the space: the average bias become smaller when directions are displayed 
+                    further from the prior because the evidence is more and more likely to be pulled from both sides of the prior which 
+                    reduces the average bias. This decreasing bias with increasing distance effect effectively disappears in a linear 
+                    space as the evidence is always pulled from one side of the prior.
+
+                    <p>The variability was also the lowest for directions displayed the nearest to the prior mean and the largest 
+                      on the opposite side of the prior. This effect was due to the same reason that the average bias decreased further 
+                      from the prior: evidence were more often pulled from both sides of the prior which increased estimate dispersion.<p>
+
+                      <!--Code-->
+                      <code class="code">
+                        >> slsimulateBayesianModelEstimateSpace(5:20:360); 
+                      </code>
+
+                      <!--figure-->
+                      <center><img src="images/BiasAndVarInCircularVsLinearSpace.png"></center>
+
+                      <!--Head-->
+                      <h7><a id="Humans-quickly-learn-complex-statistics" class="anchor" href="#Humans-quickly-learn-complex-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">HUMANS QUICKLY LEARN TASK STATISTICS</a></h7>
+                      <p>A Bayesian observer that uses the statistical distribution of motion directions fit the data better than a maximum likelihood observer that only uses sensory likelihood. This indicates that subjects incoporated and used prior 
+                        knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
+
+                        <!--code  -->
+                        <code class="code">
+                          >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47]; <br>
+                          >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; <br>        
+                          >> [e,ci,m,s] = slMakeCI(bo,0.95) <br>           
+                          >> [e,ci,m,s] = slMakeCI(mlo,0.95)
+                        </code>
+
+                        <br><br>
+
+                        <!--Head-->
+                        <h7><a id="Modelcomp" class="anchor" href="#Modelcomp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>MODEL COMPARISON</b></a></h7>
+
+                        <p>see <a href="pages/model_comparison_direction.html" class="class2"> here </a></p>    
+
+                        <br><br>
+
+                        <h7><a id="BvS" class="anchor" href="#BvS" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>&nbsp Switching vs standard Bayes</b></a></h7>
+
+                        <p> This is even clearer when looking at the AIC difference between the two models, averaged over subjects </p>
+
+                        <code class="code">
+                          >> [e,ci,m,s] = slMakeCI(mlo - bo,0.95);
+                        </code>
+
+                        <p></p>
+
+                        <code class="code">
+                         >> model_ref = 'model_CompDiv'; <br><br>             
+                         >> models = {'model_Bayes_MAP'}; <br><br>             
+                         >> path = '/Volumes/DroboBKUP/data/dataPsychophy/... <br>
+                         &nbsp &nbsp &nbsp &nbsp &nbsp proj01_priorStrength/modelfit/AIC/'; <br>
+                         >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br><br>
+                         >> figure('color','w') ; SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]);
+                       </code>
+
+                       <!--figure-->
+                       <center><img src="images/AICbayesVsSwitch.png" style="width: 50%; height: 50%"/></center>                   
+                       <!--section-->
+                       <p> We examined the fit parameters used to model subject prior strengths with the switching observer to determine whether subjects had accurate representations 
+                        of the spread of the motion direction statistical distribution over trials (experimental prior). We compared the subjective prior strengths prescribed by 
+                        the switching observer with those predicted by the Basic Bayesian observer. </p>
+
+                        <!--figure here median prior strengths-->
+
+                        <p> We tested whether the switching observers predicted strength were statistically more accurate than the strengths predicted by the Bayesian observer.
+                          Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) : </p>
+
+                          <!--Code-->
+                          <code class="code">
+                            >> cd('~/proj/steeve/projInference/data/') <br>         
+                            >> [~,~,data] = slcsvRead('data_PriorStrngths.csv'); <br>        
+                            >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data);
+                          </code>
+
+                          <p> So we compared the median over subjects of the four subjective prior strength parameters fitted by the switching observer to each subject’s data (Fig. 6b) to veridical strength  and found that although the switching observer’s median fitted prior over subjects were significantly weaker than the 80º and 40º veridical priors (W = 7, p < 0.01 and W = 0, p < 0.01 
+                            respectively, one-sample Wilcoxon test), the switching observer’s fitted prior standard deviations for the 20º and 10º 
+                            priors did not significantly differ from the veridical prior standard deviations (W=17, p=0.09 and W=27, p=0.38 for the 
+                            20 and 10 deg priors, one-sample Wilcoxon test). In contrast, the Basic Bayesian observer’s median fitted priors over 
+                            subjects were all significantly weaker than the veridical priors (W=1, W=1, W=3, W=2, all p<0.01, for the 80, 40, 20 
+                            and 10 deg priors respectively, one-sample Wilcoxon test) which would suggest that the observers were unable to make accurate 
+                            estimates of the prior distribution. </p>
+
+                            <!--Code-->
+                            <code class="code">  
+                              >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,...<br>
+                              &nbsp &nbsp &nbsp &nbsp &nbsp subswstd,subExpstd);
+                            </code>   
+
+                            <!--Head-->
+                            <h7><a id="altmodels" class="anchor" href="#altmodels" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>&nbsp Switching vs augmented models</b></a></h7>
+
+                            <p> We tested seven plausible augmented Bayesian observers, relaxing some assumptions about how subject brain might represent the likelihood and priors, or how their brain might read out those information. We were inspired by models that have been used by past studies
+                              to explain other aspects of perception :
+                              - a basic Bayesian model [Stocker 2006; Girshick 2011] <br>
+                              - a sampling Bayesian model [Pouget 2011] <br>
+                              - a basic Bayesian model with cardinal priors [Stocker 2006; Girshick 2011]<br>
+                              - a basic Bayesian model with likelihood computed from stimulus components [Stocker 2006; Girshick 2011]<br>
+                              - Hierarchical Bayesian inference [Mumford 2003]<br>
+                            </p>
+
+                            <!--code-->
+                            <code class="code">
+                             model_ref = 'model_CompDiv'; <br> 
+
+                             models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_MAP_withCard',...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br><br>
+
+                             path = '~/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br><br>
+
+                             [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp                                   models,path); 
+                           </code>
+
+                           <br>
+
+                           <!--Head-->
+                           <h7><a id="aictable" class="anchor" href="#altmodels" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>&nbsp AIC table</b></a></h7>
+
+                           <p>Table of AIC per subject and models with AIC (winner model in yellow).             
+                            Data stored in  '~/proj/steeve/projInference/data/modelfitData.csv were converted to an html table 
+                            online http://www.convertcsv.com/csv-to-html.htm' and copy pasted here. This will be done automatically soon via http://www.codediesel.com/data/quick-way-to-display-csv-files-as-html-tables/ <p><br><br>
+
+                            <p> AIC can also be retrieved from data directory with :</p>
+                            <code class="code">
+                             path = '/Volumes/MoonData/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/model_Bayes_MAP_FatTailPrior/'; <br>
+                             [AICs,allVars,sub] = slLoadSavedFitParams('AIC',path) <br>
+                           </code>
 
 
-        <p> Initial model parameters : <p>    
-        <p> sub01 : [80 40 20 1.74 4.77 10.74 34.25 NaN 0.001 15 NaN]</p>
+                           <table class="table table-bordered table-hover table-condensed">
+                            <tbody><tr>
+                              <td>AIC</td>
+                              <td>sub01</td>
+                              <td>sub02</td>
+                              <td>sub03</td>
+                              <td>sub04</td>
+                              <td>sub05</td>
+                              <td>sub06</td>
+                              <td>sub07</td>
+                              <td>sub08</td>
+                              <td>sub09</td>
+                              <td>sub10</td>
+                              <td>sub11</td>
+                              <td>sub12</td>
+                            </tr>
+                            <tr>
+                              <td>Basic B. observer</td>
+                              <td>77182.7</td>
+                              <td>74175.23</td>
+                              <td>84145.32</td>
+                              <td>46451.09</td>
+                              <td>61913.16</td>
+                              <td>75357.9</td>
+                              <td>54584.24</td>
+                              <td>62731.75</td>
+                              <td>84927.68</td>
+                              <td>62633.63</td>
+                              <td>63233.81</td>
+                              <td>66099.47</td>
+                            </tr>
+                            <tr>
+                              <td>Switching observer</td>
+                              <td>77120.91385</td>
+                              <td>$\color{red}{72526.39578}$</td>
+                              <td>$\color{red}{83476.32271}$</td>
+                              <td>$\color{red}{46181.45005}$</td>
+                              <td>61884.72626</td>
+                              <td>75258.98979</td>
+                              <td>54242.02791</td>
+                              <td>61913.04604</td>
+                              <td>84581.774</td>
+                              <td>62219.2842</td>
+                              <td>$\color{red}{62860.08549}$</td>
+                              <td>$\color{red}{65240.43474}$</td>
+                            </tr>
+                            <tr>
+                              <td>Switching observer Iter ++ </td>
+                              <td>77118</td>
+                              <td>72526</td>
+                              <td>83476</td>
+                              <td>46158</td>
+                              <td>62063.8</td>
+                              <td>75238.8</td>
+                              <td>54240.2</td>
+                              <td>61913</td>
+                              <td>84576</td>
+                              <td>62219</td>
+                              <td>62860</td>
+                              <td>65244</td>
+                            </tr>
+                            <tr>
+                              <td>Switching obs. (post or prior)</td>
+                              <td> 77149</td>
+                              <td> $\color{red}{72526}$</td>
+                              <td> 83513</td>
+                              <td> 46211</td>
+                              <td> 61918 </td>
+                              <td> 75282</td>
+                              <td> 54194</td>
+                              <td> 61913</td>
+                              <td> 84633</td>
+                              <td> 62211</td>
+                              <td> $\color{red}{62703}$</td>
+                              <td> 65264</td>
+                            </tr>
+                            <tr>
+                              <td>B. sampling observer</td>
+                              <td>76927.67534</td>
+                              <td>72915.52233</td>
+                              <td>84072.65897</td>
+                              <td>46327.09858</td>
+                              <td>62044.83134</td>
+                              <td>75303.6298</td>
+                              <td>$\color{red}{54176.82698}$</td>
+                              <td>$\color{red}{61911.23149}$</td>
+                              <td>$\color{red}{84340.99204}$</td>
+                              <td>61914.41959</td>
+                              <td>62973.34444</td>
+                              <td>65530.52533</td>
+                            </tr>
+                            <tr>
+                              <td>B. sampling with cardinal observer</td>
+                              <td>76929.69246</td>
+                              <td>72967.33178</td>
+                              <td>84061.94317</td>
+                              <td>46358.33057</td>
+                              <td>61978.4797</td>
+                              <td>$\color{red}{75036.79803}$</td>
+                              <td>54178.84558</td>
+                              <td>62381.89622</td>
+                              <td>84344.80457</td>
+                              <td>62146.94279</td>
+                              <td>63193.3783</td>
+                              <td>65531.65891</td>
+                            </tr>
+                            <tr>
+                              <td>B. observer with long-tailed likelihood and prior</td>
+                              <td>77568.77228</td>
+                              <td>72651.70403</td>
+                              <td>84123.40485</td>
+                              <td>46851.82928</td>
+                              <td>61737.48121</td>
+                              <td>75395.25859</td>
+                              <td>54599.77943</td>
+                              <td>61930.22561</td>
+                              <td>84424.10913</td>
+                              <td>$\color{red}{61739.06173}$</td>
+                              <td>63659.27283</td>
+                              <td>66434.67041</td>
+                            </tr>
+                            <tr>
+                              <td>B. obs. with long-tailed likelihood BLS</td>
+                              <td>$\color{red}{76742.14114}$</td>
+                              <td>74137.13719</td>
+                              <td>84628.7679</td>
+                              <td>46415.74573</td>
+                              <td>$\color{red}{61693.00677}$</td>
+                              <td>75550.64219</td>
+                              <td>54389.19311</td>
+                              <td>62720.17202</td>
+                              <td>85146.26824</td>
+                              <td>62546.50556</td>
+                              <td>63662.89032</td>
+                              <td>65595.13615</td>
+                            </tr>
+                            <tr>
+                              <td>B. obs. with long-tailed likelihood MAP</td>
+                              <td>175880</td>
+                              <td>128210</td>
+                              <td>190600</td>
+                              <td>77350</td>
+                              <td>91920</td>
+                              <td>120260</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>B. observer with cardinal prior</td>
+                              <td>77217.61009</td>
+                              <td>73932.84022</td>
+                              <td>84204.15083</td>
+                              <td>46486.6467</td>
+                              <td>61914.74552</td>
+                              <td>75335.91242</td>
+                              <td>54613.11962</td>
+                              <td>62702.569</td>
+                              <td>85033.55837</td>
+                              <td>62495.92284</td>
+                              <td>63245.83529</td>
+                              <td>66106.22149</td>
+                            </tr>
+                            <tr>
+                              <td>B. observer with long-tailed prior</td>
+                              <td>77089.21019</td>
+                              <td>75181.67208</td>
+                              <td>84774.4863</td>
+                              <td>46542.19798</td>
+                              <td>61855.53842</td>
+                              <td>75485.14734</td>
+                              <td>54612.89603</td>
+                              <td>62238.42656</td>
+                              <td>84875.66547</td>
+                              <td>62766.32738</td>
+                              <td>63177.02813</td>
+                              <td>66160.08483</td>
+                            </tr>
+                          </tbody></table>
+
+                          <!--Figure-->
+                          <center><img src="images/WhyBayesianObserversFail.png" style="width: 100%; height: 100%"/></center>
+
+                          <p> We examined how well other Bayesian observers fit the data compared to the switching observer
+
+                            <!--code  -->
+                            <code class="code">
+                             >> model_ref = 'model_CompDiv'; <br><br>
+
+                             >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp               'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP_withCard','model_Bayes_MAP',... <br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp               'model_Bayes_MAP_FatTailPrior'}; <br><br>
+
+                             >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp          proj01_priorStrength/modelfit/AIC/'; <br><br>
+
+                             >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp               models,path); 
+                           </code>
+
+                           <!--code  -->
+                           <code class="code">
+                            >> model_ref = 'model_CompDiv'; <br><br>
+                            >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_WJMtailedPrior', ... <br>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_WJM','model_Bayes_MAP_withCard',... <br>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP',...<br>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP_FatTailPrior'}; <br><br>
+
+                            >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp          proj01_priorStrength/modelfit/AIC/'; <br><br>
+
+                            >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(...<br>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp               model_ref,models,path);
+                          </code>
+
+                          <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
+
+                          <!--code  -->
+                          <code class="code">
+                           >> cd('~/proj/steeve/projInference/data/) <br><br>
+
+                           >> [rowheader,colheader,data] = slcsvRead('modelfitData.csv'); <br><br>
+
+                           >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,...<br><br>
+                           &nbsp &nbsp &nbsp &nbsp &nbsp                colheader,data,'Switching observer')
+                         </code>
+
+                         <!--section-->
+                         <p> An alternative hypothesis is that subjects simply switched biased their estimates toward the previous motion directions without 
+                          learning the statistics of the motion directions over trials which is a heuristic that have already been used successfully to 
+                          explained perceptual behavior [Loewenstein et al.,]. So we looked at where subjects averaged estimates lied in the trials in
+                          which the currently displayed direction was in between the previous direction (clockwise to the displayed direction) and the 
+                          prior mean (counterclockwise to the displayed direction). We first checked whether subjects were significantly biased toward 
+                          the prior mean, thus away from the previous direction over subjects and conditions. </p>
+
+                          <!--code  -->
+                          <code class="code">        
+                           >> [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll] = ...<br> 
+                           &nbsp &nbsp &nbsp &nbsp &nbsp        slplotandStatsPrevDirvsPriorBias({'sub01','sub02','sub03',...<br> 
+                           &nbsp &nbsp &nbsp &nbsp &nbsp        'sub04','sub05','sub06','sub07','sub08','sub09','sub10',...<br> 
+                           &nbsp &nbsp &nbsp &nbsp &nbsp        'sub11','sub12'},'~/data/dataPsychophy/proj01_priorStrength/');
+                         </code>
+
+                         <p> The overall bias over all subject trials was 4.35 deg, 95% CI [ 3.14 5.57 ] toward the prior and the bias was significantly different 
+                           from 0 indicating than subjects were on average significantly biased toward the prior and not the previous direction.</p>
+
+                           <p>We further checked whether all subjects biased their estimates toward the prior and not the previous direction </p>
+
+                           <!--code  -->
+                           <code class="code">
+                             >> [SigBias2priorAll, SigBias2prevdir, marginAll,ciAll,mAll,sAll] = ... </br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp        slplotandStatsPrevDirvsPriorBias({'sub01'},'~/data/... </br>
+                             &nbsp &nbsp &nbsp &nbsp &nbsp        dataPsychophy/proj01_priorStrength/'); </br>
+                           </code>
+
+                           <p> 4 out of 12 subjects were significantly biased toward the prior mean and not the previous direction (the average distance
+                            between the estimate and the current direction was 2.93 deg, 95% CI [0.03 5.82] for subject 1;
+                            21.40 deg, 95% CI [17.30 25.51] for subject 2; 7.29 deg, 95% CI [4.55 10.02] for subject 4; 
+                            12.24 , 95% CI [ 6.70 17.78 ] for subject 10; all toward the prior </p>
+
+                            <p> The remaining 8 out of 12 subjects were not significantly biased neither toward the prior nor toward the previous direction 
+                              (the average distance between the estimate and the current direction was 
+                              -0.56 deg, 95% CI [-5.66 4.55] for subject 4; -2.25 deg, 95% CI [-7.39 2.88] for subject 5; -0.43 deg, 95% CI [-4.18 3.32] 
+                              for subject 6; 1.30 deg, 95% CI [-2.75 5.35] for subject 7; -1.99 deg, 95% CI [ -7.59 3.62 ] for subject 8;
+                              3.97 deg, 95% CI [0.57 7.38] for subject 9; 1.57 deg, 95% CI [ -2.34 5.49 ] for subject 11;  1.38 deg, 95% CI [-3.97 6.72]
+                              for subject 12.</p>
 
 
-        <!--Section-->
-        <h7><a id="Data" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> DATA </a></h7>   
+                              <!-- SECTION -->
+                              <h7><a id="switching-learning" class="anchor" href="#switching-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> LEARNING TO SWITCH </a></h7> 
 
-        <p> Number of trials per subjects : sub01 : 5367 .... (insert table here) </p>
+                              <p> We plotted a scatter of the slopes between estimate and displayed directions for 100 first versus last trials within blocks. 100 first and last are sorted for each prior and pooled across prior blocks. Trial data are linearized as data + distances to true motion direction (now range between -180 deg and 540) then averaged for each direction, coherence and prior condition. The means are then fitted with a line producing a slope estimate for each condition.</p>
 
-        <p> You can access data files : <a href="data"> here </a></p>
-      
+                              <!-- Code -->
+                              <code class="code">
+                                %calculate Pearson correlation coefficient and p-value for correlation <br>
+                                datapath = '~/data/dataPsychophy/proj01_priorStrength/'; <br>
+                                [linfit_early,linfit_late,rbySub,pbySub] = slAnalysisLearningScatterEarlyVsLateBiasAllSubjects({'sub01',... <br>
+                                'sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'},...<br>
+                                datapath,'vonMisesPrior')<br><br>
 
+                                %calculate confidence interval for Pearson correlation coefficient <br>
+                                for i = 1 : 12; rall(i) = r{i}(2,1); end <br>
+                                [err_margin,ci,m,s] = slMakeCI(rall,.95) <br><br>
 
+                                %report Pearson correlation p-value p for each subject <br>
+                                for i = 1 : 12; pall(i)=p{i}(2,1); end  
+                              </code> 
 
-        <!--Section-->
-        <h7><a id="Task-noise-&-statistics-affect-estimation" class="anchor" href="#Task-noise-&-statistics-affect-estimation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">EFFECT OF TASK NOISE & STATISTICS</a></h7>
-        <p> We looked at subjects average estimates for each displayed motion directions, for different level of noise in the stimulus (from 6% to 24% motion coherence) and 
-        different distributions of the motion direction (distribution standard deviation of 80º, 40º, 20º and 10º with fixed mean at 225º).</p>
-        
-        <!--Code-->
-        <code class="code">
-            >> datapath = slgetdatapath('lab'); <br><br>
+                              <!-- figures -->
+                              <center><img src="images/slopesEarlyLast.png" style="width: 100%; height: 100%"></center>
 
-            >> output = SLfitBayesianModel({'sub01','sub02',... <br>
-                'sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10',... <br>
-                'sub11','sub12'},[NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN],... <br>
-                'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
-                'MAPReadout','modelPredictions','withData',... <br>
-                'directoryFitParameter','../modelfit/AIC/',... <br>
-                'filename','fig03_04');
-        </code>
-    
-        <p>The Bayesian observer predicted subject estimate mean and variability very well...</p>
-        <!--figure-->
-        <center><img src="images/BayesFit_meanvar.png" style="width: 50%; height: 50%"/></center>   
-        
-        <p> <strong> Subjects were strongly biased toward the prior mean </strong> (most likely motion direction at 225 deg). The strongest prior when 
-        the motion was the weakest produced biases between (You can select the plot of mean estimate versus displayed directions for the 
-        strongest prior (brown data point) at the weakest coherence (most right panel) and run the following code to extract the plot values
-        and calculate the min and max average biases) </p>
-        
-        <!--Code-->
-        <code class="code">
-        
-          %locate conditions
-          >> p10_c6 = output.uniqCond(:,1)==10 & output.uniqCond(:,2)==0.06;
-          >> dir_p10_c6 = output.uniqCond(p10_c6,3);
-          
-          %calculate biases
-          >> e = round(output.meanData(p10_c6,:));
-          >> nSub = size(output.meandata);
-          >> for s = 1 : nSub
-          >>    biases(:,s) = SLvectors2signedAngle(e(:,s),dir_p10_c6,'polar')
-          >> end
-          
-          % normalize biases such that biases toward/away from the prior are positive/negative 
-          >> norm_bias = [biases(dir_p10_c6<225,:) ; biases(dir_p10_c6>225,:).*repmat(-1,size(biases(dir_p10_c6>225,:)))];
-          
-          %get stats
-          >> nDir = length(dir_p10_c6);
-          >> for d_i = 1 : nDir-1
-          >>    [~,ci,m] = slMakeCI(norm_bias(d_i,:),.95);
-          >>     ciOvS(d_i,:) = ci;
-          >>     meanBiasBydirOvS(d_i) = m;
-          >> end
-
-          %min subject average bias across directions and its confidence intervals <br>
-          >> minBiasOvSByDir = unique(meanBiasBydirOvS(find(meanBiasBydirOvS==min(abs(meanBiasBydirOvS)))))
-          >> CIminBiasAll = ciOvS(find(minBiasOvSByDir == meanBiasBydirOvS),:); <br><br>
-          
-          %Average bias over subjects and confidence intervals <br>
-          >> [~,ciMeanBiasOvS,meanBiasOvS] = slMakeCI(nanmean(norm_bias,1),.95)
-          
-          %max subject average bias across directions and its confidence intervals
-          >> maxBiasOvSByDir = unique(meanBiasBydirOvS(find(meanBiasBydirOvS==max(abs(meanBiasBydirOvS)))))
-          >> CImaxBiasAll = ciOvS(find(maxBiasOvSByDir == meanBiasBydirOvS),:); <br><br>
-          
-          % We calculate bias at the prior mean 225 deg separately because they are always <br>
-          % away from the prior mean when non null negative (clockwise) or positive <br>
-          % (counterclockwise). We interprete this bias as noise. <br>
-          meanBiasOvSatPrior = mean(biases(dir_p10_c6==225,:),2);
-          
-        </code>
-        
-                  
-        <h7><a id="Humans-approximate-optimality" class="anchor" href="#Humans-approximate-optimality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">HUMANS APPROXIMATE OPTIMALITY</a></h7>  
-        
-        <p> ... But it failed to explain the subjects' estimates distribution pattern formed over trials: where the model predicts unimodal distributions, 
-        subjects estimate distribution were clearly bimodal.</p>
-        <!--figure-->
-        <center><img src="images/BayesFit_dis.png" style="width: 55%; height: 55%"/></center>   
-        
-        <p>The behavior rather posits for an model in which people do not integrate their prior and sensory likelihood in a posterior that 
-        estimate that lie in between the two but rather switch between the two representations. </p>
-        <!--figure-->
-        <center><img src="images/SwitchingAndFits.png" style="width: 75%; height: 75%"/></center>  
-        
-        <p>We tested other plausible Bayesian observers but all failed to explain the data better than the switching observer </p>
-        <!--figure-->
-        <center><img src="images/AICsFailureModes.png" style="width: 35%; height: 35%"/></center>  
-        
-        <p>We also tested whether subject did not learn priors but simply relied on the previous trial displayed motion direction 
-        (a recency strategy). However the data clearly indicate that subjects were biased toward the prior mean and not the previous 
-        trial and that the stronger the prior and the stronger their bias toward the prior mean, indicating that subjects learn and 
-        used the prior mean and strengths. </p>
-        <!--figure-->
-        <center><img src="images/RecencyBias.png" style="width: 50%; height: 50%"/></center>
-        
-        <p>The bias was also the largest for directions displayed the nearest to the prior mean and the smallest on the 
-        opposite side of the prior, producing a nonlinear relationship between displayed and estimated directions. 
-        This effect is due to the circularity of the space: the average bias become smaller when directions are displayed 
-        further from the prior because the evidence is more and more likely to be pulled from both sides of the prior which 
-        reduces the average bias. This decreasing bias with increasing distance effect effectively disappears in a linear 
-        space as the evidence is always pulled from one side of the prior.
-        
-        <p>The variability was also the lowest for directions displayed the nearest to the prior mean and the largest 
-        on the opposite side of the prior. This effect was due to the same reason that the average bias decreased further 
-        from the prior: evidence were more often pulled from both sides of the prior which increased estimate dispersion.<p>
-        
-        <!--Code-->
-        <code class="code">
-        >> slsimulateBayesianModelEstimateSpace(5:20:360); 
-        </code>
-        
-        <!--figure-->
-        <center><img src="images/BiasAndVarInCircularVsLinearSpace.png"></center>
-  
-        <!--Head-->
-        <h7><a id="Humans-quickly-learn-complex-statistics" class="anchor" href="#Humans-quickly-learn-complex-statistics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">HUMANS QUICKLY LEARN COMPLEX STATISTICS</a></h7>
-        <p>A Bayesian observer that uses the statistical distribution of motion directions fit the data beter than a maximum likelihood observer that only uses sensory likelihood. This indicates that subjects incoporated and ued prior 
-        knowledge about environment statistics for inference and did not solely rely on the sensory evidence. </p>
-        
-        <!--code  -->
-        <code class="code">
-              >> bo = [77182.68 74175.23 84145.32 46451.09 61913.16 75357.9 54584.24 62731.75 84927.68 62633.63 63233.81 66099.47]; <br><br>
-              
-              >> mlo = [100803.6 92739.7 110810.02 56504.8 68159.3 88925.5 68253.5 68253.5 101627.7 71161.2 76223.3 76223.3]; <br><br>
-              
-              >> [e,ci,m,s] = slMakeCI(bo,0.95) <br><br>
-              
-              >> [e,ci,m,s] = slMakeCI(mlo,0.95)
-        </code>
-  
-        <p> This is even clearer when loooking at the AIC difference between the two models, averaged over subjects </p>
-        <!--code  -->
-        <code class="code">
-            >> [e,ci,m,s] = slMakeCI(mlo - bo,0.95);
-        </code>
-  
-        <!--code  -->
-        <code class="code">
-             >> model_ref = 'model_CompDiv'; <br><br>
-             
-             >> models = {'model_Bayes_MAP'}; <br><br>
-             
-             >> path = '/Volumes/DroboBKUP/data/dataPsychophy/... <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp proj01_priorStrength/modelfit/AIC/'; <br>
-             
-             >> [~,~,aicDiff01] = slPlotModelsAICvsSwitchingAIC(model_ref,models,path); <br><br>
-
-             >> figure('color','w') ; SLdrawBar(aicDiff01,1:12,1:12,'facecolor',[.5 .5 .5]);
-        </code>
-        
-        <!--figure-->
-        <center><img src="images/AICbayesVsSwitch.png" style="width: 50%; height: 50%"/></center>   
-        
-        
-        <!--section-->
-        <p> We examined the fit parameters used to model subject prior strengths with the switching observer to determine whether subjects had accurate representations 
-        of the spread of the motion direction statistical distribution over trials (experimental prior). We compared the subjective prior strengths prescribed by 
-        the switching observer with those predicted by the Basic Bayesian observer. </p>
-        
-        <!--figure here median prior strengths-->
-
-        <p> We tested whether the switching observers predicted strength were statistically more accurate than the strengths predicted by the Bayesian observer.
-        Most prior strengths were not normally distributed across subjects (lilliest, most p < 0.05) : </p>
-        
-        <!--Code-->
-        <code class="code">
-          >> cd('~/proj/steeve/projInference/data/') <br><br>
-          
-          >> [~,~,data] = slcsvRead('data_PriorStrngths.csv'); <br><br>
-          
-          >> [Pbo,Psw,subBOstd,subswstd] = slIsPriorStrgDisNormal(data);
-        </code>
-        
-        <p> So we compared the median over subjects of the four subjective prior strength parameters fitted by the switching observer to 
-        each subject’s data (Fig. 6b) to veridical strength  and found that although the switching observer’s median fitted prior 
-        over subjects were significantly weaker than the 80º and 40º veridical priors (W = 7, p < 0.01 and W = 0, p < 0.01 
-        respectively, one-sample Wilcoxon test), the switching observer’s fitted prior standard deviations for the 20º and 10º 
-        priors did not significantly differ from the veridical prior standard deviations (W=17, p=0.09 and W=27, p=0.38 for the 
-        20 and 10 deg priors, one-sample Wilcoxon test). In contrast, the Basic Bayesian observer’s median fitted priors over 
-        subjects were all significantly weaker than the veridical priors (W=1, W=1, W=3, W=2, all p<0.01, for the 80, 40, 20 
-        and 10 deg priors respectively, one-sample Wilcoxon test) which would suggest that the observers were unable to make accurate 
-        estimates of the prior distribution. </p>
-        
-        <!--Code-->
-        <code class="code">  
-            >> [pbo,psw,Hbo,Hsw,wbo,wsw] = slcompBoandSwPriorStrgToExp(subBOstd,...<br>
-                                             &nbsp &nbsp &nbsp &nbsp &nbsp subswstd,subExpstd);
-        </code>   
-        
-        <p> We tested various other plausible Bayesian observers, relaxing certain assumptions about how subject brain might represent the 
-        likelihood and priors, or how their brain might read out those information. We were inspired by models that have been used by past studies
-        to explain other aspects of perception :
-        - a basic Bayesian model [Stocker 2006; Girshick 2011] <br>
-        - a sampling Bayesian model [Pouget 2011] <br>
-        - a basic Bayesian model with cardinal priors [Stocker 2006; Girshick 2011]<br>
-        - a basic Bayesian model with likelihood computed from stimulus components [Stocker 2006; Girshick 2011]<br>
-        - Hierarchical Bayesian inference [Mumford 2003]<br>
-        </p>
-      
-        <!--code-->
-        <code class="code">
-             >> model_ref = 'model_CompDiv'; <br> 
-             
-             >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_MAP_withCard',...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp             'model_Bayes_MAP','model_Bayes_MAP_FatTailPrior'}; <br><br>
-                           
-             >> path = '~/data/dataPsychophy/proj01_priorStrength/modelfit/AIC/'; <br><br>
-             
-             >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp                                   models,path); 
-        </code>
-        
-        
-        <!--Figure-->
-        <center><img src="images/WhyBayesianObserversFail.png" style="width: 100%; height: 100%"/></center>
-        
-        <p> We examined how well other Bayesian observers fit the data compared to the switching observer
-        
-        <!--code  -->
-        <code class="code">
-           >> model_ref = 'model_CompDiv'; <br><br>
-           
-           >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-           &nbsp &nbsp &nbsp &nbsp &nbsp               'model_Bayes_WJMtailedPrior','model_Bayes_WJM',...<br>
-           &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP_withCard','model_Bayes_MAP',... <br>
-           &nbsp &nbsp &nbsp &nbsp &nbsp               'model_Bayes_MAP_FatTailPrior'}; <br><br>
-                         
-           >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
-          &nbsp &nbsp &nbsp &nbsp &nbsp          proj01_priorStrength/modelfit/AIC/'; <br><br>
-           
-           >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...<br>
-           &nbsp &nbsp &nbsp &nbsp &nbsp               models,path); 
-        </code>
-        
-        <!--code  -->
-        <code class="code">
-              >> model_ref = 'model_CompDiv'; <br><br>
-              >> models = {'model_Bayes_Sampling','model_Bayes_Sampling_withCard',...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_WJMtailedPrior', ... <br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_WJM','model_Bayes_MAP_withCard',... <br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP',...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp              'model_Bayes_MAP_FatTailPrior'}; <br><br>
-              
-              >> path = '/Volumes/DroboBKUP/data/dataPsychophy/...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp          proj01_priorStrength/modelfit/AIC/'; <br><br>
-              
-              >> [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(...<br>
-              &nbsp &nbsp &nbsp &nbsp &nbsp               model_ref,models,path);
-        </code>
-        
-        <p> We also examined the number of subjects for which switching outperformed the other Bayesian observers </p>
-        
-        <!--code  -->
-        <code class="code">
-           >> cd('~/proj/steeve/projInference/data/) <br><br>
-           
-           >> [rowheader,colheader,data] = slcsvRead('modelfitData.csv'); <br><br>
-           
-           >> [nRefWins,nNoWin,nRefLoses] = slPlotPropSubSwitchingVsBayesModels(rowheader,...<br><br>
-           &nbsp &nbsp &nbsp &nbsp &nbsp                colheader,data,'Switching observer')
-        </code>
-  
-        <!--section-->
-        <p> An alternative hypothesis is that subjects simply switched biased their estimates toward the previous motion directions without 
-        learning the statistics of the motion directions over trials which is a heuristic that have already been used successfully to 
-        explained perceptual behavior [Loewenstein et al.,]. So we looked at where subjects averaged estimates lied in the trials in
-        which the currently displayed direction was in between the previous direction (clockwise to the displayed direction) and the 
-        prior mean (counterclockwise to the displayed direction). We first checked whether subjects were significantly biased toward 
-        the prior mean, thus away from the previous direction over subjects and conditions. </p>
-        
-        <!--code  -->
-        <code class="code">        
-           >> [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll] = ...<br> 
-            &nbsp &nbsp &nbsp &nbsp &nbsp        slplotandStatsPrevDirvsPriorBias({'sub01','sub02','sub03',...<br> 
-            &nbsp &nbsp &nbsp &nbsp &nbsp        'sub04','sub05','sub06','sub07','sub08','sub09','sub10',...<br> 
-            &nbsp &nbsp &nbsp &nbsp &nbsp        'sub11','sub12'},'~/data/dataPsychophy/proj01_priorStrength/');
-        </code>
-        
-         <p> The overall bias over all subject trials was 4.35 deg, 95% CI [ 3.14 5.57 ] toward the prior and the bias was significantly different 
-         from 0 indicating than subjects were on average significantly biased toward the prior and not the previous direction.</p>
-        
-        <p>We further checked whether all subjects biased their estimates toward the prior and not the previous direction </p>
-        
-        <!--code  -->
-        <code class="code">
-           >> [SigBias2priorAll, SigBias2prevdir, marginAll,ciAll,mAll,sAll] = ... </br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp        slplotandStatsPrevDirvsPriorBias({'sub01'},'~/data/... </br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp        dataPsychophy/proj01_priorStrength/'); </br>
-        </code>
-        
-        <p> 4 out of 12 subjects were significantly biased toward the prior mean and not the previous direction (the average distance
-        between the estimate and the current direction was 2.93 deg, 95% CI [0.03 5.82] for subject 1;
-        21.40 deg, 95% CI [17.30 25.51] for subject 2; 7.29 deg, 95% CI [4.55 10.02] for subject 4; 
-        12.24 , 95% CI [ 6.70 17.78 ] for subject 10; all toward the prior </p>
-      
-        <p> The remaining 8 out of 12 subjects were not significantly biased neither toward the prior nor toward the previous direction 
-        (the average distance between the estimate and the current direction was 
-        -0.56 deg, 95% CI [-5.66 4.55] for subject 4; -2.25 deg, 95% CI [-7.39 2.88] for subject 5; -0.43 deg, 95% CI [-4.18 3.32] 
-        for subject 6; 1.30 deg, 95% CI [-2.75 5.35] for subject 7; -1.99 deg, 95% CI [ -7.59 3.62 ] for subject 8;
-        3.97 deg, 95% CI [0.57 7.38] for subject 9; 1.57 deg, 95% CI [ -2.34 5.49 ] for subject 11;  1.38 deg, 95% CI [-3.97 6.72]
-        for subject 12.</p>
+                              <p><strong> Results: </strong> The slope in the first hundred trials were well correlated with the last 100 trials slopes (r = 0.84, 95% CI [0.73 0.94] over subjects, n=12 subjects, p=1.7e-6, p=4.2e-5, p=4.1e-6, p=1.05e-6, p=7e-3, p=3e-4, p=2.9e-4, p=0.33, p=2.1e-05, p=7e-3, p=9.1e-8, p=9.8e-5 for subjects 1 to 12 respectively; all p<0.01) </p>
 
 
-        <!-- SECTION -->
-        <h7><a id="switching-learning" class="anchor" href="#switching-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> LEARNING TO SWITCH </a></h7> 
+                              <!-- SECTION  -->
+                              <h7><a id="no-recency-bias" class="anchor" href="#no-recency-bias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> NO RECENCY BIAS </a></h7> 
 
-        <p> We plotted a scatter of the slopes between estimate and displayed directions for 100 first versus last trials within blocks. 100 first and last are sorted for each prior and pooled across prior blocks. Trial data are linearized as data + distances to true motion direction (now range between -180 deg and 540) then averaged for each direction, coherence and prior condition. The means are then fitted with a line producing a slope estimate for each condition.</p>
+                              <p> While both the Basic Bayesian and switching observer are predicated on learning the prior distribution, subjects may have used information just from the previous trial, for example biasing estimations on the previous motion direction, which would be a sample from the prior and thus approximate Bayesian inference. If this were the case, then trial estimates should be biased towards the previous motion direction even if that direction is opposite to the mean of the prior. However when trials were sorted such that current displayed directions were positioned between prior mean and previous directions, subject estimates were significantly biased toward the prior mean and not the previous motion direction.</p>
 
-        <!-- Code -->
-        <code class="code">
-            %calculate Pearson correlation coefficient and p-value for correlation <br>
-            datapath = '~/data/dataPsychophy/proj01_priorStrength/'; <br>
-            [linfit_early,linfit_late,rbySub,pbySub] = slAnalysisLearningScatterEarlyVsLateBiasAllSubjects({'sub01',... <br>
-            'sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'},...<br>
-            datapath,'vonMisesPrior')<br><br>
+                              <!-- Code -->
+                              <code class="code">
+                                %polar plots with average over all subjects <br>
+                                analyses({'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09',...<br>
+                                'sub10','sub11','sub12'},{'coh','Pstd','sample_dir'},...<br>
+                                'dataPath','~/data/dataPsychophy/proj01_priorStrength/',... <br>   
+                                'experiment','vonMisesPrior','slgetprevDirEffect');
+                              </code> 
 
-            %calculate confidence interval for Pearson correlation coefficient <br>
-            for i = 1 : 12; rall(i) = r{i}(2,1); end <br>
-            [err_margin,ci,m,s] = slMakeCI(rall,.95) <br><br>
+                              <p> The average estimate over all subject trials was significantly biased toward the prior mean, distant from the current direction by 4.35 deg, 95% CI [3.14 5.57], n=7504 trials, which is significantly larger than 0) suggesting that they learnt priors over stimulus history and did not solely rely on the previous stimulus. </p>
 
-            %report Pearson correlation p-value p for each subject <br>
-            for i = 1 : 12; pall(i)=p{i}(2,1); end  
-        </code> 
+                              <!-- Code -->
+                              <code class="code">
+                                [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll] = slplotandStatsPrevDirvsPriorBias(...<br>
+                                {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'},...<br>
+                                '~/data/ <br>dataPsychophy/proj01_priorStrength/'); 
+                              </code> 
 
-        <!-- figures -->
-        <center><img src="images/slopesEarlyLast.png" style="width: 100%; height: 100%"></center>
+                              <p> Now to examine each subject separately : </p>
 
-        <p><strong> Results: </strong> The slope in the first hundred trials were well correlated with the last 100 trials slopes (r = 0.84, 95% CI [0.73 0.94] over subjects, n=12 subjects, p=1.7e-6, p=4.2e-5, p=4.1e-6, p=1.05e-6, p=7e-3, p=3e-4, p=2.9e-4, p=0.33, p=2.1e-05, p=7e-3, p=9.1e-8, p=9.8e-5 for subjects 1 to 12 respectively; all p<0.01) </p>
+                              <!-- Code -->
+                              <code class="code">
+                                subs = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'};<br>
+                                for i = 1 : length(subs) <br>
+                                [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll]=slplotandStatsPrevDirvsPriorBias(...<br>
+                                subs(i),'~/data/dataPsychophy/proj01_priorStrength/'); <br>
+                                end
+                              </code> 
 
+                              <p> The bias toward the prior was significant for 4 out of 12 subjects (the average distance between the estimate and the current direction was 2.93 deg, 95% CI [0.03 5.82] for subject 1, n=758 trials ;  21.40 deg, 95% CI [17.30 25.51] for subject 2, n= 691 ; 7.29 deg, 95% CI [4.55 10.02] for subject 3, n = 801; 12.24 deg, 95% CI [6.70 17.78] for subject 10, n = 548). The remaining 8 out of 12 subjects were not significantly biased neither toward the prior nor toward the previous direction (the average distance between the estimate and the current direction was -0.56 deg, 95% CI [-5.66 4.55] for subject 4, n = 387; -2.25 deg, 95% CI [-7.39 2.88] for subject 5, n = 553; -0.43 deg, 95% CI [-4.18 3.32] for subject 6, n = 699; 1.30 deg, 95% CI [-2.75 5.35] for subject 7, n = 530; -1.99 deg, 95% CI [ -7.59 3.62 ] for subject 8, n = 508; 3.97 deg, 95% CI [0.57 7.38] for subject 9, n = 782; 1.57 deg, 95% CI [ -2.34 5.49 ] for subject 11, n = 656;  1.38 deg, 95% CI [-3.97 6.72] for subject 12, n = 589. <p> 
 
-        <!-- SECTION  -->
-        <h7><a id="no-recency-bias" class="anchor" href="#no-recency-bias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> NO RECENCY BIAS </a></h7> 
+                                <!--SECTION-->        
+                                <h7><a id="Eye-movement" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EYE POSITIONS </a></h7>
 
-        <p> While both the Basic Bayesian and switching observer are predicated on learning the prior distribution, subjects may have used information just from the previous trial, for example biasing estimations on the previous motion direction, which would be a sample from the prior and thus approximate Bayesian inference. If this were the case, then trial estimates should be biased towards the previous motion direction even if that direction is opposite to the mean of the prior. However when trials were sorted such that current displayed directions were positioned between prior mean and previous directions, subject estimates were significantly biased toward the prior mean and not the previous motion direction.</p>
-        
-        <!-- Code -->
-        <code class="code">
-            %polar plots with average over all subjects <br>
-            analyses({'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09',...<br>
-            'sub10','sub11','sub12'},{'coh','Pstd','sample_dir'},...<br>
-            'dataPath','~/data/dataPsychophy/proj01_priorStrength/',... <br>   
-            'experiment','vonMisesPrior','slgetprevDirEffect');
-        </code> 
+                                <p> We examined whether subjects eye positions changed between prior conditions. <p>
+                                  <p><strong>Data munging:</strong> We get raw data measured by our eyetracker (.edf files saved on local computer in "rawpath"), format and moved them to easily usable formats (.mat and .csv) in the project folder ("projInference") cloned in "irootpath" like that : </p>
 
-         <p> The average estimate over all subject trials was significantly biased toward the prior mean, distant from the current direction by 4.35 deg, 95% CI [3.14 5.57], n=7504 trials, which is significantly larger than 0) suggesting that they learnt priors over stimulus history and did not solely rely on the previous stimulus. </p>
+                                  <!-- Code -->
+                                  <code class="code">
+                                    rawpath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
+                                    irootpath = '~/proj/steeve/'; <br>
+                                    subject = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07',... <br>
+                                    &nbsp &nbsp &nbsp &nbsp &nbsp  'sub08','sub09','sub10','susb11','sub12'}; <br>
+                                    iMungeEyeData(subjects,rawpath,irootpath)
+                                  </code>    
+                                  <p> You can access the munged data files : <a href="data/eye" class="class2"> here </a></p>
 
-         <!-- Code -->
-        <code class="code">
-            [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll] = slplotandStatsPrevDirvsPriorBias(...<br>
-            {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'},...<br>
-            '~/data/ <br>dataPsychophy/proj01_priorStrength/'); 
-        </code> 
+                                  <p><strong>Analysis:</strong> I extracted the eye's horizontal (x) and vertical (y) positions (2 x N trials matrix) for each prior and run an hotelling $T^2$ test for each pair of priors (all pairwise combinations of 4 priors = 6 Hotelling $T^2$ test) which is something like that : </p>
 
-        <p> Now to examine each subject separately : </p>
-        
-        <!-- Code -->
-        <code class="code">
-            subs = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'};<br>
-            for i = 1 : length(subs) <br>
-                [SigBias2priorAll,SigBias2prevdir,marginAll,ciAll,mAll,sAll]=slplotandStatsPrevDirvsPriorBias(...<br>
-                subs(i),'~/data/dataPsychophy/proj01_priorStrength/'); <br>
-            end
-        </code> 
+                                  <!-- Code -->
+                                  <code class="code">
+                                    irootpath = '/proj/steeve/projInference/'; <br>
+                                    subject = 'sub01'; <br>
+                                    iAnalEyePosHotellingT2(subject,irootpath)
+                                  </code> 
 
-        <p> The bias toward the prior was significant for 4 out of 12 subjects (the average distance between the estimate and the current direction was 2.93 deg, 95% CI [0.03 5.82] for subject 1, n=758 trials ;  21.40 deg, 95% CI [17.30 25.51] for subject 2, n= 691 ; 7.29 deg, 95% CI [4.55 10.02] for subject 3, n = 801; 12.24 deg, 95% CI [6.70 17.78] for subject 10, n = 548). The remaining 8 out of 12 subjects were not significantly biased neither toward the prior nor toward the previous direction (the average distance between the estimate and the current direction was -0.56 deg, 95% CI [-5.66 4.55] for subject 4, n = 387; -2.25 deg, 95% CI [-7.39 2.88] for subject 5, n = 553; -0.43 deg, 95% CI [-4.18 3.32] for subject 6, n = 699; 1.30 deg, 95% CI [-2.75 5.35] for subject 7, n = 530; -1.99 deg, 95% CI [ -7.59 3.62 ] for subject 8, n = 508; 3.97 deg, 95% CI [0.57 7.38] for subject 9, n = 782; 1.57 deg, 95% CI [ -2.34 5.49 ] for subject 11, n = 656;  1.38 deg, 95% CI [-3.97 6.72] for subject 12, n = 589. <p> 
-
-        <!--SECTION-->        
-        <h7><a id="Eye-movement" class="anchor" href="#lars" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> EYE POSITIONS </a></h7>
-
-        <p> We examined whether subjects eye positions changed between prior conditions. <p>
-        <p><strong>Data munging:</strong> We get raw data measured by our eyetracker (.edf files saved on local computer in "rawpath"), format and moved them to easily usable formats (.mat and .csv) in the project folder ("projInference") cloned in "irootpath" like that : </p>
-        
-        <!-- Code -->
-        <code class="code">
-            rawpath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
-            irootpath = '~/proj/steeve/'; <br>
-            subject = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07',... <br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp  'sub08','sub09','sub10','susb11','sub12'}; <br>
-            iMungeEyeData(subjects,rawpath,irootpath)
-        </code>    
-        <p> You can access the munged data files : <a href="data/eye" class="class2"> here </a></p>
-
-        <p><strong>Analysis:</strong> I extracted the eye's horizontal (x) and vertical (y) positions (2 x N trials matrix) for each prior and run an hotelling $T^2$ test for each pair of priors (all pairwise combinations of 4 priors = 6 Hotelling $T^2$ test) which is something like that : </p>
-
-        <!-- Code -->
-        <code class="code">
-            irootpath = '/proj/steeve/projInference/'; <br>
-            subject = 'sub01'; <br>
-            iAnalEyePosHotellingT2(subject,irootpath)
-        </code> 
-
-        <p><center><img src="images/eyePosDiffBetwPriorHotellingT2.png" style="width: 100%; height: 100%"></center></p>
-        <p><strong>Results:</strong> Surprisingly, although the eye positions (cloud of dots) for example subject 01 are qualitatively the same between the pairs of priors (the two colors), the average position across trials is significantly different between priors according to the Hotelling $T^2$ test. Either the hypothesis tested or our intuition is wrong (as they do not match). 
+                                  <p><center><img src="images/eyePosDiffBetwPriorHotellingT2.png" style="width: 100%; height: 100%"></center></p>
+                                  <p><strong>Results:</strong> Surprisingly, although the eye positions (cloud of dots) for example subject 01 are qualitatively the same between the pairs of priors (the two colors), the average position across trials is significantly different between priors according to the Hotelling $T^2$ test. Either the hypothesis tested or our intuition is wrong (as they do not match). 
 
 
-        <p>We also tested the hypothesis that eye positions are the same between prior conditions with two anovas one over the horizontal and one over the vertical position (for now from raw data on local computer).</p>
-        <!--code  -->
-        <code class="code">
-           datapath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
-           [dataEye01,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
-           'AnovaEyeMvt','plotEyeMvtStats','filename','test');
-        </code>
-        
-        <p> The eye distance to the fixation point, averaged over subjects, was not significantly different between priors </p>
-        <code class="code">
-           >> cd ~/.../projInference/data; <br>
-           >> [rowheader,colheader,data] = slcsvRead('data_meanEyePosition.csv'); <br>
-           >> [m,ci,condition] = sleyePosMeanAndCIByPrior(data);
-        </code>
+                                    <p>We also tested the hypothesis that eye positions are the same between prior conditions with two anovas one over the horizontal and one over the vertical position (for now from raw data on local computer).</p>
+                                    <!--code  -->
+                                    <code class="code">
+                                     datapath = '~/data/dataPsychophy/proj01_priorStrength/data'; <br>
+                                     [dataEye01,output] = SLanalysesEyeMvt({'sub01'},'dataPath',datapath,...<br>
+                                     'AnovaEyeMvt','plotEyeMvtStats','filename','test');
+                                   </code>
+
+                                   <p> The eye distance to the fixation point, averaged over subjects, was not significantly different between priors </p>
+                                   <code class="code">
+                                     >> cd ~/.../projInference/data; <br>
+                                     >> [rowheader,colheader,data] = slcsvRead('data_meanEyePosition.csv'); <br>
+                                     >> [m,ci,condition] = sleyePosMeanAndCIByPrior(data);
+                                   </code>
 
 
-       <!--section-->
-      <p><h7><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">GENERALIZATION TO ANOTHER TASK</a></h7> </p>
-      <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location
-      of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background.  </p>
+                                   <!--section-->
+                                   <p><h7><a id="Generalization-to-another-task" class="anchor" href="#Generalization-to-another-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top">GENERALIZATION TO ANOTHER TASK</a></h7> </p>
 
-      <p> The stimulus consisted in a wedge (2.5 deg radius, 5 deg angle span). I generated a wedge, filled it with random values, low pass-filtered 
-      the wedge with a 2D Gaussian filter function (30 deg std, centered on zero frequency) and superimposed the filtered wedge on a gray background. Noise was further added to the wedge 
-      stimulus by manipulating its contrast from 1%, 15.6% to 100% contrast across trials based on Michelson (Imax - Imin)/(Imax + Imin) (or Weber produce the same results 
-      in our case: (I - Ib)/Ib) where I is the intensity (Ib background Intensity).</p>      
-      
-      <p> To run a run of the task with a prior of 80 deg just run this in matlab (you need mgl installed) : </p>
-      
-      <!--Code-->
-      <code class="code">
-          >> sltaskLoc('displayName=VPixx','computeStim','p=80');
-      </code>
+                                   <p> We examined whether the result generalized to other tasks and thus run a location estimation task where subject had to estimate the location of a noisy wedge (10%, 15,6% and 100% contrast) on a noisy background. Note that following analyses are only performed with 15.6 and 100% contrast as 10% contrast estimate distributions were very noisy because data sample was too small. </p>
 
-      <p> We fitted the data with the basic Bayesian observer and the switching heuristic. </p>    
-      <p> Basic Bayesian observer's initial model parameters were : <p>    
-      .....
+                                   <p> The stimulus consisted in a wedge (2.5 deg radius, 5 deg angle span). I generated a wedge, filled it with random values, low pass-filtered 
+                                    the wedge with a 2D Gaussian filter function (30 deg std, centered on zero frequency) and superimposed the filtered wedge on a gray background. Noise was further added to the wedge 
+                                    stimulus by manipulating its contrast from 1%, 15.6% to 100% contrast across trials based on Michelson (Imax - Imin)/(Imax + Imin) (or Weber produce the same results 
+                                    in our case: (I - Ib)/Ib) where I is the intensity (Ib background Intensity).</p>      
 
-      <p> ...We found the initial parameters by manually and qualitatively fitting the model to each subject data like that: </p>
-      
-      <!--Code-->
-      <code class="code">
-        datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
-        SLfitBayesianModel({'sub06'},[600 2 1 0.7 1 2 20 NaN 0.001 15 NaN],... <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp  'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp  'MAPReadout','modelPredictions','withData','inputFitParameters');
-      </code>
 
-      <p> ...We then fitted the model to each subject data like that: </p>
-      
-      <!--Code-->
-      <code class="code">
-        datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal';<br>
-        subs = {'sub01','sub02','sub03','sub04','sub05','sub06'};<br>
-        initp = [20 2 1 0.7 1 10 20 NaN 0.001 15 NaN;<br>
-            600 1 0.5 0.4 2 10 20 NaN 0.001 15 NaN;<br>
-            600 1 0.5 0.4 2 10 20 NaN 0.001 15 NaN;<br>
-            600 1 0.5 0.4 1 1 20 NaN 0.001 15 NaN;<br>
-            600 1 0.8 0.2 0.2 0.4 0.4 NaN 0.001 15 NaN;<br>
-            600 2 1 0.7 1 2 20 NaN 0.001 15 NaN];<br><br>
-    
-        for i = 1 : length(subs)<br>
-        SLfitBayesianModel(subs(i),initp(i,:),...<br>
-            'dataPathVM',datapath,'experiment','vonMisesPrior',...<br>
-            'filename','datafit','MAPReadout','MaxLikelihoodFit','fminsearch','filename',['data' subs{i}]);<br>
-        end
-    </code>
+                                    <p>The stimuli are saved in SLcodes/Behavior/experiments/
+                                      Exp04_SLtaskLocEst/experiment/finalExp/</p>
 
-      
-      <!--Code-->
-      <code class="code">
-        datapath = '/Volumes/DroboBKUP/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
-        SLfitBayesianModel({'sub01'},[100 3 3 1 2.5 7.7 43 NaN 0.001 15 NaN ] ,... <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
-        'MAPReadout','modelPredictions','withData','inputFitParameters'); <br>
-      </code>
+                                      To recompute them and replace the current ones - this takes quite some time (20 min-ish) - just run </p>
 
-      <!--Code-->
-      <code class="code">
-        >> SLfitBayesianModel({'sub01','sub02','sub03','sub04','sub05','sub06'},...<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    ones(1,11),... <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'dataPathVM',datapath,'experiment','vonMisesPrior',...<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'MAPReadout','modelPredictions','withData',...<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'directoryFitParameter','../modelfit/AIC/',... <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'filename','locationTask'); <br>
-      </code>
-      
-      <p> <strong> Result </strong>  : The switching observer also fitted the data better than the basic Bayesian observer (the average AIC difference was 36, 95% CI [-130 202] over subjects, n=6 subjects, in favor of switching for 4 subjects out of 6).</p>
+                                      <!--Code-->
+                                      <code class="code">
+                                        <font color="green"> recompute stimuli and save them in cd </font><br>
+                                        sltaskLoc('displayName=VPixx','computeStim','p=10');<br>
+                                        sltaskLoc('displayName=VPixx','computeStim','p=20');<br>
+                                        sltaskLoc('displayName=VPixx','computeStim','p=40');<br>
+                                        sltaskLoc('displayName=VPixx','computeStim','p=80');<br>          </code>
 
-	  <!--Code-->
-      <code class="code">
-		model_ref = 'model_CompDiv';
-		models = {'model_Bayes_MAP'};
-		datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal/modelfit/AIC/';
-		[AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...
-    	models,datapath);
-		[e,ci,m,s] = slMakeCI(aicDiff,0.95); 
-	  </code>
+                                        <p>The task parameters are saved in SLcodes/Behavior/experiments/
+                                          Exp04_SLtaskLocEst/experiment/finalExp/params/ and can be recomputed with "SLinitRunExpUniPriorLoc". </p>
 
-      <!--End Main Content-->
-      </section>
-    </div>
-    
-   
-    
-    
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+                                          <p> To run a run of the task with a prior of 80 deg just run this in matlab (you need mgl installed). Experiment codes are in SLcodes/Behavior/experiments/Exp04_SLtaskLocEst/experiment/finalExp </p>
 
-  </body>
-</html>
+                                          <!--Code-->
+                                          <code class="code">
+                                            <font color="green"> run task for 80 deg prior </font><br>
+                                            sltaskLoc('displayName=VPixx','loadStim','p=80');
+                                          </code>
+
+                                          <p> We fitted the data with all the models. Note that we drop the 10% contrast condition which is much too noisy because there are not enough data. </p>    
+
+                                          <p> Basic Bayesian observer's initial model parameters were : <p>    
+
+                                            <p> ...We found the initial parameters by manually and qualitatively fitting the model to each subject data like that: </p>
+
+
+                                            <!--Code-->
+                                            <code class="code">
+                                              datapath = '/Volumes/DroboBKUP/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
+                                              SLfitBayesianModel({'sub01'},[100 3 3 1 2.5 7.7 43 NaN 0.001 15 NaN ] ,... <br>
+                                              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  'dataPathVM',datapath,'experiment','vonMisesPrior',... <br>
+                                              'MAPReadout','modelPredictions','withData','inputFitParameters'); <br>
+                                            </code>
+
+                                            <!--Code-->
+                                            <code class="code">
+                                              datapath = '/Volumes/DroboBKUP/data/dataPsychophy/proj04_LocPriorStrengthFinal'; <br>
+                                              >> SLfitBayesianModel({'sub01','sub02','sub03','sub04','sub05','sub06'},...<br>
+                                              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    ones(1,11),... <br>
+                                              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'dataPathVM',datapath,'experiment','vonMisesPrior',...<br>
+                                              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'MAPReadout','modelPredictions','withData',...<br>
+                                              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'directoryFitParameter','../modelfit/AIC/',... <br>
+                                              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   'filename','locationTask'); <br>
+                                            </code>
+
+                                            <p> <strong> Result </strong>  : The switching observer also fitted the data better than the basic Bayesian observer (the average AIC difference was 36, 95% CI [-130 202] over subjects, n=6 subjects, in favor of switching for 4 subjects out of 6).</p>
+
+                                            <!--Code-->
+                                            <code class="code">
+                                              datapath = '~/Desktop/dataPsychophy/proj04_LocPriorStrengthFinal';
+                                              output = SLfitCompetitionModel({'sub04'}, ...
+                                              [0.3592 1.7196 9.3069 2.2514 2.4409 1.3512 9.9058 NaN 2 3.4369],...
+                                              'dataPathVM',datapath, ...
+                                              'experiment','vonMisesPrior', 'MaxLikelihoodFit',...
+                                              'fminsearch','filename','fig06'); 
+                                            </code>
+
+                                            <p> AICs were </p>
+                                            <!--Code-->
+                                            <code class="code">
+                                              model_ref = 'model_CompDiv';
+                                              models = {'model_Bayes_MAP'};
+                                              datapath = '~/data/dataPsychophy/proj04_LocPriorStrengthFinal/modelfit/AIC/';
+                                              [AICsvsSw,semAICsvsSw,aicDiff] = slPlotModelsAICvsSwitchingAIC(model_ref,...
+                                              models,datapath);
+                                              [e,ci,m,s] = slMakeCI(aicDiff,0.95); 
+                                            </code>
+
+                                            <p>We display an example of switching from one best typical subject (figure from paper).</p>
+
+                                            <!--section-->
+                                            <p><h7><a id="GOINGDEEPER" class="anchor" href="#GOINGDEEPER" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>GOING DEEPER WITH MORE ANALYSES</b></a></h7> </p>      
+
+                                            <!--section-->
+                                            <p><h7><a id="firstBlockcont" class="anchor" href="#firstBlockcont" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Switching not due to transfer of sharp prior</b></a></h7> </p>
+
+                                            <p>We run a new experiment on new subjects with 80 deg prior only to verify that subjects also swicth when they have not been previously exposed to sharp priors, thus that switching is not a strategy due to prior transfer over blocks. Task parameters and codes are stored in 
+                                              SLcodes/Behavior/experiments/Exp06_sltaskDotDirPrior80/ </p>
+
+                                              <!-- code -->
+                                              <code class="code">                                              
+                                                taskDotDir('steeve_metho_Pstd080_mean225_coh006012024_dir36_t106_075_034perCoh_170702')                                            
+                                              </code>
+
+                                              <p>For additional analyses see <a href="pages/priorTransfer.html" class="class2"> here </a></p>    
+
+                                              <!--section-->
+                                              <p><h7><a id="fitLoc" class="anchor" href="#fitLoc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Model comparison location task</b></a></h7> </p>
+
+                                              <p>see pilot experiment <a href="pages/model_comparison_location.html" class="class2"> here </a></p>    
+
+                                              <p>and final experiment <a href="pages/model_comparison_locationOptim.html" class="class2"> here </a></p>    
+
+
+                                              <!--section-->
+                                              <p><h7><a id="earlyVsLate" class="anchor" href="#fitLoc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Switching is stable across the experiment</b></a></h7> </p>
+
+                                              <p> Subjects could have not switched early in the experiment and started switching later in the experiment. We fitted the Switching observer to the first and second halves of the experiment to examine whether switching was stable across the experiment. We initialized the fit with the same initial parameters identified for the whole dataset. </p>
+
+                                              <code class= "code">
+                                               initp = [80 30 2 0.7 3 7 33 NaN 0.001 30;
+                                               80 2 1 1.74 4.77 60 100 NaN 0.001 15;
+                                               80 40 3 1.74 4.77 30 40 NaN 0.001 15;
+                                               80 3 0.5 0.3 0.9 3 21 NaN 0.001 15;
+                                               80 20 .5 0 0 0 0 NaN 0.001 15;
+                                               80 4 1 0 3 21 25 NaN 0.001 15;
+                                               80 6 2 0.3 3 10.74 21 NaN 0.001 18;
+                                               80 1 0.4 0.1 2 2 5 NaN 0.001 3;
+                                               80 16 2 0.1 0.7 10 10 NaN 0.001 18;
+                                               200 1 1 0.18 1 21.63 300.63 NaN 0.00104 5;
+                                               80 3 1 0.00005 0.2 3 15 NaN 0.001 30;
+                                               5 2.5 1 0.3 1.7 6 33 NaN 0.001 17]
+                                             </code>
+
+                                             <p>We fitted the model to the first half of the dataset </p>
+
+                                             <code class="code">
+                                              clear <br>          
+                                              tic <br>
+                                              subject = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'};<br>
+                                              datapath = '~/Desktop/dataPsychophy/proj01_priorStrength/data'<br>
+                                              pscales = ones(12,10) <br><br>
+
+                                              for i = 1 : length(subject)<br>
+                                              output = SLfitCompetitionModel(subject(i),initp(i,:),'pscaling',pscales(i,:),'dataPathVM',datapath, 
+                                              'experiment','vonMisesPrior','MaxLikelihoodFit','fminsearch','keepFraction',[0;0.5],'filename','datafitswEarly','savedfolder','basicSwitchEarly');<br>                 
+                                              end <br>
+                                              toc
+
+                                            </code>
+
+                                            <p>We fitted the model to the last half of the dataset </p>
+
+                                            <code class="code">
+
+                                              clear <br>          
+                                              tic <br>
+                                              subject = {'sub01','sub02','sub03','sub04','sub05','sub06','sub07','sub08','sub09','sub10','sub11','sub12'};<br>
+                                              datapath = '~/Desktop/dataPsychophy/proj01_priorStrength/data'<br>
+                                              pscales = ones(12,10) <br><br>
+
+                                              for i = 1 : length(subject)<br>
+                                              output = SLfitCompetitionModel(subject(i),initp(i,:), 
+                                              'pscaling',pscales(i,:), 
+                                              'dataPathVM',datapath,'experiment','vonMisesPrior', 
+                                              'MaxLikelihoodFit','fminsearch', 
+                                              'keepFraction',[0.5;1], 
+                                              'filename','datafitswLate','savedfolder','basicSwitchLate');<br>                 
+                                              end<br>
+                                              toc<br>
+
+                                            </code>
+                                            
+                                            <p>Test the null hypothesis that the average difference between early and late prior strengths for each subject is 0 with a non parametric t-test, the wilcoxon signed rank test (small sample size of 12 subjects thus we can't assume normal distributions). </p>
+
+                                            <code class = "code">
+
+                                              <font color="green"> Early best fitted prior strengths parameters. </font> <br>
+                                              path = '~/Desktop/dataPsychophy/proj01_priorStrength/modelfit/AIClateHalf/model_CompDiv/';<br>
+                                              path = '~/Desktop/dataPsychophy/proj01_priorStrength/modelfit/AICearlyHalf/model_CompDiv/'; <br>
+                                              [AICsEarly,allVarsEarly,sub] = slLoadSavedFitParams('allVars',path) <br>
+                                              for i = 1 : sub(12) <br>
+                                              PriorEarlies(i,:) = allVarsEarly(i).fitP(4:7)<br>
+                                              end <br><br>
+
+                                              <font color="green"> Late best fitted prior strengths parameters. </font> <br>
+                                              path = '~/Desktop/dataPsychophy/proj01_priorStrength/modelfit/AIClateHalf/model_CompDiv/';<br>
+                                              [AICslate,allVarsLate,sub] = slLoadSavedFitParams('allVars',path) <br>
+                                              for i = 1 : sub(12) <br>
+                                              Priorlates(i,:) = allVarsLate(i).fitP(4:7)<br>
+                                              end<br> <br>                                
+
+                                              <font color="green"> Test of hypothesis that the average difference between early and late prior strength is 0 (Wilcoxon rank signed test as a non parametric t-test). </font> <br>
+                                              numPriors = 4 <br>
+                                              for i = 1 : numPriors <br>
+                                              [p(i),h(i),Z{i}] = signrank(PriorEarlies(:,i),Priorlates(:,i)) <br>
+                                              end <br>
+
+                                            </code>
+
+                                            <p>AICs were not different for each subject between the first and second halves of the experiment (Z= 32, p = 0.62, Wilcoxon signed rank test, n=12 subjects)</p>
+                                            
+                                            <code class="code">
+                                              
+                                              path = '~/Desktop/dataPsychophy/proj01_priorStrength/modelfit/AICearlyHalf/model_CompDiv/';<br>
+                                              [AICsEarly,allVarsEarly,sub] = slLoadSavedFitParams('AIC',path) <br><br>
+
+                                              path = '~/Desktop/dataPsychophy/proj01_priorStrength/modelfit/AIClateHalf/model_CompDiv/';<br>
+                                              [AICslate,allVarsLate,sub] = slLoadSavedFitParams('AIC',path) <br><br>
+
+                                              [pAIC,hAIC,Z_AIC] = signrank(AICsEarly,AICslate)<br>
+
+                                            </code>
+
+                                            <p>
+
+                                            </p>
+
+
+                                            <!--End Main Content-->
+                                          </section>
+                                        </div>
+
+
+
+
+                                        <!-- FOOTER  -->
+                                        <div id="footer_wrap" class="outer">
+                                          <footer class="inner">
+                                            <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a></p>
+                                            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+                                          </footer>
+                                        </div>
+
+                                      </body>
+                                      </html>

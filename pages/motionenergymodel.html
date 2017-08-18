@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Fitting on High performance cluster">
+  <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+  <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css" />
+
+  <!--Mathematics with MathJax-->
+  <script type="text/x-mathjax-config">      
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true
+  },
+  "HTML-CSS": { 
+  availableFonts: ["STIX"],
+}
+});
+</script>
+<script type="text/javascript" async
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>  
+
+</head>
+
+<body>
+
+  <title>Motion energy model</title>
+  
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/steevelaquitaine/projInference">Github</a>
+      <a id="project_author" href="http://steevelaquitaine.blogspot.com">Steeve laquitaine </a>
+    </header>
+  </div>
+
+  <!--TITLE-->
+  <div id="proj_title_wrap" class="outer">
+    <header class="inner">
+      <section id="proj_title" class="inner">
+        <h1 id="proj_title">Motion energy model</h1>
+      </section>
+    </header>
+  </div>
+
+  <!--Table of contents    -->
+  <div id="Table_of_content_wrap" class="outer">
+    <section id="table_of_content" class="inner">
+      <h5 id="top"> TABLE OF CONTENTS </h5>               
+
+      <h7><a href="#briefly"> <b>Briefly </b><br></h7>
+      <h7><a href="#simStim"> <b> Simulate motion stimulus  </b><br></h7><h7><a href="#model"> <b> Stimulus and model filter responses  </b><br></h7> 
+      <h7><a href="#compLLH"> <b>Compute sensory likelihood</b><br></h7>     
+    </section>
+  </div>      
+
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+
+     <p><h7><a id="briefly" class="anchor" href="#briefly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Briefly</b></a></h7> </p> 
+
+     <p><h7><a id="briefly" class="anchor" href="#briefly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Setup code libraries</b></a></h7> </p> 
+
+     <code class="code">
+       addpath(genpath('~/proj/mgl'))
+       addpath(genpath('~/proj/gru'))
+       addpath(genpath('~/proj/grustim'))
+       addpath(genpath('~/proj/mrTools'))
+       addpath(genpath('~/Desktop/SLcodes'))              
+     </code>
+     
+     <p><h7><a id="simstim" class="anchor" href="#simstim" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Simulate motion stimulus</b></a></h7></p>
+
+     <p> To run the model, recreate our experiment's 5º diameter motion stimulus set screen parameters in mglEditScreenParams for a screen called 'offscreen' </p>
+     
+     <code class="code">       
+       mglEditScreenParams   
+     </code>    
+
+     <p>Then set the screen parameters</p>
+
+     <ul>
+       <li> 100x100 pixels screen with and height </li>
+       <li> 5x5 cm screen dimensions </li>
+       <li> 57 cm distance from screen </li>             
+     </ul>
+
+     <p><h7><a id="model" class="anchor" href="#model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Simulate motion energy filter responses </b></a></h7></p>
+
+     <p> Create a motion energy model made of </p>
+     <ul>
+      <li> 24 energy filters (artificial neurons) with 15º distinct direction selectivities (0:15:359º). </li>      
+      <li> filters are tuned for speed near the stimulus speed of 2.8 deg/sec with temporal frequencies of 1 and 1.4 and spatial frequencies of 0.46 and 0.5 producing speed selectivities of 2; 2.1739; 2.8; 3.0435 deg/sec. </li>
+      <li> filters mean responses are averaged over time </li>
+      <li> filters responses are not corrupted with Poisson noise but only change with coherence. </li>
+    </ul>
+
+    <p> For one direction, with sf=0.4 and tf= 1 at 6, 12 and 24% coherence (note make sure that parfor is there for iOrient = 1:m.nOrient in applyFilters to speed up things except on the laptop: it freezes it). The code produces 2 sf x 2 tf x 24 filters = 96 responses. Duration 30 min (cynar 12 cores) </p>
+
+    <code class="code">      
+      <font color="green"> Simulate a thousand 1 deg direction, 2.8 deg/sec speed random dots motion stimuli made of 16.7 dots/deg^2 %for each of three coherences</font><br>
+      <font color="green"> Load mean responses over time </font><br>
+      tic <br>      
+      datapath = '~/Desktop/motionenergy/'<br>
+      slrunsimoten(datapath) <br>            
+      [allMeanR006,allMeanR012,allMeanR024] = slloadmotenSimMeanR(datapath)
+    </code>
+
+    <p>You can visualize the motion energy filters and other plots by using "motionEnergyModelFast.m" instead of "motionEnergyModelFastNoFig.m" To quickly visualize a stimulus </p>    
+    <code class="code">
+      figure; for i = 1 : 60; imagesc(s{1}.s(:,:,i)); colormap('gray'); drawnow; end <br>
+    </code>    
+
+    <p>Interprete the model outputs</p>
+    <ul>
+      <li> 3 mat files containing filter responses are saved r_coh06, r_coh12, r_coh24</li>  
+      <li> r.r contains "n" cells one cell for each repeated simulation block </li>
+      <li> r.r{1}.meanResponse is a 2x2x24 matrix 2 tf x 2 sf x 24 filters time-averaged responses. </li>     
+      <li> 3 mat files containing stimuli are saved s_coh06, s_coh12, s_coh24</li>
+    </ul>
+
+
+    <p><h7><a id="compLLH" class="anchor" href="#compLLH" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Compute sensory likelihood </b></a></h7></p>
+
+    <p>Now we generate sensory likelihood of simulated evidence given hypothetical motion direction for each motion coherence (6,12 and 24%) used in experiment. We first simulate 1000 trials of 1º motion direction, producing 2 tf x 2 sf x 24 filters time-averaged responses for each trial. A motion direction evidence is decoded for each trial with population vector decoding weighting neuron prefered motion direction by its  response magnitude. We compute an evidence distribution for 1º motion direction from The 1000 evidence produced, infer hypothetical evidence distributions for other displayed motion directions by shifting the evidence distribution circularly. Sensory likelihood is computed by taking the transpose of the  360 evidence x 360 displayed motion directions evidence distributions matrix. </p>
+
+    <code class="code">          
+
+      <font color="green">%set coherence and load parameters of motion energy model</font> <br>
+      coh = '0.12' <br>
+      coh = strrep(coh,'.','');<br>
+      cd ~/Dropbox/myDropbox/Codes/SLcodes/Behavior/analyses/modeling/models/Bayesian/BayesMotionEnergy/sensoryLikelihood/<br>
+      load motenInfo.mat<br>
+
+      <font color="green">%Load saved filter responses (allMeanR006 or allMeanR012 or allMeanR024 for each coherence)</font> <br>
+      cd filterResponses <br>     
+      load(['allMeanR' coh '.mat']) <br>        
+      allMeanR = importdata(['allMeanR' coh '.mat']); <br>
+      rall  = []; <br>
+      <font color="green">%for each simulation (typically 1000), collect the 2 tf x 2 sf x 24 filters time-averaged responses to the %simulated displayed 1º motion direction at 6% coherence and organize the filter responses in a 96 filters %x 1000 simulations matrix. Run for each coherence. </font> <br>
+      <!-- for i = 1 : size(r.r,2); rall = [rall r.r{i}.meanResponse(:)]; end <br> -->
+      for i = 1 : size(allMeanR,2); rall = [rall allMeanR{i}(:)]; end <br>
+
+      <font color="green">%Get evidence from population vector decoding</font><br>
+      <font color="green">%Each simulation (stimulus instance) produces one direction evidence e</font><br>
+      <font color="green">%e is the energy-weighted sum of filter direction preferences.</font><br>
+      <font color="green">%Filters orientation preferences </font><br>
+      th = SLde2r(r.orientationPreference,0);<br>
+      th = bsxfun(@times,ones(2,2,24),reshape(th,[1 1 24]));<br>
+      <font color="green">%for each simulation, get population vector decoded direction evidence </font> <br>
+      for i = 1 : size(allMeanR,2) <br>   
+      <!-- &nbsp &nbsp   rall = r.r{i}.meanResponse(:);<br> -->
+      <!-- &nbsp &nbsp   thall = th(:); <br>        -->
+      &nbsp &nbsp   [~,evidence] = SLcart2polar([dot(rall(:,i),cos(th(:))) dot(rall(:,i),sin(th(:)))]./sum(rall(:,i)));<br>
+      &nbsp &nbsp   eall(i) = evidence;<br>
+      <!-- &nbsp &nbsp   vline(evidence)<br> -->
+      end<br>    
+
+      <font color="green">%Compute evidence probability distribution given direction (columns)</font><br>
+      eSpace = 1:1:360;<br>
+      ebins = 0:1:360;<br>
+      N = histc(eall,ebins);N(end) = [];<br>
+      pe = N/sum(N);<br>
+      
+      <font color="green">%denoise evidence distribution with a 9 degrees polynomial fit</font><br>
+      <font color="green">%check that each distrib sum to 1 (they do).</font><br>     <font color="green">%denoise evidence dist with conv. </font><br>      
+      m = vmPdfs(0:1:359,0,40,'norm')<br>
+      pefit = SLcircConv(pe,m')<br>                
+
+      for i = 0:1:359<br>
+      &nbsp &nbsp peallrw(:,i+1) = circshift(pe',i);<br>
+      end<br><br>
+
+      for i = 0:1:359<br>
+      &nbsp &nbsp peall(:,i+1) = circshift(pefit',i);<br>
+      end<br><br>
+
+      hold on; plot(eSpace,peallrw(:,180),'k')<br>
+      hold on; plot(eSpace,peall(:,180),'r')<br><br>
+
+      <font color="green">%Compute Likelihood function (transpose)(columns) </font><br>
+      <font color="green">%Likelihood function is clearly tailed as expected.</font><br>
+      assignin('base',['likelihood' coh],peall'); <br>
+      cd ../likelihoods <br>        
+      save(['likelihood' coh '.mat'],['likelihood' coh]) <br>
+    </code>
+
+    <p> Repeat for each coherence and collect 3 matrices of likelihood to be loaded in the Basic Bayesian observer code to replace the assumed circular likelihoods. </p>
+
+    <p>Now run basic Bayesian model with motion energy : </p>
+
+    <code class="code">          
+      datapath = '~/Desktop/dataPsychophy/proj01_priorStrength'; <br>
+      output = SLfitBayesianModel({'sub01'},[1.74 4.77 10.74 34.25 NaN 0.001 15 NaN],'pscaling',ones(1,8), 'dataPathVM', datapath, 'experiment', 'vonMisesPrior', 'filename', 'datafit','motionenergymodel','MAPReadout', 'MaxLikelihoodFit', 'fminsearch');
+    </code>
+
+    <p>To save datafiles that we'll use later, create a directory '=~/Desktop/motionEnergy/stimuli' and '=~/Desktop/motionEnergy/response' where stimuli and responses will be saved. </p>
+  </section>
+</div>
+
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+  <footer class="inner">
+    <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a></p>
+    <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
