@@ -317,6 +317,7 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
       <code class="code">      
         clear <br>          
         tic <br>
+        datapath = '~/Desktop/dataPsychophy/proj01_priorStrength';<br>
         subject = {'sub01','sub02','sub03','sub04','sub07'};<br>        
         initp = [3 0.7 2.7 8 33 1e-2 32;
         1.5 2.77 4.5 15 33 1e-1 16;
@@ -375,7 +376,7 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
         1 0 1 4 33 0.1 16];<br><br>
         for i = 1 : length(subject)<br>
         o = slFitWJM(subject(i),initp(i,:),
-        'pscaling',[1 1 1 1 1 1 1],
+        'pscaling',ones(1,7),
         'experiment','vonMisesPrior','fminsearch','dataPath',datapath,'MAPReadout')<br>
         end <br>
         toc
