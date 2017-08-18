@@ -46,25 +46,26 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
   <div id="proj_title_wrap" class="outer">
     <header class="inner">
       <section id="proj_title" class="inner">
-        <h1 id="proj_title"> Fitting on Bayes long tail likelihood BLS readout on High performance cluster </h1>
+        <h1 id="proj_title"> Fitting Bayes BLS tailed LLH on Sherlock HPC </h1>
       </div>
       
       <!--Table of contents    -->
       <div id="Table_of_content_wrap" class="outer">
         <section id="table_of_content" class="inner">
           <h5 id="top"> TABLE OF CONTENTS </h5>               
-          <h7><a href="#simLLH"> <b>&nbsp &nbsp Generate likelihood </b><br></h7>
-          <h7><a href="#fitonHPC"> <b>&nbsp &nbsp Fit on HPC </b><br></h7>
+          <h7><a href="#copydatacode"> <b>Copy data and codes </b><br></h7>
+          <h7><a href="#submit"> <b>Submit job </b><br></h7>
+          <h7><a href="#check"> <b>Check job status </b><br></h7>
+          <h7><a href="#getresults"><b>Get back results </b><br></h7>
         </section>
       </div>
-      
-      
+            
       <!-- MAIN CONTENT -->
       <div id="main_content_wrap" class="outer">
         <section id="main_content" class="inner">
 
           <!-- SECTION -->
-          <p><h7><a id="fitonHPC" class="anchor" href="#fitonHPC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Fit on HPC</b></a></h7> </p>
+          <p><h7><a id="copydatacode" class="anchor" href="#copydatacode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Copy data and codes</b></a></h7> </p>
 
           <p> Copy codes (slcodes, mgl, mrTools), data and the batch file that will run the fit from gru@cynar computer to Sherlock cluster</p>          
           
@@ -74,7 +75,7 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
             rsync -a --stats gru@cynar.stanford.edu:~/Desktop/slwjmbls.matlab jlg@sherlock.stanford.edu:~/jlg/<br>
           </code>                          
 
-          <p>The batch file "slwjmbls.matlab" contains the information below:</p>
+          <p>The batch file "slwjmbls.matlab" is stored in jlg@sherlock.stanford.edu:~/ and contains the information below:</p>
 
           <code class="code">                
             #!/bin/bash  <br>
@@ -98,8 +99,11 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
           </code>
 
           <p>"#SBATCH --mail-type=ALL" means you'll be mailed the fitting status (to your stanford email). note : with qos=normal and time=8:00:00 queuing time is typically less than 1 hour. Otherwise it can be days. </p>
+
+          <!-- SECTION -->
+          <p><h7><a id="submit" class="anchor" href="#submit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Submit job on Sherlock </b></a></h7> </p>
           
-          <p> Submit job </p>
+          <p> On sherlock, submit job </p>
 
           <code class="code">   
             cd ~ <br>
@@ -110,8 +114,10 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
           
           <code class="code">         
             Submitted batch job 15416695<br>
-          </code>          
+          </code>
 
+          <!-- SECTION -->
+          <p><h7><a id="check" class="anchor" href="#check" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Check job status </b></a></h7> </p>          
           <p>Then if you check the status of your jobs by calling squeue -u $user</p>
           
           <code class="code">     
@@ -130,6 +136,9 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
          <code class="code">     
           vim slwjmbls.out
         </code>
+
+        <!-- SECTION -->
+        <p><h7><a id="getresults" class="anchor" href="#getresults" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"><b>Get back results </b></a></h7> </p>
 
         <p>When computations are done you can get back the results by :</p>
 
