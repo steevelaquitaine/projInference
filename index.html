@@ -1,43 +1,53 @@
 <!DOCTYPE html>
+
 <html>
 
+<!-- ------------------------------------ HEAD ---------------------------- -->
 <head>
+
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <meta name="description" content=" A Switching heuristics approximates Bayesian inference in a motion direction estimation task">
-  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-  <link rel="stylesheet" href="fonts/Serif/cmun-serif.css" />
+  <meta name="description" content=" Switching Bayesian heuristics">
+  <link rel="stylesheet" href="web/stylesheets/stylesheet.css">
+  <link rel="stylesheet" href="web/fonts/Serif/cmun-serif.css">
 
   <!--Mathematics with MathJax-->
   <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
     jax: ["input/TeX", "output/HTML-CSS"],
     tex2jax: {
-    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-    processEscapes: true
-  },
-  "HTML-CSS": {
-  availableFonts: ["STIX"],
-}
-});
-</script>
-<script type="text/javascript" async
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
-</script>
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }, "HTML-CSS": {
+      availableFonts: ["STIX"],
+    }
+  });
+  </script>
+
+  <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
 
 </head>
 
+<!-- ------------------------------------ BODY --------------------------------  -->
+
 <body>
 
-  <title> A Switching heuristics approximates Bayesian inference in a motion direction estimation task <acronym></acronym></title>
+  <!-- Title -->
+  <title>
+    A Switching heuristics approximates Bayesian inference in a motion direction estimation task
+  </title>
 
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
       <a id="forkme_banner" href="https://github.com/steevelaquitaine/projInference">Github</a>
-      <a id="project_author" href="http://steevelaquitaine.blogspot.com">Steeve laquitaine </a>
+      <a id="project_author" href="http://steevelaquitaine.blogspot.com">
+        Steeve laquitaine
+      </a>
     </header>
   </div>
 
@@ -45,32 +55,40 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
   <div id="proj_title_wrap" class="outer">
     <header class="inner">
       <section id="proj_title" class="inner">
-        <h1 id="proj_title"> Switching as a heuristic approximation to Bayesian inference </h1>
+        <h1 id="proj_title">
+          Switching as a heuristic approximation to Bayesian inference
+        </h1>
       </section>
     </header>
   </div>
 
-  <!--Table of contents    -->
+  <!--Table of contents -->
   <div id="Table_of_content_wrap" class="outer">
     <section id="table_of_content" class="inner">
       <h5 id="top"> Content </h5>
-      <h7><a href="#task"> Task <br></h7>
-      <h7><a href="#data"> Data <br></h7>
-
+      <h2><a href="#task"> Task <br></h2>
+      <h2><a href="#data"> Data <br></h2>
     </section>
   </div>
-
 
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
-
-      <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Task </a></h1>
+      <a id="task" class="anchor" href="#task" aria-hidden="true">
+        <span aria-hidden="true" class="octicon octicon-link">
+        </span>
+      </a>
 
       <!-- task -->
-      <p> Brownian motion stimulus </p>
-
+      <a href="#top">
+        <h2>
+          Task
+        </h2>
+      </a>
+      <!-- Browniam motion -->
+      <h3>
+        Brownian motion
+      </h3>
       <p>
         <ul>
           <li>
@@ -91,38 +109,47 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
         </ul>
       </p>
 
-      <p> How to run the task <p>
+
+
+      <!-- motion videos -->
+      <div id="videoal" align="center" style="padding:0px">
+        <div class="video">
+          <video controls autoplay><source src="images/motioncoh06.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video">
+          <video controls autoplay><source src="images/motioncoh12.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video">
+          <video controls autoplay><source src="images/motioncoh24.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+
+      <!-- Run the task -->
+      <h3>
+        Run the task
+      </h3>
       <ul>
-        <li> You can find the task's matlab code is in projInference/task/.</li>
+        <li>
+          You can find the task's matlab code is in projInference/task/.
+        </li>
       </ul>
 
       <!-- code -->
       <code class="code">
         <ol>
-          <li> git clone mgl and mrtools libraries at https://github.com/justingardner and SLcodes at https://github.com/steevelaquitaine/ </li>
-          <li> set screen parameters (mglEditScreenParams, screenNumber = 1, can be changed in taskDotDir.m) </li>
-          <li> open main.m and run each prior block line by line </li>
+          <li>
+            git clone mgl and mrtools libraries at https://github.com/justingardner and SLcodes at https://github.com/steevelaquitaine/
+          </li>
+          <li>
+            set screen parameters (mglEditScreenParams, screenNumber = 1, can be changed in taskDotDir.m)
+          </li>
+          <li>
+            open main.m and run each prior block line by line
+          </li>
         </ol>
       </code>
-
-      <!--video-->
-      <div id="videoal" align ="center" style="padding:10px">
-        <div class="video">
-          <video controls autoplay>
-            <source src="images/motioncoh06.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video">
-            <video controls autoplay>
-              <source src="images/motioncoh12.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video">
-              <video controls autoplay>
-                <source src="images/motioncoh24.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
 
       <!-- Section title -->
       <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Estimation standard deviation </a></h1>
@@ -131,81 +158,88 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
       <p> Models fit curves (fig 3 and 5) are not smooth </p>
 
       <!-- Section title -->
-      <h7><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Bayesian model with learned and cardinal priors </a></h7>
+      <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Bayesian model with learned and cardinal priors </a></h2>
 
       <p></p>
 
-      <section>
-        <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Could detection sometimes fails ? </a></h1>
+      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Could detection sometimes fails ? </a></h1>
 
-        <p> A Bayesian model where detection sometimes fails, would combine the prior with a uniform likelihood in trials when detection failed, producing an estimate peak centered at the prior mean and combines the prior with a noiseless (a delta function) or an extremely strong likelihood when detection succeeds, producing an estimate peak centered at the motion direction. Whether the likelihood function, represented by inherently noisy neural populations, can be noiseless, or nearly noiseless enough to entirely bias estimate toward sensory evidence is a plausible explanation remains to be determined. </p>
+      <p> A Bayesian model where detection sometimes fails, would combine the prior with a uniform likelihood in trials when detection failed, producing an estimate peak centered at the prior mean and combines the prior with a noiseless (a delta function) or an extremely strong likelihood when detection succeeds, producing an estimate peak centered at the motion direction. Whether the likelihood function, represented by inherently noisy neural populations, can be noiseless, or nearly noiseless enough to entirely bias estimate toward sensory evidence is a plausible explanation remains to be determined. </p>
 
-        <p>
-          We cannot preclude the possibility that this or other distributional forms would allow a Bayesian model with multiplicative integration to better explain the data.
-        </p>
-      </section>
-
-      <section>
-        <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Can we check the detection hypothesis by measuring likelihood strength in a 2AFC? </a></h1>
-        <p></p>
-      </section>
-
-      <section>
-        <h7><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why we call the generalization task orientation estimation? </a></h7>
-        <p></p>
-      </section>
+      <p>
+        We cannot preclude the possibility that this or other distributional forms would allow a Bayesian model with multiplicative integration to better explain the data.
+      </p>
 
 
-      <section>
+      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Can we check the detection hypothesis by measuring likelihood strength in a 2AFC? </a></h1>
+      <p></p>
 
-        <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why is orientation estimation so hard at 15% contrast? </a></h1>
 
-        <p> Possible reason why estimation was so hard at 15% contrast are that: </p>
-        <ul>
-          A thin bar filled with filtered noise appeared for 20 ms in one of 36 different possible spatial orientations
-        </ul>
-        <p></p>
+      <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why we call the generalization task orientation estimation? </a></h2>
+      <p></p>
 
-      </section>
 
+
+      <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why is orientation estimation so hard at 15% contrast? </a></h2>
+
+      <p> Possible reason why estimation was so hard at 15% contrast are that: </p>
+      <ul>
+        A thin bar filled with filtered noise appeared for 20 ms in one of 36 different possible spatial orientations
+      </ul>
+      <p></p>
 
       <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why is the switching model able to fit the SD so well and not predict higher SD? </a></h1>
+      <h2>
+        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why is the switching model able to fit the SD so well and not predict higher SD? </a>
+      </h1>
 
       <p></p>
 
       <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Did we run the task without feedback ? </a></h1>
+      <h1>
+        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Did we run the task without feedback ? </a>
+      </h1>
 
       <p></p>
 
       <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Fitting codes</a></h1>
+      <h1>
+        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Fitting codes</a>
+      </h1>
 
       <p></p>
 
       <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Did subjects see the edges of the monitor ? </a></h1>
+      <h1>
+        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Did subjects see the edges of the monitor ? </a>
+      </h1>
 
       <p></p>
 
-      <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> What were subjects instructions ? </a></h1>
 
-    <!--End Main Content-->
-  </section>
-</div>
+      <h1>
+        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> What were subjects instructions ? </a>
+      </h1>
 
 
+      <h1>
+        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Could detection sometimes fails ? </a>
+      </h1>
 
+      <!--End Main Content-->
+    </section>
+  </div>
 
-<!-- FOOTER  -->
-<div id="footer_wrap" class="outer">
-  <footer class="inner">
-    <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a></p>
-    <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-  </footer>
-</div>
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      <p class="copyright">Projinference maintained by <a href="https://github.com/steevelaquitaine">steevelaquitaine</a>
+      </p>
+      <p>
+        Published with <a href="https://pages.github.com"> GitHub Pages </a>
+      </p>
+    </footer>
+  </div>
 
 </body>
 </html>
