@@ -7,3 +7,5 @@ Task
 To run the task git clone the project and follow the instructions given in .../task/README.txt
 
 All analyses and discussion can be found in [Laquitaine & Gardner, Neuron (2018)](https://secure.jbs.elsevierhealth.com/action/getSharedSiteSession?redirect=http%3A%2F%2Fwww.cell.com%2Fneuron%2FpdfExtended%2FS0896-6273%2817%2931134-0&rc=0&code=cell-site)
+
+Website: http://steevelaquitaine.github.io/projInference/
