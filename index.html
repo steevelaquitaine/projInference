@@ -66,9 +66,10 @@
   <div id="Table_of_content_wrap" class="outer">
     <section id="table_of_content" class="inner">
       <h3 id="top"> Content </h3>
-      <h3><a href="#abstract"> Abstract </a></h3>
-      <h3><a href="#task"> Task </a></h3>
-      <h3><a href="#get_data"> Get the data </a></h3>
+      <a href="#abstract"> Abstract</a><br>
+      <a href="#task"> Task </a><br>
+      <a href="#get_data"> Data </a><br>
+      <a href="#Q_A"> Q&A </a>
     </section>
   </div>
 
@@ -162,7 +163,7 @@
 
 
       <!-- get the data -->
-      <a id="get_data" class="anchor" href="#get_data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> <h2>Get the data</h2> </a>
+      <a id="get_data" class="anchor" href="#get_data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> <h2>Data</h2> </a>
       <p>
         <ol>
         <li>
@@ -190,89 +191,80 @@
           SLfitBayesianModel({'sub01'},[100 3 3 1 2.5 7.7 43 NaN 0.001 15 NaN ],'dataPathVM',datapath,'experiment','vonMisesPrior','MAPReadout','modelPredictions','withData','inputFitParameters', 'filename','myfile');
       </code>
 
+      <a id="Q_A" class="anchor" href="#Q_A" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> <h2>Q&A</h2> </a>
+
       <!-- Section title -->
       <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span>
       </a>
-      <a href="#top"><h2>Estimate standard deviation</h2></a>
+      <h3><a href="#top"> Why is estimation standard deviation higher clockwise to the prior mean (at -140) than counterclockwise (at +140) for 80º prior?
+        Why are the models' fits not smooth (fig 3 and 5)?</a></h3>
+
       <p>
-        <ol>
-          <li>
-            Why is estimation standard deviation higher clockwise to the prior mean (at -140) than counterclockwise (at +140) for 80º prior?
-          </li>
-          <li>
-           Why are the models' fits not smooth (fig 3 and 5)?
-         </li>
-       </ol>
-     </p>
+        This is an artefact in the plotted standard deviation created by numerical imprecision when performing polar to cartesian conversions for this plot. 90 degree was converted to misestimated cartesians (x=-4e-8, y=1) instead of (x=0, y=1). Once converted back to polar with atan(y/x), negative x led to -90 degrees instead of 90 degrees. A corrected plot will be uploaded soon. Similar numerical imprecisions make the curves not smooth.
+      </p>
 
-      <!-- Section title -->
-      <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Bayesian model with learned and cardinal priors </a></h2>
 
-      <p></p>
-
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Could detection sometimes fails ? </a></h1>
+      <h3><a href="#top"> Could detection sometimes fails ? </a></h3>
 
       <p> A Bayesian model where detection sometimes fails, would combine the prior with a uniform likelihood in trials when detection failed, producing an estimate peak centered at the prior mean and combines the prior with a noiseless (a delta function) or an extremely strong likelihood when detection succeeds, producing an estimate peak centered at the motion direction. Whether the likelihood function, represented by inherently noisy neural populations, can be noiseless, or nearly noiseless enough to entirely bias estimate toward sensory evidence is a plausible explanation remains to be determined. </p>
-
       <p>
         We cannot preclude the possibility that this or other distributional forms would allow a Bayesian model with multiplicative integration to better explain the data.
       </p>
 
+      <h3><a href="#top"> Can we check the detection hypothesis by measuring likelihood strength in a 2AFC? </a></h3>
 
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Can we check the detection hypothesis by measuring likelihood strength in a 2AFC? </a></h1>
-      <p></p>
+      <p> In a 2AFC task, subjects would for example indicate whether a test motion stimulus with 6% coherence moved clockwise or counterclockwise to a reference 100% coherence motion stimulus in repeated trials. In a simple task the prior is uniform and motion directions are sampled out of a uniform distribution. The sensory likelihood width can be fitted to subjects' responses. It is not clear though how/whether the width can be derived for each individual trial which is necessary to determined whether likelihood is sometimes flat (no detection) or strong (detection).</p>
 
+      <h3>
+        <a href="#top"> Why is orientation estimation so hard at 15% contrast? </a>
+      </h3>
 
-      <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why we call the generalization task orientation estimation? </a></h2>
-      <p></p>
-
-
-
-      <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why is orientation estimation so hard at 15% contrast? </a></h2>
-
-      <p> Possible reason why estimation was so hard at 15% contrast are that: </p>
-      <ul>
-        A thin bar filled with filtered noise appeared for 20 ms in one of 36 different possible spatial orientations
+      <p> Possible reason why orientation estimation was hard at 15% contrast are that the stimulus was a 1) thin bar, 2) it was filled with filtered noise  3) it appeared for only 20 ms 4) in one of 36 different possible spatial orientations. Thus contrast was only one of the many noise factor.
       </ul>
       <p></p>
 
       <!-- Section title -->
-      <h2>
-        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Why is the switching model able to fit the SD so well and not predict higher SD? </a>
-      </h1>
+      <h3>
+        <a href="#top"> Why is the switching model able to fit the SD so well and not predict higher SD like for cue switching in the cue-integration literature? </a>
+      </h3>
 
-      <p></p>
-
-      <!-- Section title -->
-      <h1>
-        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Did we run the task without feedback ? </a>
-      </h1>
-
-      <p></p>
+      <p> The most likely reason is that our switching model has more free parameters and that allows it to avoid that problem to some extent. </p>
 
       <!-- Section title -->
-      <h1>
-        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Fitting codes</a>
-      </h1>
+      <h3>
+        <a href="#top"> Did we run the task without feedback ? </a>
+      </h3>
 
-      <p></p>
+      <p>
+        We did run pilot experiments without feedback but that made the task much harder for subjects particularly at low coherence (6%) - pilot subjects' estimate distributions were mostly random. Some subjects also displayed unexplained biases. We also reasoned that prior would be easier to learn and thus learning would be faster (which was essential to test our hypothesis) if we used feedbacks, again particularly at low coherence.
+      </p>
 
       <!-- Section title -->
-      <h1>
-        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Did subjects see the edges of the monitor ? </a>
-      </h1>
+      <h3>
+       <a href="#top"> Did subjects see the edges of the monitor ? </a>
+      </h3>
 
-      <p></p>
+      <p>
+        No subjects' eye distance to the monitor prevented them to see its edges. We also ensured subjects viewed the stimuli in a dark room with no visual distractors. The fixation point was also circular. These dispositions were taken to make sure that subjects couldn't use cardinal axes (edges, fixation cross) as references to estimate the motion directions.
+      </p>
 
+      <h3>
+        <a href="#top"> What were subjects instructions ? </a>
+      </h3>
 
-      <h1>
-        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> What were subjects instructions ? </a>
-      </h1>
+      <p>
+        Subjects were instructed as follows:
 
-
-      <h1>
-        <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Could detection sometimes fails ? </a>
-      </h1>
+        <ul>
+          <li>"The basic task is: </li>
+          <li> Fixate and then view a motion of noisy dots.</li>
+          <li> Report the direction you saw as best as possible, as accurately as possible, and as fast as possible by adjusting the wheel.</li>
+          <li> Press keyboard button 1 when you have made a choice. You have a maximum of 5 s to report your choice. d Then your response will be confirmed (greenline).</li>
+          <li>You will then get feedback about the true direction of the motion (redline).
+          <li>Important !! Please fixate the fixation point during the entire experiment.</li>
+          <li> Your objective is to estimate and report the direction of the motion as best as possible. In the ideal case, your choice (green line)will match perfectly the feedback (true direction of the motion)."</li>
+        </ul>
+      </p>
 
       <!--End Main Content-->
     </section>
