@@ -2,7 +2,7 @@
 by Steeve Laquitaine
 *******************************************************************************/
 
-@import url(github-light.css);
+/*@import url(github-light.css);
 
 html, body, div, span, applet, object, iframe,
 h1,h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -25,7 +25,7 @@ time {
   font-size: 18px;
   line-height: 25px;
 }
-
+*/
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -61,7 +61,6 @@ body {
   box-sizing: border-box;
   color:#00000;
   background-color: white;
-  /*font-size: 18px;*/
   font-family: 'CMS';
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -69,7 +68,7 @@ body {
 
 /* Common to all headers */
 h1, h2, h3, h4, h5, h6 {
-  margin: 30px 0;
+  /*margin: 30px 0;*/
   color:#000000;
   font-family: 'CMS';
   letter-spacing: 1px;
@@ -100,7 +99,7 @@ h3 {
   color:#000000;
   font-family: 'CMS';
   letter-spacing: 1px;
-  line-height: 1.1;
+  line-height: 0.1;
   font-size: 20px;
   font-weight: 900;
 }
@@ -118,7 +117,7 @@ footer p {
 a {
   text-decoration: none;
   color: #000000;
-  font-size : 20px;
+  font-size : 16px;
   line-height: 1.5;
 }
 
@@ -200,10 +199,11 @@ code {
   display: block;
   vertical-align: middle; /*center*/
   line-height: 1.5;
-  width: 820px;
-  padding-top: 2px;  /*add top grey padding*/
+  width: 100%;
+  padding-top: 2px;       /*add top grey padding*/
   padding-bottom: 2px;
   margin: 0px 0px 0px 0px;/*add top & bottom white margin*/
+  padding-left: 30px;
   padding-left: 30px;
 }
 

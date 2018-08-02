@@ -18,7 +18,7 @@
     jax: ["input/TeX", "output/HTML-CSS"],
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      displayMath: [ ['$f$','$$'], ["\\[","\\]"] ],
       processEscapes: true
     }, "HTML-CSS": {
       availableFonts: ["STIX"],
@@ -62,29 +62,43 @@
     </header>
   </div>
 
-  <!--Table of contents -->
+  <!-- Table of contents -->
   <div id="Table_of_content_wrap" class="outer">
     <section id="table_of_content" class="inner">
-      <h5 id="top"> Content </h5>
-      <h2><a href="#task"> Task <br></h2>
-      <h2><a href="#data"> Data <br></h2>
+      <h3 id="top"> Content </h3>
+      <h3><a href="#abstract"> Abstract </a></h3>
+      <h3><a href="#task"> Task </a></h3>
+      <h3><a href="#get_data"> Get the data </a></h3>
     </section>
   </div>
 
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
+      <a id="abstract" class="abstract" href="#abstract" aria-hidden="true">
+        <span aria-hidden="true" class="octicon octicon-link">
+        </span>
+      </a>
+      <!-- abstract -->
+      <a href="#top">
+        <h2>
+          Abstract
+        </h2>
+      </a>
+      <p>
+        Human perceptual inference has been fruitfully characterized as a normative Bayesian process in which sensory evidence and priors are multiplicatively combined to form posteriors from which sensory estimates can be optimally read out. We tested whether this basic Bayesian framework could explain human subjects’ behavior in two estimation tasks in which we varied the strength of sensory evidence (motion coherence or contrast) and priors (set of directions or orientations). We found that despite excellent agreement of estimates mean and variability with a Basic Bayesian observer model, the estimate distributions were bimodal with unpre- dicted modes near the prior and the likelihood. We developed a model that switched between prior and sensory evidence rather than integrating the two, which better explained the data than the Basic and several other Bayesian observers. Our data suggest that humans can approximate Bayesian optimality with a switching heuristic that forgoes multiplicative combination of priors and likelihoods.
+      </p>
       <a id="task" class="anchor" href="#task" aria-hidden="true">
         <span aria-hidden="true" class="octicon octicon-link">
         </span>
       </a>
-
       <!-- task -->
       <a href="#top">
         <h2>
           Task
         </h2>
       </a>
+
       <!-- Browniam motion -->
       <h3>
         Brownian motion
@@ -109,8 +123,6 @@
         </ul>
       </p>
 
-
-
       <!-- motion videos -->
       <div id="videoal" align="center" style="padding:0px">
         <div class="video">
@@ -130,10 +142,7 @@
       <h3>
         Run the task
       </h3>
-      <ul>
-        <li>
-          You can find the task's matlab code is in projInference/task/.
-        </li>
+        <p>The matlab code is in projInference/task/.</p>
       </ul>
 
       <!-- code -->
@@ -151,11 +160,50 @@
         </ol>
       </code>
 
-      <!-- Section title -->
-      <h1><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Estimation standard deviation </a></h1>
 
-      <p> Asymetry: higher SD at -140 vs +140 </p>
-      <p> Models fit curves (fig 3 and 5) are not smooth </p>
+      <!-- get the data -->
+      <a id="get_data" class="anchor" href="#get_data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> <h2>Get the data</h2> </a>
+      <p>
+        <ol>
+        <li>
+          Download "data01_direction4priors.zip" <a href="https://doi.org/10.17632/nxkvtrj9ps.1"> from mendeley </a>
+        </li>
+        <li>
+          Add /projInference's datapath to matlab path (mine is ~/Desktop/projInference)
+        </li>
+        <li>
+          Unzip the file in /projInference/data/
+        </li>
+        <li>
+          fit the data
+        </li>
+        </ol>
+      </p>
+
+      <p>
+        To visualize the Standard Bayesian model's predictions (subject 1):
+      </p>
+      <!-- code make predictions-->
+      <code class="code">
+          addpath(genpath('~/Desktop/projInference/')); <br>
+          datapath = '~/Desktop/projInference/data/data01_direction4priors/data'; <br>
+          SLfitBayesianModel({'sub01'},[100 3 3 1 2.5 7.7 43 NaN 0.001 15 NaN ],'dataPathVM',datapath,'experiment','vonMisesPrior','MAPReadout','modelPredictions','withData','inputFitParameters', 'filename','myfile');
+      </code>
+
+      <!-- Section title -->
+      <a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span>
+      </a>
+      <a href="#top"><h2>Estimate standard deviation</h2></a>
+      <p>
+        <ol>
+          <li>
+            Why is estimation standard deviation higher clockwise to the prior mean (at -140) than counterclockwise (at +140) for 80º prior?
+          </li>
+          <li>
+           Why are the models' fits not smooth (fig 3 and 5)?
+         </li>
+       </ol>
+     </p>
 
       <!-- Section title -->
       <h2><a id="task" class="anchor" href="#task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#top"> Bayesian model with learned and cardinal priors </a></h2>
