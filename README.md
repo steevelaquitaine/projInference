@@ -1,5 +1,7 @@
 # A Switching Bayesian observer
 
+Steeve Laquitaine & Justin L. Gardner
+
 <p align="center">
 	<img src="assets/switching_observer.png" width="800">
 </p>
