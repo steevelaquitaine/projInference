@@ -1,9 +1,11 @@
-# projInference
+# Human visual motion direction & location estimation in the Bayesian framework
 
-Analyse and model human inference behavior in a task in which optimality requires exploiting knowledge of stimulus statistics to improve estimation.
+Analyse and model human inference behavior in motion direction and spatial location estimation tasks in which optimality requires exploiting knowledge of the statistical distribution of the stimuli.
 
-Task
-----
+See also [website](http://steevelaquitaine.github.io/projInference/).
+
+## Task
+
 To run the task git clone the project and follow the instructions given in .../task/README.txt
 
 1. Set your screen parameters (will run on screenNumber = 1, you can change the screen number in taskDotDir.m)
@@ -32,6 +34,20 @@ There is one file per prior.
 
 3. When the task is running to enter a response move your mouse to the desired direction, then press 1 on keyboard (make sure mglEditScreenParameters takes "1" as input)
 
-Analyses and discussion can be found in [Laquitaine & Gardner, Neuron (2018)](https://secure.jbs.elsevierhealth.com/action/getSharedSiteSession?redirect=http%3A%2F%2Fwww.cell.com%2Fneuron%2FpdfExtended%2FS0896-6273%2817%2931134-0&rc=0&code=cell-site)
 
-See also ![Website](http://steevelaquitaine.github.io/projInference/)
+## References 
+
+Please cite:
+
+```
+@article{laquitaine2018switching,
+  title={A switching observer for human perceptual estimation},
+  author={Laquitaine, Steeve and Gardner, Justin L},
+  journal={Neuron},
+  volume={97},
+  number={2},
+  pages={462--474},
+  year={2018},
+  publisher={Elsevier}
+}
+```
