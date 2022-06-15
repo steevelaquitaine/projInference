@@ -1,4 +1,4 @@
-# Human visual motion direction & location estimation in the Bayesian framework
+# Switching Bayesian observer
 
 Analyse and model human inference behavior in motion direction and spatial location estimation tasks in which optimality requires exploiting knowledge of the statistical distribution of the stimuli.
 
