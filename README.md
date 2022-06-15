@@ -1,4 +1,8 @@
-# Switching Bayesian observer
+# A Switching Bayesian observer
+
+<p align="center">
+	<img src="assets/switching_observer.png" width="800">
+</p>
 
 Analyse and model human inference behavior in motion direction and spatial location estimation tasks in which optimality requires exploiting knowledge of the statistical distribution of the stimuli.
 
