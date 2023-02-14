@@ -99,10 +99,11 @@ ans =
     mglClose                  : Closes the screen
 ```
 
-3. Extract the data from each file:
+3. Extract the data from each file (see documentation in 1). The extracted `data` is a matlab structure with two elements. The data 
+are contained in the second element:
 
 ```python
-data = getTaskParameters('steeve_exp12_data_sub01_sess06_run26_Pstd040_mean225_coh006_012_024_dir36_randInitPosSymPrior80_140106.mat')
+data = getTaskParameters('data/data01_direction4priors/data/sub01/steeve_exp12_data_sub01_sess06_run26_Pstd040_mean225_coh006_012_024_dir36_randInitPosSymPrior80_140106.mat')
 data{2}
 
 ans = 
@@ -124,9 +125,17 @@ ans =
           responseTimeRaw: [1x202 double]
                  randVars: [1x1 struct]
                 parameter: [1x1 struct]
+
+data{2}.reactionTime    
+
+ans =
+
+  Columns 1 through 14
+
+    2.1582    2.5499    1.7992    2.6472    1.9805    1.9602    1.1360    1.9403
 ```
 
-## References 
+## Cite
 
 Please cite:
 
@@ -142,3 +151,7 @@ Please cite:
   publisher={Elsevier}
 }
 ```
+
+## References
+
+(1) https://gru.stanford.edu/doku.php/mgl/taskreference?s[]=reactiontime
