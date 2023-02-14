@@ -157,9 +157,7 @@ data{2}.randVars.myRandomCoh
 ```
 
 
-## Cite
-
-Please cite:
+## Please kindly cite
 
 ```
 @article{laquitaine2018switching,
