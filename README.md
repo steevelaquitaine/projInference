@@ -71,11 +71,11 @@ Desktop/project/
         - sub09/  
 ```
 
-2. Extract the task variables from the data files:
+2. Install the `mgl` package for data extraction:
 
-The dataset is saved in `stim_file.mat`. You can access its variables with `getTaskParameters('stim_file.mat')`:
+Task and behavioral data are saved in the `.mat`. You can extract them with `getTaskParameters('..mat')`:
 
-Clone the `mgl` software in your project path. In Matlab:
+Clone the `mgl` software and add it to your matlab path. In Matlab:
 
 ```python
 # move to project path
@@ -89,15 +89,42 @@ addpath(genpath('Desktop/project/mgl'))
 
 # test your installation
 help mgl
-# MGL library functions
-#
-# Main screen functions
-#   mglOpen                   : Opens the screen
-#   mglFlush                  : Flips front and back buffer
-#   mglClose                  : Closes the screen
+
+ans = 
+  MGL library functions
+
+  Main screen functions
+    mglOpen                   : Opens the screen
+    mglFlush                  : Flips front and back buffer
+    mglClose                  : Closes the screen
 ```
 
-'/gpfs/bbp.cscs.ch/data/scratch/proj68/laquitai/other_datasets/switching_data/data01_direction4priors/data/sub01'
+3. Extract the data from each file:
+
+```python
+data = getTaskParameters('steeve_exp12_data_sub01_sess06_run26_Pstd040_mean225_coh006_012_024_dir36_randInitPosSymPrior80_140106.mat')
+data{2}
+
+ans = 
+
+  struct with fields:
+
+                  nTrials: 202            # trial count
+              trialVolume: [1x202 double]
+                trialTime: [1x202 double]
+             trialTicknum: [1x202 double]
+                   trials: [1x202 struct]
+                 blockNum: [1x202 double]
+            blockTrialNum: [1x202 double]
+                 response: [1x202 double]
+             reactionTime: [1x202 double]  # reaction time is in seconds relative to the trial segment start 
+    originalTaskParameter: [1x1 struct]
+         originalRandVars: [1x1 struct]
+           responseVolume: [1x202 double]
+          responseTimeRaw: [1x202 double]
+                 randVars: [1x1 struct]
+                parameter: [1x1 struct]
+```
 
 ## References 
 
