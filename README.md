@@ -132,7 +132,7 @@ ans =
     2.1582    2.5499    1.7992    2.6472    1.9805    1.9602    1.1360    1.9403
 ```
 
-Get subject's **estimated direction** (Cartesian coordinates):
+Get subject's **estimated directions** (Cartesian coordinates):
 
 ```python
 data{2}.randVars.prodcoor
