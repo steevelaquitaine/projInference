@@ -144,13 +144,13 @@ Get the task's **displayed directions** (degree):
 data{2}.randVars.myRandomDir
 ```
 
-Get the task's displayed **direction coherence** (dot ratio):
+Get the task's displayed **direction coherences** (dot ratio):
 
 ```python
 data{2}.randVars.myRandomCoh
 ```
 
-Get the **response arrow's initial position/direction** (degree):
+Get the **response arrow's initial position/directions** (degree):
 
 ```python
 data{2}.randVars.myRandomCoh
