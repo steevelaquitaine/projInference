@@ -71,10 +71,7 @@ Desktop/project/
         - sub09/  
 ```
 
-2. Install the `mgl` package for data extraction:
-
-Task and behavioral data are saved in the `.mat`. You can extract them with `getTaskParameters('..mat')`:
-
+2. Install the `mgl` package for data extraction. Task and behavioral data are saved in the `.mat`. You can extract them with `getTaskParameters('..mat')`:
 Clone the `mgl` software and add it to your matlab path. In Matlab:
 
 ```python
@@ -134,6 +131,31 @@ ans =
 
     2.1582    2.5499    1.7992    2.6472    1.9805    1.9602    1.1360    1.9403
 ```
+
+Get subject's **estimated direction** (Cartesian coordinates):
+
+```python
+data{2}.randVars.prodcoor
+```
+
+Get the task's **displayed directions** (degree):
+
+```python
+data{2}.randVars.myRandomDir
+```
+
+Get the task's displayed **direction coherence** (dot ratio):
+
+```python
+data{2}.randVars.myRandomCoh
+```
+
+Get the **response arrow's initial position/direction** (degree):
+
+```python
+data{2}.randVars.myRandomCoh
+```
+
 
 ## Cite
 
