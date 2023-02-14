@@ -43,7 +43,7 @@ There is one file per prior.
 
 ## Data extraction
 
-1. Download the dataset from Mendeley into your project path e.g., `proj_path = "Desktop/project"`
+1. Download the dataset from [Mendeley](https://doi.org/10.17632/nxkvtrj9ps.1) into your project path e.g., `proj_path = "Desktop/project"`
 
 ```python
 Desktop/project/
