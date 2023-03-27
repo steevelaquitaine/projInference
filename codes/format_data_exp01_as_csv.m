@@ -11,7 +11,7 @@ addpath(genpath('~/Desktop/projects/project/mgl'));
 % setup parameters
 exp_i = 1;
 n_subjects = 12;
-write_path = '~/Desktop/projects/project/data/data_as_csv/';
+write_path = '~/Desktop/projects/project/data/csv/';
 exp_name = 'data01_direction4priors';
 
 % run curation
