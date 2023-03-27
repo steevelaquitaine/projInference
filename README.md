@@ -45,6 +45,14 @@ There is one file per prior.
 
 1. Download the dataset from [Mendeley](https://doi.org/10.17632/nxkvtrj9ps.1) into your project path e.g., `proj_path = "Desktop/project"`
 
+Run from the terminal:
+
+```bash
+curl https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/nxkvtrj9ps-1.zip --output dataset.zip
+```
+
+The dataset should look like this:
+
 ```python
 Desktop/project/
 - data/
