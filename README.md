@@ -55,7 +55,7 @@ The dataset should look like this:
 
 ```python
 Desktop/project/
-- data/
+- data/mat/
   - data01_direction4priors/ # four-prior motion experiment
       - data/
         - sub01/  # subject 1
@@ -108,7 +108,7 @@ ans =
 are contained in the second element:
 
 ```python
-data = getTaskParameters('data/data01_direction4priors/data/sub01/steeve_exp12_data_sub01_sess06_run26_Pstd040_mean225_coh006_012_024_dir36_randInitPosSymPrior80_140106.mat')
+data = getTaskParameters('data/mat/data01_direction4priors/data/sub01/steeve_exp12_data_sub01_sess06_run26_Pstd040_mean225_coh006_012_024_dir36_randInitPosSymPrior80_140106.mat')
 data{2}
 
 ans = 
